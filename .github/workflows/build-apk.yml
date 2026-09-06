@@ -1,0 +1,97 @@
+name: Build Atiran Hamrah Android APK
+
+on:
+  push:
+    branches:
+      - 'arena/01a07877-hamrah'
+    paths-ignore:
+      - '**/*.apk'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      actions: write
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: gradle
+
+      - name: Setup Gradle 8.9
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+
+      - name: Install Android SDK 35 / build tools
+        run: |
+          echo "ANDROID_HOME=$ANDROID_HOME"
+          SDKMAN="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
+          if [ ! -x "$SDKMAN" ] && [ -x "$ANDROID_HOME/cmdline-tools/bin/sdkmanager" ]; then
+            SDKMAN="$ANDROID_HOME/cmdline-tools/bin/sdkmanager"
+          fi
+          if [ -x "$SDKMAN" ]; then
+            yes | "$SDKMAN" --licenses >/dev/null 2>&1 || true
+            "$SDKMAN" "platforms;android-35" "build-tools;35.0.0" || true
+          fi
+
+      - name: Build debug APK
+        working-directory: AtiranHamrahViewer
+        continue-on-error: true
+        run: |
+          gradle assembleDebug --no-daemon --stacktrace --console=plain > build.log 2>&1
+          echo "EXIT_CODE=$?" >> build.log
+          exit 0
+
+      - name: Upload build log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-log
+          path: AtiranHamrahViewer/build.log
+          if-no-files-found: ignore
+
+      - name: Upload debug APK
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: AtiranHamrahViewer-debug-apk
+          path: |
+            AtiranHamrahViewer/app/build/outputs/apk/debug/*.apk
+            AtiranHamrahViewer/app/build/outputs/apk/debug/output-metadata.json
+          if-no-files-found: ignore
+
+      - name: Commit debug APK to repository
+        if: success()
+        run: |
+          mkdir -p AtiranHamrahViewer/dist
+          cp AtiranHamrahViewer/app/build/outputs/apk/debug/app-debug.apk AtiranHamrahViewer/dist/app-debug.apk
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f AtiranHamrahViewer/dist/app-debug.apk
+          git commit -m "Build Atiran Hamrah debug APK (CI)" || true
+          git push origin HEAD:refs/heads/arena/01a07877-hamrah
+
+      - name: Verify build succeeded
+        run: grep -q '^EXIT_CODE=0$' AtiranHamrahViewer/build.log
+
+      - name: Report build failure
+        if: failure()
+        run: |
+          python3 - <<'PY'
+          log = open("AtiranHamrahViewer/build.log").read()
+          lines = log.splitlines()
+          start = next((i for i, l in enumerate(lines) if "Task :app:compileDebugKotlin" in l), 0)
+          part = lines[start:start + 120] if start else lines[-120:]
+          msg = "Android build failed. Compile output:\n" + "\n".join(part)
+          msg = msg.replace('%', '%25').replace('\r', '%0D').replace('\n', '%0A')
+          print("::error::" + msg)
+          PY

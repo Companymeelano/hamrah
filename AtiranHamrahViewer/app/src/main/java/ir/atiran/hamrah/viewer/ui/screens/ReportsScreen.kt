@@ -46,9 +46,9 @@ import kotlinx.coroutines.launch
 import kotlin.math.roundToLong
 
 private data class ReportCounts(
-    val customers: Long?,
-    val products: Long?,
-    val maxShMo: Long?,
+    val customers: Int?,
+    val products: Int?,
+    val maxShMo: Int?,
 )
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -341,4 +341,4 @@ private fun formatMoney(v: Double): String {
     return "$s تومان"
 }
 
-private fun formatLong(v: Long?): String = v?.let { String.format("%,d", it) } ?: "—"
+private fun formatLong(v: Int?): String = v?.let { String.format("%,d", it) } ?: "—"

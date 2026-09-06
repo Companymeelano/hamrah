@@ -126,27 +126,29 @@ fun LandingScreen(vm: AppViewModel) {
 
             Text(
                 text = "آتیران همراه",
-                style = MaterialTheme.typography.displaySmall,
+                style = MaterialTheme.typography.displaySmall.copy(
+                    shadow = Shadow(
+                        color = Color(0xFF000000).copy(alpha = 0.55f),
+                        offset = Offset(0f, 4f),
+                        blurRadius = 10f,
+                    ),
+                ),
                 fontWeight = FontWeight.ExtraBold,
                 color = White,
                 textAlign = TextAlign.Center,
-                shadow = Shadow(
-                    color = Color(0xFF000000).copy(alpha = 0.55f),
-                    offset = Offset(0f, 4f),
-                    blurRadius = 10f,
-                ),
             )
             Text(
                 text = "گزارشات مدیریتی پیشرفته",
-                style = MaterialTheme.typography.titleLarge,
+                style = MaterialTheme.typography.titleLarge.copy(
+                    shadow = Shadow(
+                        color = Color(0xFF000000).copy(alpha = 0.45f),
+                        offset = Offset(0f, 3f),
+                        blurRadius = 7f,
+                    ),
+                ),
                 fontWeight = FontWeight.Bold,
                 color = Aqua,
                 textAlign = TextAlign.Center,
-                shadow = Shadow(
-                    color = Color(0xFF000000).copy(alpha = 0.45f),
-                    offset = Offset(0f, 3f),
-                    blurRadius = 7f,
-                ),
             )
 
             Spacer(modifier = Modifier.height(8.dp))

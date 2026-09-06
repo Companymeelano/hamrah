@@ -28,6 +28,12 @@ gradle assembleDebug        # یا از Android Studio: Run ▶
 پروژه را روی یک Runner ابری می‌سازد و فایل `app-debug.apk` را به‌صورت
 Artifact (فایل قابل دانلود از Actions) منتشر می‌کند.
 
+پس از موفقیت ساخت، APK همان‌جا در روت مخزن به این مسیر هم کپی می‌شود:
+
+```
+AtiranHamrahViewer/dist/app-debug.apk
+```
+
 ## راه‌اندازی روی سرور
 
 پوشه منتشرشده سرویس (`LocalServices.svc` + `bin/`) باید روی وب‌سرور IIS

@@ -181,7 +181,7 @@ fun LandingScreen(vm: AppViewModel) {
                         color = Mint,
                     )
                     Text(
-                        text = "37.143.147.19:1433  •  AdminAn",
+                        text = "37.143.147.19:9595/Atiran  •  AdminAn",
                         style = MaterialTheme.typography.bodySmall,
                         color = White.copy(alpha = 0.82f),
                         textAlign = TextAlign.Center,

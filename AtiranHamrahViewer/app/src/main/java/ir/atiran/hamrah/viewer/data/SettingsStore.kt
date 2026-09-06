@@ -12,8 +12,8 @@ import kotlinx.coroutines.flow.map
 object ConnectionPreset {
     /** Preconfigured company database / session endpoint used on first launch. */
     const val SERVER_IP = "37.143.147.19"
-    const val SERVER_PORT = "1433"
-    const val SERVER_URL = "http://$SERVER_IP:$SERVER_PORT/LocalServices.svc"
+    const val SERVER_PORT = "9595"
+    const val SERVER_URL = "http://$SERVER_IP:$SERVER_PORT/Atiran"
     const val DEFAULT_CPU_ID = "00000000-0000"
     const val ADMIN_USER = "AdminAn"
     const val ADMIN_PASS = "St@R2022$"

@@ -24,16 +24,15 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import ir.atiran.hamrah.viewer.data.AtiranSettings
-import ir.atiran.hamrah.viewer.data.Check
-import ir.atiran.hamrah.viewer.data.Customer
-import ir.atiran.hamrah.viewer.data.DTOCompany
-import ir.atiran.hamrah.viewer.data.VWInventoryAnbars
+import ir.atiran.hamrah.viewer.data.DbCheck
+import ir.atiran.hamrah.viewer.data.DbDashboard
+import ir.atiran.hamrah.viewer.data.DbFactor
+import ir.atiran.hamrah.viewer.data.DbCustomer
 import ir.atiran.hamrah.viewer.ui.AppViewModel
 import ir.atiran.hamrah.viewer.ui.components.ChartEntry
 import ir.atiran.hamrah.viewer.ui.components.DonutChart
@@ -41,15 +40,10 @@ import ir.atiran.hamrah.viewer.ui.components.ErrorBanner
 import ir.atiran.hamrah.viewer.ui.components.GradientBars
 import ir.atiran.hamrah.viewer.ui.components.KpiCard
 import ir.atiran.hamrah.viewer.ui.components.LoadingBox
+import ir.atiran.hamrah.viewer.ui.components.RadarChart
 import ir.atiran.hamrah.viewer.ui.components.RankedList
 import kotlinx.coroutines.launch
 import kotlin.math.roundToLong
-
-private data class ReportCounts(
-    val customers: Int?,
-    val products: Int?,
-    val maxShMo: Int?,
-)
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -58,53 +52,19 @@ fun ReportsScreen(vm: AppViewModel, settings: AtiranSettings) {
 
     var loading by remember { mutableStateOf(false) }
     var error by remember { mutableStateOf<String?>(null) }
+    var dashboard by remember { mutableStateOf<DbDashboard?>(null) }
+    var connectionInfo by remember { mutableStateOf<String?>(null) }
 
-    var company by remember { mutableStateOf<DTOCompany?>(null) }
-    var counts by remember { mutableStateOf<ReportCounts?>(null) }
-    var checks by remember { mutableStateOf<List<Check>?>(null) }
-    var inventory by remember { mutableStateOf<List<VWInventoryAnbars>?>(null) }
-    var customers by remember { mutableStateOf<List<Customer>?>(null) }
-    var periods by remember { mutableStateOf<List<String>?>(null) }
-
-    fun loadDashboard() {
+    fun load() {
         loading = true
         error = null
         scope.launch {
             try {
-                val repo = vm.repository() ?: throw IllegalStateException("تنظیمات سرور ناقص است")
-                val repoCustomers = mutableListOf<Customer>()
-                var start = 0
-                while (start <= 2000) {
-                    val page = repo.customers(start, 500)
-                    if (page.isEmpty()) break
-                    repoCustomers += page
-                    start += 500
-                }
-                counts = ReportCounts(
-                    customers = repo.countMo(),
-                    products = repo.countKa(),
-                    maxShMo = repo.maxShMo(),
-                )
-                company = repo.companyInfo()
-                checks = repo.allChecks().takeIf { it.isNotEmpty() }
-                inventory = repo.inventoryAnbars(0, 10000).takeIf { it.isNotEmpty() }
-                customers = repoCustomers.takeIf { it.isNotEmpty() }
+                connectionInfo = vm.dbRepository().testConnection()
+                dashboard = vm.dbRepository().dashboard()
+                error = null
             } catch (e: Exception) {
-                error = e.message ?: "خطا در بارگذاری گزارش‌ها"
-            } finally {
-                loading = false
-            }
-        }
-    }
-
-    fun loadPeriods() {
-        loading = true
-        error = null
-        scope.launch {
-            try {
-                periods = vm.repository()?.periods() ?: emptyList()
-            } catch (e: Exception) {
-                error = e.message ?: "خطا در دریافت دوره‌ها"
+                error = "خطا در اتصال مستقیم به دیتابیس: ${e.message}"
             } finally {
                 loading = false
             }
@@ -117,12 +77,12 @@ fun ReportsScreen(vm: AppViewModel, settings: AtiranSettings) {
             .verticalScroll(rememberScrollState())
             .padding(horizontal = 12.dp),
     ) {
-        TopAppBar(title = { Text("گزارشات مدیریتی") })
+        TopAppBar(title = { Text("گزارشات مدیریتی — مستقیم از دیتابیس") })
 
-        // ---------- credit / branding ----------
+        // Luxury branding banner
         Card(
             modifier = Modifier.fillMaxWidth(),
-            colors = CardDefaults.cardColors(containerColor = Color(0xFF0E2A47).copy(alpha = 0.94f)),
+            colors = CardDefaults.cardColors(containerColor = Color(0xFF0A1F3D).copy(alpha = 0.97f)),
             shape = MaterialTheme.shapes.extraLarge,
         ) {
             Column(
@@ -130,22 +90,24 @@ fun ReportsScreen(vm: AppViewModel, settings: AtiranSettings) {
                 verticalArrangement = Arrangement.spacedBy(4.dp),
             ) {
                 Text(
-                    text = "داشبورد مدیریت آتیران",
+                    text = "پنل مدیریت Atiran2",
                     style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.Bold,
                     color = Color.White,
                 )
                 Text(
-                    text = "Meelano Studio Design",
-                    style = MaterialTheme.typography.titleMedium,
+                    text = "Meelano Studio Design  •  Milad Yaghoobi",
+                    style = MaterialTheme.typography.titleSmall,
                     fontWeight = FontWeight.SemiBold,
                     color = Color(0xFF8EF8CD),
                 )
-                Text(
-                    text = "طراحی و توسعه: Milad Yaghoobi",
-                    style = MaterialTheme.typography.bodySmall,
-                    color = Color.White.copy(alpha = 0.85f),
-                )
+                connectionInfo?.let {
+                    Text(
+                        text = it,
+                        style = MaterialTheme.typography.bodySmall,
+                        color = Color.White.copy(alpha = 0.80f),
+                    )
+                }
             }
         }
 
@@ -154,191 +116,192 @@ fun ReportsScreen(vm: AppViewModel, settings: AtiranSettings) {
             horizontalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             Button(
-                onClick = { loadDashboard() },
+                onClick = { load() },
                 enabled = !loading,
                 modifier = Modifier.weight(1f),
             ) {
-                Text("بارگذاری داشبورد")
+                Text("اتصال و بارگذاری")
             }
             OutlinedButton(
-                onClick = { loadPeriods() },
+                onClick = { vm.goSettings() },
                 enabled = !loading,
                 modifier = Modifier.weight(1f),
             ) {
-                Text("دوره‌ها")
+                Text("تنظیمات سرور/دیتابیس")
             }
         }
 
         ErrorBanner(error)
         if (loading) LoadingBox()
 
-        company?.let { c ->
-            Card(modifier = Modifier.fillMaxWidth()) {
-                Column(modifier = Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                    Text(
-                        text = c.Name ?: "اطلاعات شرکت",
-                        style = MaterialTheme.typography.titleMedium,
-                        fontWeight = FontWeight.Bold,
-                    )
-                    Text(
-                        text = listOfNotNull(c.Tel1, c.VisName?.let { "ویزیتور: $it" }).joinToString(" • ").ifBlank { "آدرس و تلفن از گزارش شرکت" },
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    )
-                }
-            }
-        }
-
-        counts?.let { c ->
-            val totalChecks = checks?.sumOf { it.Mablagh ?: 0.0 } ?: 0.0
-            val totalInventory = inventory?.sumOf { (it.Moj ?: 0.0) } ?: 0.0
-            val totalDebt = customers?.sumOf { it.Man ?: 0.0 } ?: 0.0
-            val totalCredit = customers?.sumOf { it.Credit ?: 0.0 } ?: 0.0
-
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                KpiCard(
-                    emoji = "👥",
-                    title = "مشتریان",
-                    value = formatLong(c.customers),
-                    subtitle = "آخرین ShMo: ${c.maxShMo ?: "—"}",
-                    accent = Color(0xFF0072FF),
-                    modifier = Modifier.weight(1f),
-                )
-                KpiCard(
-                    emoji = "📦",
-                    title = "کالاها",
-                    value = formatLong(c.products),
-                    subtitle = "تعداد اقلام پایه",
-                    accent = Color(0xFF6FCF97),
-                    modifier = Modifier.weight(1f),
-                )
-            }
-            Spacer(Modifier.height(8.dp))
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                KpiCard(
-                    emoji = "🧾",
-                    title = "چک‌ها",
-                    value = formatMoney(totalChecks),
-                    subtitle = "${checks?.size ?: 0} چک",
-                    accent = Color(0xFFFF6E7F),
-                    modifier = Modifier.weight(1f),
-                )
-                KpiCard(
-                    emoji = "🏬",
-                    title = "موجودی کل",
-                    value = formatMoney(totalInventory),
-                    subtitle = "جمع واحدهای انبار",
-                    accent = Color(0xFF7B61FF),
-                    modifier = Modifier.weight(1f),
-                )
-            }
-            Spacer(Modifier.height(8.dp))
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                KpiCard(
-                    emoji = "💰",
-                    title = "بدهی مشتریان",
-                    value = formatMoney(totalDebt),
-                    subtitle = "از داده‌های بارگذاری‌شده",
-                    accent = Color(0xFFFFB86C),
-                    modifier = Modifier.weight(1f),
-                )
-                KpiCard(
-                    emoji = "💳",
-                    title = "اعتبار مشتریان",
-                    value = formatMoney(totalCredit),
-                    subtitle = "از داده‌های بارگذاری‌شده",
-                    accent = Color(0xFF4ECDC4),
-                    modifier = Modifier.weight(1f),
-                )
-            }
-        }
-
-        checks?.let { cs ->
-            DonutChart(
-                entries = groupChecksByBank(cs),
-                centerTitle = "چک‌ها",
-                centerValue = formatMoney(cs.sumOf { it.Mablagh ?: 0.0 }),
-            )
-            Spacer(Modifier.height(10.dp))
-            DonutChart(
-                entries = groupChecksByStatus(cs),
-                centerTitle = "وضعیت",
-                centerValue = "${cs.size}",
-            )
-        }
-
-        inventory?.let { inv ->
-            Spacer(Modifier.height(10.dp))
-            GradientBars(groupInventoryByWarehouse(inv), unit = "واحد")
-        }
-
-        customers?.let { cs ->
-            Spacer(Modifier.height(10.dp))
-            RankedList("بدهی مشتریان", topCustomersByField(cs, chooseDebt = true))
-            Spacer(Modifier.height(10.dp))
-            RankedList("اعتبار مشتریان (سال ۱۴۰۴)", topCustomersByField(cs, chooseDebt = false))
-        }
-
-        periods?.let { ps ->
-            Spacer(Modifier.height(10.dp))
-            Card(modifier = Modifier.fillMaxWidth()) {
-                Column(modifier = Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                    Text("دوره‌های سیستم", style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
-                    Text(
-                        text = ps.joinToString("، ").ifBlank { "دوره‌ای یافت نشد" },
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    )
-                }
-            }
-        }
+        dashboard?.let { d -> DashboardContent(d) }
 
         Spacer(Modifier.height(20.dp))
     }
 }
 
+@Composable
+private fun DashboardContent(d: DbDashboard) {
+    val totalStock = d.inventory.sumOf { it.moj }
+
+    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        KpiCard(
+            emoji = "👥", title = "مشتریان", value = formatLong(d.customerCount.toLong()),
+            subtitle = "مجموع بدهی: ${formatMoney(d.totalDebt)}",
+            accent = Color(0xFF0072FF), modifier = Modifier.weight(1f),
+        )
+        KpiCard(
+            emoji = "📦", title = "کالاها", value = formatLong(d.productCount.toLong()),
+            subtitle = "مجموع موجودی انبار", accent = Color(0xFF6FCF97), modifier = Modifier.weight(1f),
+        )
+    }
+    Spacer(Modifier.height(8.dp))
+    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        KpiCard(
+            emoji = "🧾", title = "چک‌ها", value = formatMoney(d.totalCheckAmount),
+            subtitle = "${d.checkCount} چک", accent = Color(0xFFFF6E7F), modifier = Modifier.weight(1f),
+        )
+        KpiCard(
+            emoji = "🏬", title = "موجودی کل", value = formatMoney(totalStock),
+            subtitle = "مجموع واحدهای انبار", accent = Color(0xFF7B61FF), modifier = Modifier.weight(1f),
+        )
+    }
+    Spacer(Modifier.height(8.dp))
+    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        KpiCard(
+            emoji = "💰", title = "فروش کل", value = formatMoney(d.totalSales),
+            subtitle = "از فاکتورها", accent = Color(0xFFFFB86C), modifier = Modifier.weight(1f),
+        )
+        KpiCard(
+            emoji = "💳", title = "اعتبار مشتریان", value = formatMoney(d.totalCredit),
+            subtitle = "مجموع", accent = Color(0xFF4ECDC4), modifier = Modifier.weight(1f),
+        )
+    }
+    Spacer(Modifier.height(8.dp))
+    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        KpiCard(
+            emoji = "🧮", title = "مالیات", value = formatMoney(d.totalTax),
+            subtitle = "مجموع", accent = Color(0xFFBB6BD9), modifier = Modifier.weight(1f),
+        )
+        KpiCard(
+            emoji = "🏷️", title = "تخفیف", value = formatMoney(d.totalTakhfif),
+            subtitle = "مجموع", accent = Color(0xFFFF6B6B), modifier = Modifier.weight(1f),
+        )
+    }
+
+    Spacer(Modifier.height(10.dp))
+    RadarChart(
+        title = "تحلیل چندبُعدی داده‌ها",
+        axes = listOf("مشتری", "کالا", "چک", "فاکتور", "انبار", "ویزیتور"),
+        values = listOf(
+            d.customerCount.coerceAtLeast(1).toDouble(),
+            d.productCount.coerceAtLeast(1).toDouble(),
+            d.checkCount.coerceAtLeast(1).toDouble(),
+            d.factorCount.coerceAtLeast(1).toDouble(),
+            d.inventory.size.coerceAtLeast(1).toDouble(),
+            d.visitorCount.coerceAtLeast(1).toDouble(),
+        ),
+    )
+
+    if (d.checks.isNotEmpty()) {
+        Spacer(Modifier.height(10.dp))
+        DonutChart(
+            entries = groupChecksByBank(d.checks),
+            centerTitle = "چک‌ها",
+            centerValue = formatMoney(d.totalCheckAmount),
+        )
+        Spacer(Modifier.height(10.dp))
+        DonutChart(
+            entries = groupChecksByStatus(d.checks),
+            centerTitle = "وضعیت",
+            centerValue = "${d.checkCount}",
+        )
+    }
+
+    if (d.factors.isNotEmpty()) {
+        Spacer(Modifier.height(10.dp))
+        GradientBars(salesByDate(d.factors), unit = "فروش")
+    }
+
+    if (d.inventory.isNotEmpty()) {
+        Spacer(Modifier.height(10.dp))
+        GradientBars(groupInventoryByWarehouse(d.inventory.map { it.anbarName to it.moj }), unit = "موجودی")
+    }
+
+    if (d.products.isNotEmpty()) {
+        Spacer(Modifier.height(10.dp))
+        RankedList(
+            "کالاهای با ارزش بیشتر",
+            d.products
+                .filter { it.finalPrice > 0 }
+                .sortedByDescending { it.finalPrice }
+                .take(8)
+                .map { ChartEntry(it.name ?: "کالا ${it.shka}", it.finalPrice) },
+            unit = "ریال",
+        )
+    }
+
+    if (d.customers.isNotEmpty()) {
+        Spacer(Modifier.height(10.dp))
+        RankedList(
+            "مشتریان با بیشترین بدهی",
+            d.customers
+                .filter { it.man != null && it.man > 0 }
+                .sortedByDescending { it.man }
+                .take(8)
+                .map { ChartEntry(it.name ?: "شماره ${it.shmo ?: "?"}", it.man ?: 0.0) },
+            unit = "تومان",
+        )
+        Spacer(Modifier.height(10.dp))
+        RankedList(
+            "مشتریان با بیشترین اعتبار",
+            d.customers
+                .filter { it.cred != null && it.cred > 0 }
+                .sortedByDescending { it.cred }
+                .take(8)
+                .map { ChartEntry(it.name ?: "شماره ${it.shmo ?: "?"}", it.cred ?: 0.0) },
+            unit = "تومان",
+        )
+    }
+}
+
 // ---------------------------------------------------------------- helpers
-private fun groupChecksByBank(checks: List<Check>): List<ChartEntry> =
+private fun salesByDate(factors: List<DbFactor>): List<ChartEntry> =
+    factors
+        .map { (it.date ?: "?") to (it.allFel ?: 0.0) }
+        .groupBy({ it.first }, { it.second })
+        .map { (date, values) -> ChartEntry(date.takeLast(5), values.sum()) }
+        .sortedByDescending { it.label }
+        .take(10)
+
+private fun groupChecksByBank(checks: List<DbCheck>): List<ChartEntry> =
     checks
-        .map { (it.Bank ?: "نامشخص").trim().ifBlank { "نامشخص" } to (it.Mablagh ?: 0.0) }
+        .map { (it.bank ?: "نامشخص").trim().ifBlank { "نامشخص" } to (it.amount ?: 0.0) }
         .groupBy({ it.first }, { it.second })
         .map { (bank, values) -> ChartEntry(bank, values.sum()) }
         .sortedByDescending { it.value }
         .take(8)
 
-private fun groupChecksByStatus(checks: List<Check>): List<ChartEntry> =
+private fun groupChecksByStatus(checks: List<DbCheck>): List<ChartEntry> =
     checks
-        .map { (it.Status ?: 0).toString() to (it.Mablagh ?: 0.0) }
+        .map { (it.status ?: 0).toString() to (it.amount ?: 0.0) }
         .groupBy({ it.first }, { it.second })
         .map { (status, values) -> ChartEntry("وضعیت $status", values.sum()) }
         .sortedByDescending { it.value }
         .take(8)
 
-private fun groupInventoryByWarehouse(items: List<VWInventoryAnbars>): List<ChartEntry> =
+private fun groupInventoryByWarehouse(items: List<Pair<String?, Double>>): List<ChartEntry> =
     items
-        .map {
-            val name = (it.AnbName ?: it.name ?: "انبار ${it.rdf_anbars ?: "?"}").trim()
-                .ifBlank { "انبار ${it.rdf_anbars ?: "?"}" }
-            name to (it.Moj ?: 0.0)
-        }
+        .map { (it.first ?: "انبار") to (it.second ?: 0.0) }
         .groupBy({ it.first }, { it.second })
         .map { (name, values) -> ChartEntry(name, values.sum()) }
-        .sortedByDescending { it.value }
-        .take(8)
-
-private fun topCustomersByField(customers: List<Customer>, chooseDebt: Boolean): List<ChartEntry> =
-    customers
-        .mapNotNull { c ->
-            val v = if (chooseDebt) c.Man else c.Credit
-            if (v == null || v <= 0.0) null else ChartEntry(c.Moname ?: "شماره ${c.Shmo ?: "?"}", v)
-        }
         .sortedByDescending { it.value }
         .take(8)
 
 private fun formatMoney(v: Double): String {
     val l = v.roundToLong()
     val s = String.format("%,d", l)
-    return "$s تومان"
+    return "$s"
 }
 
-private fun formatLong(v: Int?): String = v?.let { String.format("%,d", it) } ?: "—"
+private fun formatLong(v: Long?): String = v?.let { String.format("%,d", it) } ?: "—"

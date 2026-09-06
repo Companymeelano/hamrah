@@ -8,7 +8,7 @@ import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-/** Everything the app needs to talk to a given Atiran server. */
+/** Everything the app needs to talk to a given Atiran server / database. */
 object ConnectionPreset {
     /** Preconfigured company database / session endpoint used on first launch. */
     const val SERVER_IP = "37.143.147.19"
@@ -17,6 +17,13 @@ object ConnectionPreset {
     const val DEFAULT_CPU_ID = "00000000-0000"
     const val ADMIN_USER = "AdminAn"
     const val ADMIN_PASS = "St@R2022$"
+
+    // Direct SQL Server / Atiran2
+    const val DB_HOST = SERVER_IP
+    const val DB_PORT = SERVER_PORT
+    const val DB_NAME = "Atiran2"
+    const val DB_USER = ADMIN_USER
+    const val DB_PASSWORD = ADMIN_PASS
 }
 
 data class AtiranSettings(
@@ -34,7 +41,20 @@ data class AtiranSettings(
     val visitorId: String = "",
     val appId: String = "",
     val configured: Boolean = false,
+    // Direct database connection
+    val dbHost: String = ConnectionPreset.DB_HOST,
+    val dbPort: String = ConnectionPreset.DB_PORT,
+    val dbName: String = ConnectionPreset.DB_NAME,
+    val dbUser: String = ConnectionPreset.DB_USER,
+    val dbPassword: String = ConnectionPreset.DB_PASSWORD,
 ) {
+    fun dbSettings(): AtiranDbSettings = AtiranDbSettings(
+        host = dbHost.trim(),
+        port = dbPort.trim(),
+        dbName = dbName.trim(),
+        user = dbUser.trim(),
+        password = dbPassword,
+    )
     fun normalizedServer(): String = serverUrl.trim().trimEnd('/')
 
     fun toSetInfo(): SetInfo = SetInfo(
@@ -69,6 +89,11 @@ class SettingsStore(private val context: Context) {
         val visitorId = stringPreferencesKey("visitorId")
         val appId = stringPreferencesKey("appId")
         val configured = booleanPreferencesKey("configured")
+        val dbHost = stringPreferencesKey("dbHost")
+        val dbPort = stringPreferencesKey("dbPort")
+        val dbName = stringPreferencesKey("dbName")
+        val dbUser = stringPreferencesKey("dbUser")
+        val dbPassword = stringPreferencesKey("dbPassword")
     }
 
     val settings: Flow<AtiranSettings> = context.dataStore.data.map { p ->
@@ -87,6 +112,11 @@ class SettingsStore(private val context: Context) {
             visitorId = p[Keys.visitorId] ?: "",
             appId = p[Keys.appId] ?: "",
             configured = p[Keys.configured] ?: false,
+            dbHost = p[Keys.dbHost] ?: ConnectionPreset.DB_HOST,
+            dbPort = p[Keys.dbPort] ?: ConnectionPreset.DB_PORT,
+            dbName = p[Keys.dbName] ?: ConnectionPreset.DB_NAME,
+            dbUser = p[Keys.dbUser] ?: ConnectionPreset.DB_USER,
+            dbPassword = p[Keys.dbPassword] ?: ConnectionPreset.DB_PASSWORD,
         )
     }
 
@@ -106,6 +136,11 @@ class SettingsStore(private val context: Context) {
             p[Keys.visitorId] = s.visitorId.trim()
             p[Keys.appId] = s.appId.trim()
             p[Keys.configured] = markConfigured
+            p[Keys.dbHost] = s.dbHost.trim()
+            p[Keys.dbPort] = s.dbPort.trim()
+            p[Keys.dbName] = s.dbName.trim()
+            p[Keys.dbUser] = s.dbUser.trim()
+            p[Keys.dbPassword] = s.dbPassword
         }
     }
 

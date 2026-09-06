@@ -75,6 +75,47 @@ fun SettingsScreen(vm: AppViewModel, initial: AtiranSettings) {
                 modifier = Modifier.fillMaxWidth(),
             )
 
+            Text("اتصال مستقیم دیتابیس (Atiran2)", style = MaterialTheme.typography.titleSmall)
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                OutlinedTextField(
+                    value = s.dbHost,
+                    onValueChange = { s = s.copy(dbHost = it) },
+                    label = { Text("آدرس سرور") },
+                    singleLine = true,
+                    modifier = Modifier.weight(1f),
+                )
+                OutlinedTextField(
+                    value = s.dbPort,
+                    onValueChange = { s = s.copy(dbPort = it) },
+                    label = { Text("پورت") },
+                    singleLine = true,
+                    modifier = Modifier.weight(1f),
+                )
+            }
+            OutlinedTextField(
+                value = s.dbName,
+                onValueChange = { s = s.copy(dbName = it) },
+                label = { Text("نام دیتابیس") },
+                singleLine = true,
+                modifier = Modifier.fillMaxWidth(),
+            )
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                OutlinedTextField(
+                    value = s.dbUser,
+                    onValueChange = { s = s.copy(dbUser = it) },
+                    label = { Text("کاربر دیتابیس") },
+                    singleLine = true,
+                    modifier = Modifier.weight(1f),
+                )
+                OutlinedTextField(
+                    value = s.dbPassword,
+                    onValueChange = { s = s.copy(dbPassword = it) },
+                    label = { Text("رمز دیتابیس") },
+                    singleLine = true,
+                    modifier = Modifier.weight(1f),
+                )
+            }
+
             Text("اطلاعات حساب (برای ورود و مشاهده داده‌ها)", style = MaterialTheme.typography.titleSmall)
             OutlinedTextField(
                 value = s.username,

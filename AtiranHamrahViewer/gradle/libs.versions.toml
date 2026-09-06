@@ -10,6 +10,7 @@ okhttp = "4.12.0"
 kotlinxSerialization = "1.7.3"
 kotlinxCoroutines = "1.8.1"
 datastore = "1.1.1"
+mssqljdbc = "12.8.1.jre11"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -27,6 +28,7 @@ compose-material-icons = { group = "androidx.compose.material", name = "material
 okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerialization" }
 kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "kotlinxCoroutines" }
+mssql-jdbc = { group = "com.microsoft.sqlserver", name = "mssql-jdbc", version.ref = "mssqljdbc" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

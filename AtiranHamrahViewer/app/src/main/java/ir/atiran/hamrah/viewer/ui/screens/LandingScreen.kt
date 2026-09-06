@@ -181,13 +181,13 @@ fun LandingScreen(vm: AppViewModel) {
                         color = Mint,
                     )
                     Text(
-                        text = "37.143.147.19:9595/Atiran  •  AdminAn",
+                        text = "Atiran2  •  37.143.147.19:9595  •  AdminAn",
                         style = MaterialTheme.typography.bodySmall,
                         color = White.copy(alpha = 0.82f),
                         textAlign = TextAlign.Center,
                     )
                     Text(
-                        text = "بدون نیاز به تایپ — با لمس دکمه، اتصال و احراز هویت انجام می‌شود.",
+                        text = "اتصال مستقیم JDBC به دیتابیس — بدون نیاز به تایپ.",
                         style = MaterialTheme.typography.bodySmall,
                         color = White.copy(alpha = 0.72f),
                         textAlign = TextAlign.Center,

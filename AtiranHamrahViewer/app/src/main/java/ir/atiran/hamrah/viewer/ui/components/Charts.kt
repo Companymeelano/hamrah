@@ -39,6 +39,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -181,10 +182,29 @@ fun GradientBars(
                     val h = ((e.value / maxVal).toFloat() * maxH).coerceAtLeast(2f)
                     val x = slot * i + (slot - barW) / 2f
                     val color = colors[i % colors.size]
+                    // 3D depth shadow
                     drawRoundRect(
-                        brush = Brush.verticalGradient(listOf(color, color.copy(alpha = 0.35f))),
+                        color = Color.Black.copy(alpha = 0.25f),
+                        topLeft = Offset(x + barW * 0.18f, size.height - h + barW * 0.20f),
+                        size = Size(barW, h),
+                        cornerRadius = CornerRadius(barW / 3f, barW / 3f),
+                    )
+                    // main glossy pillar
+                    drawRoundRect(
+                        brush = Brush.verticalGradient(listOf(color.copy(alpha = 0.20f), color, color.copy(alpha = 0.55f))),
                         topLeft = Offset(x, size.height - h),
                         size = Size(barW, h),
+                        cornerRadius = CornerRadius(barW / 3f, barW / 3f),
+                    )
+                    // top glass highlight
+                    drawRoundRect(
+                        brush = Brush.verticalGradient(
+                            listOf(Color.White.copy(alpha = 0.55f), Color.Transparent),
+                            startY = size.height - h,
+                            endY = size.height - h + (h * 0.35f).coerceAtLeast(barW),
+                        ),
+                        topLeft = Offset(x, size.height - h),
+                        size = Size(barW, (h * 0.35f).coerceAtLeast(barW)),
                         cornerRadius = CornerRadius(barW / 3f, barW / 3f),
                     )
                 }
@@ -424,6 +444,93 @@ fun RankedList(
                 }
             }
             if (i != entries.lastIndex) Spacer(modifier = Modifier.height(6.dp))
+        }
+    }
+}
+
+/** Multi-dimensional radar chart for comparing report categories. */
+@Composable
+fun RadarChart(
+    title: String,
+    axes: List<String>,
+    values: List<Double>,
+    color: Color = Color(0xFF00C6FF),
+) {
+    if (axes.isEmpty() || axes.size != values.size) {
+        ChartCard(title) { EmptyBox("داده‌های نمودار نامعتبر است") }
+        return
+    }
+    val maxVal = max(values.max(), 1.0)
+    ChartCard(title) {
+        Canvas(modifier = Modifier.fillMaxWidth().height(260.dp)) {
+            val cx = size.width / 2f
+            val cy = size.height / 2.15f
+            val radius = size.minDimension * 0.38f
+            val n = axes.size
+
+            fun point(i: Int, r: Float): Offset {
+                val angle = -90f + (360f / n) * i
+                val rad = Math.toRadians(angle.toDouble())
+                return Offset(cx + r * kotlin.math.cos(rad).toFloat(), cy + r * kotlin.math.sin(rad).toFloat())
+            }
+
+            // concentric rings
+            for (ring in 1..4) {
+                val rr = radius * ring / 4f
+                val p = Path().apply {
+                    for (i in 0 until n) {
+                        val q = point(i, rr)
+                        if (i == 0) moveTo(q.x, q.y) else lineTo(q.x, q.y)
+                    }
+                    close()
+                }
+                drawPath(p, color = color.copy(alpha = 0.12f), style = Stroke(width = 1.5f))
+            }
+            // axes
+            for (i in 0 until n) {
+                val q = point(i, radius)
+                drawLine(color.copy(alpha = 0.18f), start = Offset(cx, cy), end = q, strokeWidth = 1.5f)
+            }
+            // data polygon
+            val dataPath = Path().apply {
+                for (i in 0 until n) {
+                    val r = (values[i] / maxVal).toFloat() * radius
+                    val q = point(i, r)
+                    if (i == 0) moveTo(q.x, q.y) else lineTo(q.x, q.y)
+                }
+                close()
+            }
+            drawPath(
+                dataPath,
+                brush = Brush.radialGradient(
+                    listOf(color.copy(alpha = 0.50f), color.copy(alpha = 0.10f)),
+                    center = Offset(cx, cy),
+                    radius = radius,
+                ),
+            )
+            drawPath(dataPath, color = color, style = Stroke(width = 4f))
+            for (i in 0 until n) {
+                val r = (values[i] / maxVal).toFloat() * radius
+                val q = point(i, r)
+                drawCircle(Color.White, radius = 7f, center = q)
+                drawCircle(color, radius = 4f, center = q)
+            }
+        }
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+        ) {
+            axes.forEach { label ->
+                Text(
+                    text = label,
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    maxLines = 1,
+                    overflow = TextOverflow.Clip,
+                    modifier = Modifier.weight(1f),
+                    textAlign = TextAlign.Center,
+                )
+            }
         }
     }
 }

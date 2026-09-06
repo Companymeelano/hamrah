@@ -7,10 +7,9 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import ir.atiran.hamrah.viewer.data.AtiranClient
+import ir.atiran.hamrah.viewer.data.AtiranDbRepository
 import ir.atiran.hamrah.viewer.data.AtiranRepository
 import ir.atiran.hamrah.viewer.data.AtiranSettings
-import ir.atiran.hamrah.viewer.data.CustomerLogin
-import ir.atiran.hamrah.viewer.data.Login
 import ir.atiran.hamrah.viewer.data.SettingsStore
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -47,6 +46,19 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
 
     private var cachedRepo: AtiranRepository? = null
     private var repoCacheKey: String? = null
+    private var dbRepo: AtiranDbRepository? = null
+    private var dbRepoKey: String? = null
+
+    /** Stable direct-database repository while host/port/database/user unchanged. */
+    fun dbRepository(): AtiranDbRepository {
+        val s = settings.value
+        val key = listOf(s.dbHost, s.dbPort, s.dbName, s.dbUser).joinToString("|")
+        if (dbRepo == null || dbRepoKey != key) {
+            dbRepoKey = key
+            dbRepo = AtiranDbRepository(s.dbSettings())
+        }
+        return dbRepo!!
+    }
 
     /** Stable repository instance while server/CPUID unchanged. */
     fun repository(): AtiranRepository? {
@@ -78,39 +90,20 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    /** Save the embedded connection preset, authenticate, and open reports. */
+    /** Save embedded preset, verify direct DB connection, then open reports. */
     fun connectWithPreset() {
         viewModelScope.launch {
             busy = true
             error = null
             try {
-                store.save(AtiranSettings())
-                val s = settings.value
-                val repo = repository()
-                    ?: throw IllegalStateException("تنظیمات اتصال ناقص است (CPUID سرور را بررسی کنید)")
-                try {
-                    repo.login(Login(s.username, s.password))?.Role
-                } catch (loginE: Exception) {
-                    // Some services only accept the login on GetCustomerByLogin.
-                    // Keep going; the profile call below is the real auth check.
-                }
-                val profile = try {
-                    repo.getCustomerByLogin(
-                        CustomerLogin(Username = s.username, Password = s.password)
-                    )
-                } catch (profileE: Exception) {
-                    emptyList()
-                }
-                val customer = profile.firstOrNull()
-                store.save(
-                    s.copy(
-                        configured = true,
-                        shMo = customer?.Shmo?.toString()?.ifBlank { null } ?: s.shMo,
-                    )
-                )
+                val preset = AtiranSettings()
+                store.save(preset)
+                val info = dbRepository().testConnection()
+                store.save(settings.value.copy(configured = true))
+                error = "متصل شد: $info"
                 screen = Screen.Home
             } catch (e: Exception) {
-                error = "اتصال ناموفق: ${e.message}"
+                error = "اتصال مستقیم به دیتابیس ناموفق: ${e.message}"
                 screen = Screen.Login
             } finally {
                 busy = false

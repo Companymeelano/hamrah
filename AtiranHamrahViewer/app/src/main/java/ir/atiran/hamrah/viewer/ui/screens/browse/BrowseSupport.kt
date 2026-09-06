@@ -51,8 +51,8 @@ fun <T> BrowseListScreen(
     fetchSize: Int = 100,
     localFilter: (T, String) -> Boolean = { _, _ -> true },
     itemKey: (T) -> Any? = { it.hashCode() },
-    itemContent: @Composable (T) -> Unit,
     onItemTap: (T) -> Unit = {},
+    itemContent: @Composable (T) -> Unit,
 ) {
     val settings by vm.settings.collectAsState()
     val repo = remember(settings.serverUrl, settings.cpuId) { vm.repository() }

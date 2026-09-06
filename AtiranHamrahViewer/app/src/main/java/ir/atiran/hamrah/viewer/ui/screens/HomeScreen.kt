@@ -90,6 +90,7 @@ fun HomeScreen(vm: AppViewModel, settings: AtiranSettings) {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun ColumnScope.SectionItem(
     title: String,

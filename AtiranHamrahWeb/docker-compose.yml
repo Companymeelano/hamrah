@@ -1,0 +1,13 @@
+services:
+  atiran-hamrah-web:
+    build: .
+    container_name: atiran-hamrah-web
+    ports:
+      - "8080:8080"
+    environment:
+      DB_HOST: 37.143.147.19
+      DB_PORT: 1433
+      DB_NAME: Atiran2
+      DB_USER: AdminAn
+      DB_PASSWORD: St@R2022$
+    restart: unless-stopped

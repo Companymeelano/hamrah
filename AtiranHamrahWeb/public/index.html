@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>آتیران همراه | گزارشات مدیریتی</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div id="app" class="app">
+    <div class="bg-orbs" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <div class="topbar__logo" aria-hidden="true">
+        <span class="m-mark">M</span>
+        <span class="m-spark"></span>
+      </div>
+      <div class="topbar__text">
+        <h1>آتیران همراه</h1>
+        <p>گزارشات مدیریتی پیشرفته</p>
+      </div>
+      <div class="topbar__credit">
+        <span class="credit--mint">Meelano Studio Design</span>
+        <span class="dot">•</span>
+        <span class="credit--aqua">Milad Yaghoobi</span>
+      </div>
+    </header>
+
+    <div id="connectionBadge" class="connection-badge">
+      <span class="pulse-dot"></span>
+      <span id="connectionText">در حال اتصال مستقیم به دیتابیس...</span>
+    </div>
+
+    <main class="layout">
+      <aside class="sidebar">
+        <button class="nav-btn active" data-view="overview">
+          <span class="nav-icon" data-icon="dash">▦</span>
+          <span class="nav-label">داشبورد کل</span>
+        </button>
+        <button class="nav-btn" data-view="customers">
+          <span class="nav-icon" data-icon="customers">👥</span>
+          <span class="nav-label">مشتریان</span>
+        </button>
+        <button class="nav-btn" data-view="products">
+          <span class="nav-icon" data-icon="products">▣</span>
+          <span class="nav-label">کالاها و قیمت‌ها</span>
+        </button>
+        <button class="nav-btn" data-view="checks">
+          <span class="nav-icon" data-icon="checks">🗎</span>
+          <span class="nav-label">چک‌ها</span>
+        </button>
+        <button class="nav-btn" data-view="invoices">
+          <span class="nav-icon" data-icon="invoices">🧾</span>
+          <span class="nav-label">فاکتورها</span>
+        </button>
+        <button class="nav-btn" data-view="inventory">
+          <span class="nav-icon" data-icon="inventory">◫</span>
+          <span class="nav-label">موجودی انبار</span>
+        </button>
+        <button class="nav-btn" data-view="visitors">
+          <span class="nav-icon" data-icon="visitors">◎</span>
+          <span class="nav-label">ویزیتورها</span>
+        </button>
+      </aside>
+
+      <section id="content" class="content">
+        <div id="loading" class="panel loading-panel">
+          <div class="loader"></div>
+          <p>در حال بارگذاری گزارش‌ها از Atiran2...</p>
+        </div>
+
+        <div id="errorBox" class="panel error-box hidden"></div>
+
+        <div id="view-overview" class="view active">
+          <div id="overview-hero" class="hero-card"></div>
+          <div id="overview-kpis" class="kpi-grid"></div>
+          <div id="overview-radar" class="chart-row"></div>
+          <div id="overview-bars" class="chart-stack"></div>
+          <div id="overview-donuts" class="chart-stack"></div>
+          <div id="overview-ranked" class="chart-stack"></div>
+        </div>
+
+        <div id="view-customers" class="view"></div>
+        <div id="view-products" class="view"></div>
+        <div id="view-checks" class="view"></div>
+        <div id="view-invoices" class="view"></div>
+        <div id="view-inventory" class="view"></div>
+        <div id="view-visitors" class="view"></div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>Meelano Studio Design • Milad Yaghoobi</span>
+      <span>اتصال مستقیم به SQL Server (پورت 1433) — فقط SELECT</span>
+    </footer>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>

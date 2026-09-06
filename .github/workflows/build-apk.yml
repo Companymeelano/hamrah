@@ -1,0 +1,55 @@
+name: Build Atiran Hamrah Android APK
+
+on:
+  push:
+    branches:
+      - '**'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: write
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: gradle
+
+      - name: Setup Gradle 8.9
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+
+      - name: Install Android SDK 35 / build tools
+        run: |
+          echo "ANDROID_HOME=$ANDROID_HOME"
+          SDKMAN="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
+          if [ ! -x "$SDKMAN" ] && [ -x "$ANDROID_HOME/cmdline-tools/bin/sdkmanager" ]; then
+            SDKMAN="$ANDROID_HOME/cmdline-tools/bin/sdkmanager"
+          fi
+          if [ -x "$SDKMAN" ]; then
+            yes | "$SDKMAN" --licenses >/dev/null 2>&1 || true
+            "$SDKMAN" "platforms;android-35" "build-tools;35.0.0" || true
+          fi
+
+      - name: Build debug APK
+        working-directory: AtiranHamrahViewer
+        run: gradle assembleDebug --no-daemon --stacktrace
+
+      - name: Upload debug APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: AtiranHamrahViewer-debug-apk
+          path: |
+            AtiranHamrahViewer/app/build/outputs/apk/debug/*.apk
+            AtiranHamrahViewer/app/build/outputs/apk/debug/output-metadata.json
+          if-no-files-found: error

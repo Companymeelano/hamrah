@@ -1,0 +1,1502 @@
+{
+ "ReadMessage": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "id",
+    "type": "string"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 0,
+   "UriTemplate": "/Get/ReadMessage/{id}"
+  }
+ },
+ "InventoryAnbars": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "startIndex",
+    "type": "string"
+   },
+   {
+    "name": "fetchNo",
+    "type": "string"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 0,
+   "UriTemplate": "/Get/InventoryAnbars/{startIndex}/{fetchNo}"
+  }
+ },
+ "VisitorMasir": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "VisitorID",
+    "type": "string"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 0,
+   "UriTemplate": "/Get/VisitorMasir/{VisitorID}"
+  }
+ },
+ "AllVisitorMasir": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 0,
+   "UriTemplate": "/Get/VisitorMasir"
+  }
+ },
+ "VisitorMessages": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "startIndex",
+    "type": "string"
+   },
+   {
+    "name": "fetchNo",
+    "type": "string"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 0,
+   "UriTemplate": "/Get/VisitorMessages/{startIndex}/{fetchNo}"
+  }
+ },
+ "AllVisitorMessages": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 0,
+   "UriTemplate": "/Get/VisitorMessages"
+  }
+ },
+ "CustomerFactors": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "shMo",
+    "type": "string"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 0,
+   "UriTemplate": "/Get/CustomerFactors/{shMo}"
+  }
+ },
+ "GetChecks": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "startIndex",
+    "type": "string"
+   },
+   {
+    "name": "fetchNo",
+    "type": "string"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 0,
+   "UriTemplate": "/Get/Checks/{startIndex}/{fetchNo}"
+  }
+ },
+ "GetAllChecks": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 0,
+   "UriTemplate": "/Get/Checks"
+  }
+ },
+ "CustomerChecks": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "shMo",
+    "type": "string"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 0,
+   "UriTemplate": "/Get/CustomerChecks/{shMo}"
+  }
+ },
+ "CustomerEtebar": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "shMo",
+    "type": "string"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 0,
+   "UriTemplate": "/Get/CustomerEtebar/{shMo}"
+  }
+ },
+ "Customers": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "startIndex",
+    "type": "string"
+   },
+   {
+    "name": "fetchNo",
+    "type": "string"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 0,
+   "UriTemplate": "/Get/Customers/{startIndex}/{fetchNo}"
+  }
+ },
+ "FilteredCustomers": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "setInfo",
+    "type": "AtiranLocalServices.SetInfo"
+   },
+   {
+    "name": "startIndex",
+    "type": "string"
+   },
+   {
+    "name": "fetchNo",
+    "type": "string"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 2,
+   "UriTemplate": "/Get/FilteredCustomers/{startIndex}/{fetchNo}"
+  }
+ },
+ "FilteredCustomersWithMode": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "setInfo",
+    "type": "AtiranLocalServices.SetInfo"
+   },
+   {
+    "name": "startIndex",
+    "type": "string"
+   },
+   {
+    "name": "fetchNo",
+    "type": "string"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 2,
+   "UriTemplate": "/Get/FilteredCustomersWithMode/{startIndex}/{fetchNo}"
+  }
+ },
+ "RegisterDeviceAppId": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "setInfo",
+    "type": "AtiranLocalServices.SetInfo"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 2,
+   "UriTemplate": "/Get/RegisterDeviceAppId"
+  }
+ },
+ "CheckSetInfo": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "setInfo",
+    "type": "AtiranLocalServices.SetInfo"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 2,
+   "UriTemplate": "/Get/CheckSetInfo"
+  }
+ },
+ "CustomerByShMo": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "shMo",
+    "type": "string"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 0,
+   "UriTemplate": "/Get/CustomerByShMo/{shMo}"
+  }
+ },
+ "FilteredCustGroups": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "setInfo",
+    "type": "AtiranLocalServices.SetInfo"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 2,
+   "UriTemplate": "/Get/FilteredCustGroups"
+  }
+ },
+ "CustGroups": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 0,
+   "UriTemplate": "/Get/CustGroups"
+  }
+ },
+ "FilteredKaGroups": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "setInfo",
+    "type": "AtiranLocalServices.SetInfo"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 2,
+   "UriTemplate": "/Get/FilteredKaGroups"
+  }
+ },
+ "KaGroups": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 0,
+   "UriTemplate": "/Get/KaGroups"
+  }
+ },
+ "Kalas": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "startIndex",
+    "type": "string"
+   },
+   {
+    "name": "fetchNo",
+    "type": "string"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 0,
+   "UriTemplate": "/Get/Kalas/{startIndex}/{fetchNo}"
+  }
+ },
+ "FilteredKalas": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "setInfo",
+    "type": "AtiranLocalServices.SetInfo"
+   },
+   {
+    "name": "startIndex",
+    "type": "string"
+   },
+   {
+    "name": "fetchNo",
+    "type": "string"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 2,
+   "UriTemplate": "/Get/FilteredKalas/{startIndex}/{fetchNo}"
+  }
+ },
+ "KalasByGroupId": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "groupId",
+    "type": "string"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 0,
+   "UriTemplate": "/Get/KalasByGroupId/{groupId}"
+  }
+ },
+ "KalaByShKa": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "shKa",
+    "type": "string"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 0,
+   "UriTemplate": "/Get/KalaByShKa/{shKa}"
+  }
+ },
+ "ForoshPrices": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "startIndex",
+    "type": "string"
+   },
+   {
+    "name": "fetchNo",
+    "type": "string"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 0,
+   "UriTemplate": "/Get/ForoshPrices/{startIndex}/{fetchNo}"
+  }
+ },
+ "KalaAnbs": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "startIndex",
+    "type": "string"
+   },
+   {
+    "name": "FetchNo",
+    "type": "string"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 0,
+   "UriTemplate": "/Get/KalaAnbs/{startIndex}/{fetchNo}"
+  }
+ },
+ "KalaAnbByShKa": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "shKa",
+    "type": "string"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 0,
+   "UriTemplate": "/Get/KalaAnbByShKa/{shKa}"
+  }
+ },
+ "SetCustomerLocation": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "location",
+    "type": "AtiranLocalServices.AtiranLocation"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 2,
+   "UriTemplate": "/Post/SetCustomerLocation"
+  }
+ },
+ "AcivateTablet": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "CPUID",
+    "type": "string"
+   },
+   {
+    "name": "activationCode",
+    "type": "string"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 0,
+   "UriTemplate": "/Get/AcivateTablet/{CPUID}/{activationCode}"
+  }
+ },
+ "IsAdmin": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "password",
+    "type": "AtiranLocalServices.PasswordWrapper"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 2,
+   "UriTemplate": "/Post/isAdmin"
+  }
+ },
+ "SetDeviceLocation": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "location",
+    "type": "AtiranLocalServices.AtiranLocation"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 2,
+   "UriTemplate": "/Post/SetDeviceLocation"
+  }
+ },
+ "SetDeviceLocations": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "locations",
+    "type": "System.Collections.Generic.List`1<AtiranLocalServices.AtiranLocation>"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 2,
+   "UriTemplate": "/Post/SetDeviceLocations"
+  }
+ },
+ "Anbars": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 0,
+   "UriTemplate": "/Get/Anbars"
+  }
+ },
+ "CustActs": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "minRdf",
+    "type": "string"
+   },
+   {
+    "name": "shMO",
+    "type": "string"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 0,
+   "UriTemplate": "/Get/CustActs/{minRdf}/{shMo}"
+  }
+ },
+ "CustActDetails": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "act_rdf",
+    "type": "string"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 0,
+   "UriTemplate": "/Get/CustActDetails/{act_rdf}"
+  }
+ },
+ "CustActsReport": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "shMO",
+    "type": "string"
+   },
+   {
+    "name": "beginDate",
+    "type": "string"
+   },
+   {
+    "name": "endDate",
+    "type": "string"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 0,
+   "UriTemplate": "/Get/CustActsReport/{shMo}/{beginDate}/{endDate}"
+  }
+ },
+ "SaleFactReport": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "shMO",
+    "type": "string"
+   },
+   {
+    "name": "beginDate",
+    "type": "string"
+   },
+   {
+    "name": "endDate",
+    "type": "string"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 0,
+   "UriTemplate": "/Get/SaleFactReport/{shMo}/{beginDate}/{endDate}"
+  }
+ },
+ "SaleFactNewReport": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "shMO",
+    "type": "string"
+   },
+   {
+    "name": "beginDate",
+    "type": "string"
+   },
+   {
+    "name": "endDate",
+    "type": "string"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 0,
+   "UriTemplate": "/Get/SaleFactNewReport/{shMo}/{beginDate}/{endDate}"
+  }
+ },
+ "SaleFactPishReport": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "shMO",
+    "type": "string"
+   },
+   {
+    "name": "beginDate",
+    "type": "string"
+   },
+   {
+    "name": "endDate",
+    "type": "string"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 0,
+   "UriTemplate": "/Get/SaleFactPishReport/{shMo}/{beginDate}/{endDate}"
+  }
+ },
+ "MaxShKa": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 0,
+   "UriTemplate": "/Get/MaxShKa"
+  }
+ },
+ "MaxShMo": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 0,
+   "UriTemplate": "/Get/MaxShMo"
+  }
+ },
+ "CountKa": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 0,
+   "UriTemplate": "/Get/CountKa"
+  }
+ },
+ "FilteredCountKa": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "setInfo",
+    "type": "AtiranLocalServices.SetInfo"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 2,
+   "UriTemplate": "/Get/FilteredCountKa"
+  }
+ },
+ "CountMo": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 0,
+   "UriTemplate": "/Get/CountMo"
+  }
+ },
+ "FilteredCountMo": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "setInfo",
+    "type": "AtiranLocalServices.SetInfo"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 2,
+   "UriTemplate": "/Get/FilteredCountMo"
+  }
+ },
+ "FilteredCountMoWithMode": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "setInfo",
+    "type": "AtiranLocalServices.SetInfo"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 2,
+   "UriTemplate": "/Get/FilteredCountMoWithMode"
+  }
+ },
+ "AddVisit": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "visit",
+    "type": "AtiranLocalServices.Visit"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 2,
+   "UriTemplate": "/Post/AddVisit"
+  }
+ },
+ "AddVisitTest": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "visit",
+    "type": "AtiranLocalServices.Visit"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 2,
+   "UriTemplate": "/Post/AddVisitTest"
+  }
+ },
+ "AddOnlineOrder": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "visit",
+    "type": "AtiranLocalServices.Visit"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 2,
+   "UriTemplate": "/Post/AddOnlineOrder"
+  }
+ },
+ "GetCustomerByLogin": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "customerLogin",
+    "type": "AtiranLocalServices.CustomerLogin"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 2,
+   "UriTemplate": "/Post/GetCustomerByLogin"
+  }
+ },
+ "ChangeCustomerPassword": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "customerLogin",
+    "type": "AtiranLocalServices.CustomerLogin"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 2,
+   "UriTemplate": "/Post/ChangeCustomerPassword"
+  }
+ },
+ "EditCustomerProfile": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "customerLogin",
+    "type": "AtiranLocalServices.CustomerLogin"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 2,
+   "UriTemplate": "/Post/EditCustomerProfile"
+  }
+ },
+ "GetShop": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "customer",
+    "type": "AtiranLocalServices.Customer"
+   },
+   {
+    "name": "typeSelect",
+    "type": "string"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 2,
+   "UriTemplate": "/Get/GetShop/{typeSelect}"
+  }
+ },
+ "LastForoshPrice": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "shka",
+    "type": "string"
+   },
+   {
+    "name": "shmo",
+    "type": "string"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 0,
+   "UriTemplate": "/Get/LastForoshPrice/{shka}/{shmo}"
+  }
+ },
+ "CompanyInfo": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 0,
+   "UriTemplate": "/Get/CompanyInfo"
+  }
+ },
+ "SaleLine": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "sysid",
+    "type": "string"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 0,
+   "UriTemplate": "/Get/SaleLine/{sysid}"
+  }
+ },
+ "AdminSaleReport": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "type",
+    "type": "string"
+   },
+   {
+    "name": "beginDate",
+    "type": "string"
+   },
+   {
+    "name": "endDate",
+    "type": "string"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 0,
+   "UriTemplate": "/Get/AdminSaleReport/{type}/{beginDate}/{endDate}"
+  }
+ },
+ "AddCustomer": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "customer",
+    "type": "AtiranLocalServices.TabletCustomer"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 2,
+   "UriTemplate": "/POST/AddCustomer"
+  }
+ },
+ "EditCustomer": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "customer",
+    "type": "AtiranLocalServices.TabletCustomer"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 2,
+   "UriTemplate": "/POST/EditCustomer"
+  }
+ },
+ "LoginVisitor": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "visitorLogin",
+    "type": "AtiranLocalServices.VisitorLogin"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 2,
+   "UriTemplate": "/POST/LoginVisitor"
+  }
+ },
+ "GetNotPaidFactors": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "shMo",
+    "type": "string"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 0,
+   "UriTemplate": "/Get/NotPaidFactors/{shMo}"
+  }
+ },
+ "GetVisitorOfflineLocations": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "VisitirID",
+    "type": "string"
+   },
+   {
+    "name": "Date",
+    "type": "string"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 2,
+   "UriTemplate": "/Get/GetVisitorOfflineLocations/{VisitirID}/{Date}"
+  }
+ },
+ "GetVisitorsOnlineLocation": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "VisitirLogin",
+    "type": "string"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 2,
+   "UriTemplate": "/Get/GetVisitorsOnlineLocation/{VisitirLogin}"
+  }
+ },
+ "GetVisitorOnlineLocation": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "VisitirID",
+    "type": "string"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 2,
+   "UriTemplate": "/Get/GetVisitorOnlineLocation/{VisitirID}"
+  }
+ },
+ "AddPishDaryaft": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "pishDaryaft",
+    "type": "AtiranLocalServices.PishDaryaftDTO"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 2,
+   "UriTemplate": "/Post/AddPishDaryaft"
+  }
+ },
+ "GetPishFactors": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "pishFactorFilter",
+    "type": "AtiranLocalServices.PishFactorFilter"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 2,
+   "UriTemplate": "/Get/PishFactors"
+  }
+ },
+ "GetPishFactorDetails": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "shfacfo",
+    "type": "string"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 0,
+   "UriTemplate": "/Get/PishFactors/{shfacfo}"
+  }
+ },
+ "GetUnreadMessages": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "visitorId",
+    "type": "string"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 0,
+   "UriTemplate": "/Get/GetUnreadMessages/{visitorId}"
+  }
+ },
+ "DeviceInfo": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "visitorId",
+    "type": "string"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 0,
+   "UriTemplate": "/Get/DeviceInfo/{visitorId}"
+  }
+ },
+ "VisitorSalesGoals": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "filterVisGoals",
+    "type": "AtiranLocalServices.FilterVisGoals"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 2,
+   "UriTemplate": "/Get/VisitorSalesGoals"
+  }
+ },
+ "Listofvisitororders": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "FiVisOrders",
+    "type": "AtiranLocalServices.FilterListVisOrders"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 2,
+   "UriTemplate": "/Get/Listofvisitororders"
+  }
+ },
+ "PreInvoiceItems": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "IdSanad",
+    "type": "int32"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 2,
+   "UriTemplate": "/Get/PreInvoiceItems"
+  }
+ },
+ "GetPeriods": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 0,
+   "UriTemplate": "/Get/GetPeriods"
+  }
+ },
+ "GetMessageFilter": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "messageFilter",
+    "type": "AtiranLocalServices.MessageFilter"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 2,
+   "UriTemplate": "/Post/GetMessageFilter"
+  }
+ },
+ "Login": {
+  "ret": "AtiranLocalServices.AtiranResult",
+  "params": [
+   {
+    "name": "login",
+    "type": "AtiranLocalServices.Login"
+   },
+   {
+    "name": "token",
+    "type": "AtiranLocalServices.SecurityToken"
+   }
+  ],
+  "web": {
+   "Method": "POST",
+   "ResponseFormat": 1,
+   "BodyStyle": 2,
+   "UriTemplate": "/Post/Login"
+  }
+ }
+}

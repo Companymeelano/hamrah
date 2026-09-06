@@ -1,0 +1,3706 @@
+{
+ "AtiranLocalServices.AtiranResult": [
+  {
+   "json": "Status",
+   "type": "int32"
+  },
+  {
+   "json": "Type",
+   "type": "int32"
+  },
+  {
+   "json": "Result",
+   "type": "string"
+  }
+ ],
+ "AtiranLocalServices.AtiranResult`1": [
+  {
+   "json": "Status",
+   "type": "int32"
+  },
+  {
+   "json": "Type",
+   "type": "int32"
+  },
+  {
+   "json": "Result",
+   "type": "!0"
+  }
+ ],
+ "AtiranLocalServices.AtiranError": [
+  {
+   "json": "ErrorCode",
+   "type": "int32"
+  },
+  {
+   "json": "ErrorMessage",
+   "type": "string"
+  },
+  {
+   "json": "CPUID",
+   "type": "string"
+  }
+ ],
+ "AtiranLocalServices.SecurityToken": [
+  {
+   "json": "CPUID",
+   "type": "string"
+  },
+  {
+   "json": "Key",
+   "type": "string"
+  }
+ ],
+ "AtiranLocalServices.PasswordWrapper": [
+  {
+   "json": "password",
+   "type": "string"
+  }
+ ],
+ "AtiranLocalServices.SetInfo": [
+  {
+   "json": "shmo",
+   "type": "string"
+  },
+  {
+   "json": "password",
+   "type": "string"
+  },
+  {
+   "json": "_ownerNum",
+   "type": "string"
+  },
+  {
+   "json": "_InventoryNum",
+   "type": "string"
+  },
+  {
+   "json": "_AtiranNum",
+   "type": "string"
+  },
+  {
+   "json": "_carrierNum",
+   "type": "string"
+  },
+  {
+   "json": "isRoozMasir",
+   "type": "bool"
+  },
+  {
+   "json": "isRoozMasir_new",
+   "type": "bool"
+  },
+  {
+   "json": "roozMasir",
+   "type": "bool"
+  },
+  {
+   "json": "_ActiveLine",
+   "type": "string"
+  },
+  {
+   "json": "_serverAdd",
+   "type": "string"
+  },
+  {
+   "json": "defaultPriceGrp",
+   "type": "int32"
+  },
+  {
+   "json": "PriceGrpType",
+   "type": "int32"
+  },
+  {
+   "json": "VisitRangeLimit",
+   "type": "int32"
+  },
+  {
+   "json": "ActiveRefund",
+   "type": "int64"
+  },
+  {
+   "json": "mojoodiType",
+   "type": "int32"
+  },
+  {
+   "json": "PrintCount",
+   "type": "int32"
+  },
+  {
+   "json": "timeF",
+   "type": "int32"
+  },
+  {
+   "json": "displacement",
+   "type": "int32"
+  },
+  {
+   "json": "ActsLimit",
+   "type": "int32"
+  },
+  {
+   "json": "MaxAllowedSyncDays",
+   "type": "int32"
+  },
+  {
+   "json": "NewVis4NoLoc",
+   "type": "bool"
+  },
+  {
+   "json": "VisitHasLocation",
+   "type": "bool"
+  },
+  {
+   "json": "discountApply",
+   "type": "bool"
+  },
+  {
+   "json": "jozChange",
+   "type": "bool"
+  },
+  {
+   "json": "sendLoc",
+   "type": "bool"
+  },
+  {
+   "json": "AccessReport",
+   "type": "bool"
+  },
+  {
+   "json": "VisitorSeeIP",
+   "type": "bool"
+  },
+  {
+   "json": "SelectByMasir",
+   "type": "bool"
+  },
+  {
+   "json": "hasAccessPishDaryaft",
+   "type": "bool"
+  },
+  {
+   "json": "hasAccessPishFactor",
+   "type": "bool"
+  },
+  {
+   "json": "hasAccessRahyab",
+   "type": "bool"
+  },
+  {
+   "json": "DTOCompany",
+   "type": "AtiranLocalServices.DTOCompany"
+  },
+  {
+   "json": "serverNamesList",
+   "type": "string"
+  },
+  {
+   "json": "serversList",
+   "type": "string"
+  },
+  {
+   "json": "selectivePrice",
+   "type": "bool"
+  },
+  {
+   "json": "selectiveMp",
+   "type": "bool"
+  },
+  {
+   "json": "VisitorID",
+   "type": "int32"
+  },
+  {
+   "json": "CheckingBouncedCheck",
+   "type": "bool"
+  },
+  {
+   "json": "InventoryCheck",
+   "type": "int32"
+  },
+  {
+   "json": "AutoPrize",
+   "type": "bool"
+  },
+  {
+   "json": "PercentGroupPriority",
+   "type": "bool"
+  },
+  {
+   "json": "PrizeGroup_Vahed_Joz",
+   "type": "int32"
+  },
+  {
+   "json": "IsTaxActive",
+   "type": "bool"
+  }
+ ],
+ "AtiranLocalServices.IntervalListTarget": [
+  {
+   "json": "NtedVah",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "NtedJoz",
+   "type": "int32"
+  },
+  {
+   "json": "NForsh",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "NForshVisSahm",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "BtedVah_Forosh",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "BtedJoz_Forosh",
+   "type": "int32"
+  },
+  {
+   "json": "BForsh_Forosh",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "BForsh_ForoshVisSahm",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "BtedVah_Cus",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "BtedJoz_Cus",
+   "type": "int32"
+  },
+  {
+   "json": "BForsh_Cus",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "BForsh_CusVisSahm",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "KHtedVah_Forosh",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "KHtedJoz_Forosh",
+   "type": "int32"
+  },
+  {
+   "json": "KHForsh_Forosh",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "KHForsh_ForoshVisSahm",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "KHtedVah_Cus",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "KHtedJoz_Cus",
+   "type": "int32"
+  },
+  {
+   "json": "KHForsh_Cus",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "KHForsh_CusVisSahm",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "RemainPrice_Forosh",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "RemainTarget_Forosh",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "RemainPrice_Cus",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "RemainTarget_Cus",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "PerRemianPrice_Forosh",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "PerRemianPrice_Cus",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "PerRemainTarget_Forosh",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "PerRemainTarget_Cus",
+   "type": "valuetype System.Decimal"
+  }
+ ],
+ "AtiranLocalServices.ForushDarBazeZamaniService": [
+  {
+   "json": "coka",
+   "type": "string"
+  },
+  {
+   "json": "sh_taraz_kh",
+   "type": "valuetype System.Nullable`1<int32>"
+  },
+  {
+   "json": "Pcustomer",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "Pzayeat",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "Psalem",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "pricesalem",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "pricezayeat",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "Pbargashti",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "CountJayeze",
+   "type": "int32"
+  },
+  {
+   "json": "KindKala",
+   "type": "int32"
+  },
+  {
+   "json": "mohvah",
+   "type": "int64"
+  },
+  {
+   "json": "pathname",
+   "type": "string"
+  },
+  {
+   "json": "ProvinceID",
+   "type": "valuetype System.Nullable`1<int32>"
+  },
+  {
+   "json": "ProvinceName",
+   "type": "string"
+  },
+  {
+   "json": "CityRDF",
+   "type": "valuetype System.Nullable`1<int32>"
+  },
+  {
+   "json": "Cityname",
+   "type": "string"
+  },
+  {
+   "json": "vazn",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "tell1",
+   "type": "string"
+  },
+  {
+   "json": "tell2",
+   "type": "string"
+  },
+  {
+   "json": "cell",
+   "type": "string"
+  },
+  {
+   "json": "addre",
+   "type": "string"
+  },
+  {
+   "json": "code",
+   "type": "string"
+  },
+  {
+   "json": "active",
+   "type": "string"
+  },
+  {
+   "json": "t_date",
+   "type": "string"
+  },
+  {
+   "json": "done_date",
+   "type": "string"
+  },
+  {
+   "json": "c_mel",
+   "type": "string"
+  },
+  {
+   "json": "MabDaryaftFactor",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "tdf",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "tasvieh",
+   "type": "string"
+  },
+  {
+   "json": "CustomerMan",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "CustomerManDetail",
+   "type": "string"
+  },
+  {
+   "json": "man",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "act_date",
+   "type": "string"
+  },
+  {
+   "json": "vis_rdf",
+   "type": "int32"
+  },
+  {
+   "json": "naka",
+   "type": "string"
+  },
+  {
+   "json": "CountKala",
+   "type": "int32"
+  },
+  {
+   "json": "countcustomer",
+   "type": "int32"
+  },
+  {
+   "json": "vis_name",
+   "type": "string"
+  },
+  {
+   "json": "user",
+   "type": "string"
+  },
+  {
+   "json": "group_rdf",
+   "type": "int32"
+  },
+  {
+   "json": "group_name",
+   "type": "string"
+  },
+  {
+   "json": "rdf_mamorp",
+   "type": "valuetype System.Nullable`1<int32>"
+  },
+  {
+   "json": "shka",
+   "type": "int64"
+  },
+  {
+   "json": "rdf_anbar",
+   "type": "int32"
+  },
+  {
+   "json": "RDF_masir",
+   "type": "valuetype System.Nullable`1<int32>"
+  },
+  {
+   "json": "rdf_driver",
+   "type": "valuetype System.Nullable`1<int32>"
+  },
+  {
+   "json": "Status",
+   "type": "valuetype System.Nullable`1<int32>"
+  },
+  {
+   "json": "sysid",
+   "type": "valuetype System.Nullable`1<int32>"
+  },
+  {
+   "json": "facfo",
+   "type": "int64"
+  },
+  {
+   "json": "moname",
+   "type": "string"
+  },
+  {
+   "json": "shmo",
+   "type": "int32"
+  },
+  {
+   "json": "RdfGroupCust",
+   "type": "int32"
+  },
+  {
+   "json": "NameGroupCust",
+   "type": "string"
+  },
+  {
+   "json": "NPricekol",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "Ntax",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "Navarez",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "Ntafif",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "Nbarbari",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "Ntedjoz",
+   "type": "valuetype System.Nullable`1<int32>"
+  },
+  {
+   "json": "Ntedvah",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "Nvis_Sahm",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "Nvazn",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "NCountFactor",
+   "type": "int32"
+  },
+  {
+   "json": "JOZPRICE",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "pertaf",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "NPricekol_Taf",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "KHPricekol",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "KHvis_sahm",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "KHbarbari",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "KHtax",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "KHavarez",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "KHshfacfo",
+   "type": "int64"
+  },
+  {
+   "json": "KHvazn",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "KHCountFactor",
+   "type": "int32"
+  },
+  {
+   "json": "KHPricekol_Taf",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "KHtafif",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "KHtedjoz",
+   "type": "valuetype System.Nullable`1<int32>"
+  },
+  {
+   "json": "KHtedvah",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "BShfacfo",
+   "type": "valuetype System.Nullable`1<int64>"
+  },
+  {
+   "json": "Brdf_anbar",
+   "type": "int32"
+  },
+  {
+   "json": "Btedvah",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "Btedjoz",
+   "type": "valuetype System.Nullable`1<int32>"
+  },
+  {
+   "json": "BPricekol",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "Bvazn",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "Bvaznzayeat",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "Bvaznsalem",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "BCountFactor",
+   "type": "int32"
+  },
+  {
+   "json": "Bbarbari",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "Bvis_sahm",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "Btax",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "Bavarez",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "BPricekol_Taf",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "Btafif",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "ShSanadFerestande",
+   "type": "string"
+  },
+  {
+   "json": "LineName",
+   "type": "string"
+  },
+  {
+   "json": "ShfacTaeedErsal",
+   "type": "int64"
+  },
+  {
+   "json": "RegionID",
+   "type": "valuetype System.Nullable`1<int32>"
+  },
+  {
+   "json": "NTafifHajmi",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "rdf_kh",
+   "type": "int32"
+  },
+  {
+   "json": "CountFactor",
+   "type": "int32"
+  },
+  {
+   "json": "CityName",
+   "type": "string"
+  },
+  {
+   "json": "RegionName",
+   "type": "string"
+  },
+  {
+   "json": "RoleCode",
+   "type": "string"
+  },
+  {
+   "json": "Time",
+   "type": "string"
+  },
+  {
+   "json": "ParentGroupId",
+   "type": "valuetype System.Nullable`1<int32>"
+  }
+ ],
+ "AtiranLocalServices.AllBargashtiService": [
+  {
+   "json": "coka",
+   "type": "string"
+  },
+  {
+   "json": "rdf_anbar",
+   "type": "int32"
+  },
+  {
+   "json": "rdf_kh",
+   "type": "valuetype System.Nullable`1<int32>"
+  },
+  {
+   "json": "sysid",
+   "type": "valuetype System.Nullable`1<int32>"
+  },
+  {
+   "json": "vahprice",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "litakhma",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "rdf",
+   "type": "int32"
+  },
+  {
+   "json": "group_rdf",
+   "type": "int32"
+  },
+  {
+   "json": "kol_price",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "kol_price_tafif",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "act_id",
+   "type": "int32"
+  },
+  {
+   "json": "vis_sahm",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "shfac",
+   "type": "int64"
+  },
+  {
+   "json": "sh_back_sanad",
+   "type": "valuetype System.Nullable`1<int32>"
+  },
+  {
+   "json": "act_date",
+   "type": "string"
+  },
+  {
+   "json": "user",
+   "type": "string"
+  },
+  {
+   "json": "shka",
+   "type": "int64"
+  },
+  {
+   "json": "naka",
+   "type": "string"
+  },
+  {
+   "json": "barbari",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "mohvah",
+   "type": "int64"
+  },
+  {
+   "json": "tedvah",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "tedjoz",
+   "type": "valuetype System.Nullable`1<int32>"
+  },
+  {
+   "json": "jozprice",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "ptax",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "vis_rdf",
+   "type": "valuetype System.Nullable`1<int32>"
+  },
+  {
+   "json": "pertaf",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "pervis",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "pavarez",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "HAct_id",
+   "type": "valuetype System.Nullable`1<int32>"
+  },
+  {
+   "json": "sh_sanad",
+   "type": "valuetype System.Nullable`1<int64>"
+  },
+  {
+   "json": "sh_factor",
+   "type": "int64"
+  },
+  {
+   "json": "shmo",
+   "type": "int32"
+  },
+  {
+   "json": "Moname",
+   "type": "string"
+  },
+  {
+   "json": "CustomerMan",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "addre",
+   "type": "string"
+  },
+  {
+   "json": "tell1",
+   "type": "string"
+  },
+  {
+   "json": "tell2",
+   "type": "string"
+  },
+  {
+   "json": "cell",
+   "type": "string"
+  },
+  {
+   "json": "c_mel",
+   "type": "string"
+  },
+  {
+   "json": "CustGroupRDF",
+   "type": "int32"
+  },
+  {
+   "json": "CustGroupName",
+   "type": "string"
+  },
+  {
+   "json": "CityID",
+   "type": "int32"
+  },
+  {
+   "json": "RegionID",
+   "type": "int32"
+  },
+  {
+   "json": "RegionName",
+   "type": "string"
+  },
+  {
+   "json": "ProvinceID",
+   "type": "int32"
+  },
+  {
+   "json": "RDF_masir",
+   "type": "int32"
+  },
+  {
+   "json": "sh_taraz",
+   "type": "int32"
+  },
+  {
+   "json": "Type_bargashti",
+   "type": "string"
+  },
+  {
+   "json": "date_forosh",
+   "type": "string"
+  },
+  {
+   "json": "act_dis",
+   "type": "string"
+  },
+  {
+   "json": "PerFine",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "group_name",
+   "type": "string"
+  },
+  {
+   "json": "PerPromotionSF",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "rdf_driver",
+   "type": "int32"
+  },
+  {
+   "json": "rdf_mamorp",
+   "type": "int32"
+  },
+  {
+   "json": "active",
+   "type": "string"
+  },
+  {
+   "json": "done_date",
+   "type": "string"
+  },
+  {
+   "json": "VisName",
+   "type": "string"
+  },
+  {
+   "json": "CityName",
+   "type": "string"
+  },
+  {
+   "json": "mohvah2",
+   "type": "int32"
+  }
+ ],
+ "AtiranLocalServices.Customer": [
+  {
+   "json": "Shmo",
+   "type": "int32"
+  },
+  {
+   "json": "Moname",
+   "type": "string"
+  },
+  {
+   "json": "VisRdf",
+   "type": "valuetype System.Nullable`1<int32>"
+  },
+  {
+   "json": "Masir",
+   "type": "valuetype System.Nullable`1<int32>"
+  },
+  {
+   "json": "Sharh",
+   "type": "string"
+  },
+  {
+   "json": "Address",
+   "type": "string"
+  },
+  {
+   "json": "Job",
+   "type": "string"
+  },
+  {
+   "json": "Email",
+   "type": "string"
+  },
+  {
+   "json": "Tel1",
+   "type": "string"
+  },
+  {
+   "json": "Tel2",
+   "type": "string"
+  },
+  {
+   "json": "Cell",
+   "type": "string"
+  },
+  {
+   "json": "Credit",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "Man",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "Active",
+   "type": "bool"
+  },
+  {
+   "json": "AccessLine",
+   "type": "System.Collections.Generic.List`1<int32>"
+  },
+  {
+   "json": "Code",
+   "type": "string"
+  },
+  {
+   "json": "Longitude",
+   "type": "valuetype System.Nullable`1<float64>"
+  },
+  {
+   "json": "Latitude",
+   "type": "valuetype System.Nullable`1<float64>"
+  },
+  {
+   "json": "Special",
+   "type": "bool"
+  },
+  {
+   "json": "BlackList",
+   "type": "bool"
+  },
+  {
+   "json": "GroupRdf",
+   "type": "int32"
+  },
+  {
+   "json": "ChekBargashti",
+   "type": "bool"
+  },
+  {
+   "json": "DateMaxSale",
+   "type": "string"
+  },
+  {
+   "json": "RegionID",
+   "type": "int32"
+  },
+  {
+   "json": "CityID",
+   "type": "int32"
+  },
+  {
+   "json": "ProvinceID",
+   "type": "int32"
+  }
+ ],
+ "AtiranLocalServices.SaleInTimeInterval": [
+  {
+   "json": "shka",
+   "type": "int64"
+  },
+  {
+   "json": "naka",
+   "type": "string"
+  },
+  {
+   "json": "group_name",
+   "type": "string"
+  },
+  {
+   "json": "Status",
+   "type": "int32"
+  },
+  {
+   "json": "NTax",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "NAvarez",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "NPricekol_Taf",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "Ntedvah",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "Ntedjoz",
+   "type": "int32"
+  },
+  {
+   "json": "BPricekol_Taf",
+   "type": "float64"
+  },
+  {
+   "json": "BTax",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "BAvarez",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "Btedvah",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "Btedjoz",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "KHTax",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "KHAvarez",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "KHPricekol_Taf",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "KHtedvah",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "KHtedjoz",
+   "type": "int32"
+  },
+  {
+   "json": "BTax_mosh",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "BAvarez_mosh",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "BPricekol_Taf_mosh",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "Btedvah_mosh",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "Btedjoz_mosh",
+   "type": "int32"
+  },
+  {
+   "json": "KHTax_mosh",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "KHAvarez_mosh",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "KHPricekol_Taf_mosh",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "KHtedvah_mosh",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "KHtedjoz_mosh",
+   "type": "int32"
+  },
+  {
+   "json": "Mohvah",
+   "type": "int64"
+  },
+  {
+   "json": "NVisSahm",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "BVisSahm",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "KHVisSahm",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "BVisSahm_mosh",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "KHVisSahm_mosh",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "shmo",
+   "type": "int64"
+  },
+  {
+   "json": "Moname",
+   "type": "string"
+  },
+  {
+   "json": "Adrress",
+   "type": "string"
+  },
+  {
+   "json": "NationalCode",
+   "type": "string"
+  },
+  {
+   "json": "Tell1",
+   "type": "string"
+  },
+  {
+   "json": "CusCode",
+   "type": "string"
+  },
+  {
+   "json": "Coka",
+   "type": "string"
+  },
+  {
+   "json": "GroupKalaRdf",
+   "type": "int32"
+  },
+  {
+   "json": "RdfGroupCust",
+   "type": "int32"
+  },
+  {
+   "json": "NameGroupCust",
+   "type": "string"
+  },
+  {
+   "json": "CustomerMan",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "CustomerManDetail",
+   "type": "string"
+  },
+  {
+   "json": "addre",
+   "type": "string"
+  },
+  {
+   "json": "tell1",
+   "type": "string"
+  },
+  {
+   "json": "tell2",
+   "type": "string"
+  },
+  {
+   "json": "cell",
+   "type": "string"
+  },
+  {
+   "json": "c_mel",
+   "type": "string"
+  },
+  {
+   "json": "VisName",
+   "type": "string"
+  },
+  {
+   "json": "VisitorID",
+   "type": "int32"
+  },
+  {
+   "json": "CountCustomers",
+   "type": "int32"
+  },
+  {
+   "json": "NTafif",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "BTafif",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "KHTafif",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "BTafif_mosh",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "KHTafif_mosh",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "CityID",
+   "type": "int32"
+  },
+  {
+   "json": "RegionID",
+   "type": "int32"
+  },
+  {
+   "json": "RegionName",
+   "type": "string"
+  },
+  {
+   "json": "CityName",
+   "type": "string"
+  }
+ ],
+ "AtiranLocalServices.AtiranLocation": [
+  {
+   "json": "ShMo",
+   "type": "int32"
+  },
+  {
+   "json": "CPUID",
+   "type": "string"
+  },
+  {
+   "json": "DT",
+   "type": "int64"
+  },
+  {
+   "json": "Longitude",
+   "type": "float64"
+  },
+  {
+   "json": "Latitude",
+   "type": "float64"
+  },
+  {
+   "json": "Altitude",
+   "type": "float64"
+  },
+  {
+   "json": "Accuracy",
+   "type": "float32"
+  },
+  {
+   "json": "Speed",
+   "type": "float32"
+  },
+  {
+   "json": "Bearing",
+   "type": "float32"
+  }
+ ],
+ "AtiranLocalServices.Anbar": [
+  {
+   "json": "RdfAnbar",
+   "type": "int32"
+  },
+  {
+   "json": "SysId",
+   "type": "int32"
+  },
+  {
+   "json": "Name",
+   "type": "string"
+  }
+ ],
+ "AtiranLocalServices.ForoshPrice": [
+  {
+   "json": "ShKa",
+   "type": "int64"
+  },
+  {
+   "json": "FP1",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "MP1",
+   "type": "valuetype System.Nullable`1<int32>"
+  },
+  {
+   "json": "VP1",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "FP2",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "MP2",
+   "type": "valuetype System.Nullable`1<int32>"
+  },
+  {
+   "json": "VP2",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "FP3",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "MP3",
+   "type": "valuetype System.Nullable`1<int32>"
+  },
+  {
+   "json": "VP3",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "FP4",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "MP4",
+   "type": "valuetype System.Nullable`1<int32>"
+  },
+  {
+   "json": "VP4",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "FP5",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "MP5",
+   "type": "valuetype System.Nullable`1<int32>"
+  },
+  {
+   "json": "VP5",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  }
+ ],
+ "AtiranLocalServices.CustGroup": [
+  {
+   "json": "GroupRdf",
+   "type": "int32"
+  },
+  {
+   "json": "GroupName",
+   "type": "string"
+  },
+  {
+   "json": "PriceNo",
+   "type": "valuetype System.Nullable`1<int32>"
+  }
+ ],
+ "AtiranLocalServices.kagroup": [
+  {
+   "json": "GroupRdf",
+   "type": "int32"
+  },
+  {
+   "json": "GroupName",
+   "type": "string"
+  },
+  {
+   "json": "ParentGroupRdf",
+   "type": "int32"
+  },
+  {
+   "json": "prizePercentGroup",
+   "type": "string"
+  },
+  {
+   "json": "prize_Table_Group",
+   "type": "string"
+  }
+ ],
+ "AtiranLocalServices.Kala": [
+  {
+   "json": "Shka",
+   "type": "int64"
+  },
+  {
+   "json": "NaKa",
+   "type": "string"
+  },
+  {
+   "json": "VahSanj",
+   "type": "string"
+  },
+  {
+   "json": "MohVah",
+   "type": "int64"
+  },
+  {
+   "json": "Active",
+   "type": "bool"
+  },
+  {
+   "json": "PromotionText",
+   "type": "string"
+  },
+  {
+   "json": "MaxTaf",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "ExpirationDate",
+   "type": "string"
+  },
+  {
+   "json": "GroupRdf",
+   "type": "int32"
+  },
+  {
+   "json": "FinalSalePrice",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "Coka",
+   "type": "string"
+  },
+  {
+   "json": "Bastebandi",
+   "type": "string"
+  },
+  {
+   "json": "PTax",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "PAvarez",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "AccessLine",
+   "type": "System.Collections.Generic.List`1<int32>"
+  },
+  {
+   "json": "Prices",
+   "type": "AtiranLocalServices.DataAccess.forosh_price"
+  },
+  {
+   "json": "Mojodi",
+   "type": "System.Collections.Generic.List`1<AtiranLocalServices.DataAccess.VW_InventoryAnbars>"
+  },
+  {
+   "json": "ted_f_ja",
+   "type": "int32"
+  },
+  {
+   "json": "ted_ja",
+   "type": "int32"
+  },
+  {
+   "json": "shka_ja",
+   "type": "int64"
+  },
+  {
+   "json": "reducePrizeFromSales",
+   "type": "bool"
+  },
+  {
+   "json": "prize_table",
+   "type": "string"
+  },
+  {
+   "json": "prizePercents",
+   "type": "string"
+  }
+ ],
+ "AtiranLocalServices.OnlineKala": [
+  {
+   "json": "Shka",
+   "type": "int64"
+  },
+  {
+   "json": "NaKa",
+   "type": "string"
+  },
+  {
+   "json": "Coka",
+   "type": "string"
+  },
+  {
+   "json": "GroupRdf",
+   "type": "int32"
+  },
+  {
+   "json": "VahSanj",
+   "type": "string"
+  },
+  {
+   "json": "Bastebandi",
+   "type": "string"
+  },
+  {
+   "json": "MohVah",
+   "type": "int64"
+  },
+  {
+   "json": "Price1",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "Price2",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "Price3",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "Price4",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "Price5",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "SalePrice",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "ParentRdf",
+   "type": "valuetype System.Nullable`1<int32>"
+  },
+  {
+   "json": "GroupName",
+   "type": "string"
+  },
+  {
+   "json": "Desc",
+   "type": "string"
+  },
+  {
+   "json": "hasPic",
+   "type": "int32"
+  },
+  {
+   "json": "prTxt",
+   "type": "string"
+  },
+  {
+   "json": "ExpirationDate",
+   "type": "string"
+  },
+  {
+   "json": "mojkavah",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "mojkajoz",
+   "type": "int32"
+  },
+  {
+   "json": "RdfAnbar",
+   "type": "int32"
+  },
+  {
+   "json": "ptax",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "PAvarez",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  }
+ ],
+ "AtiranLocalServices.CustAct": [
+  {
+   "json": "rdf_",
+   "type": "int32"
+  },
+  {
+   "json": "shmo",
+   "type": "int32"
+  },
+  {
+   "json": "date",
+   "type": "string"
+  },
+  {
+   "json": "act_dis",
+   "type": "string"
+  },
+  {
+   "json": "act_id",
+   "type": "valuetype System.Nullable`1<int32>"
+  },
+  {
+   "json": "HAct_id",
+   "type": "valuetype System.Nullable`1<int32>"
+  },
+  {
+   "json": "ghno",
+   "type": "valuetype System.Nullable`1<int64>"
+  },
+  {
+   "json": "act_bed",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "act_bes",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "ShowInReport",
+   "type": "bool"
+  }
+ ],
+ "AtiranLocalServices.KalaAnb": [
+  {
+   "json": "ShKa",
+   "type": "int64"
+  },
+  {
+   "json": "RdfAnb",
+   "type": "int32"
+  },
+  {
+   "json": "Moj",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "AnbName",
+   "type": "string"
+  },
+  {
+   "json": "MohVah",
+   "type": "int64"
+  }
+ ],
+ "AtiranLocalServices.Visit": [
+  {
+   "json": "VisitID",
+   "type": "int64"
+  },
+  {
+   "json": "Sign",
+   "type": "string"
+  },
+  {
+   "json": "VisRdf",
+   "type": "int32"
+  },
+  {
+   "json": "Shmo",
+   "type": "int32"
+  },
+  {
+   "json": "Duration",
+   "type": "int32"
+  },
+  {
+   "json": "Created",
+   "type": "int64"
+  },
+  {
+   "json": "Sent",
+   "type": "int64"
+  },
+  {
+   "json": "Description",
+   "type": "string"
+  },
+  {
+   "json": "SentLng",
+   "type": "float32"
+  },
+  {
+   "json": "SentLat",
+   "type": "float32"
+  },
+  {
+   "json": "SaveLat",
+   "type": "float32"
+  },
+  {
+   "json": "SaveLng",
+   "type": "float32"
+  },
+  {
+   "json": "SysID",
+   "type": "int32"
+  },
+  {
+   "json": "RdfAnbar",
+   "type": "int32"
+  },
+  {
+   "json": "Orders",
+   "type": "System.Collections.Generic.List`1<AtiranLocalServices.Order>"
+  },
+  {
+   "json": "IsKalaGostaran",
+   "type": "bool"
+  },
+  {
+   "json": "SignatureImage",
+   "type": "szarray(byte)"
+  },
+  {
+   "json": "DateCreated",
+   "type": "string"
+  },
+  {
+   "json": "DateSent",
+   "type": "string"
+  },
+  {
+   "json": "TimeCreated",
+   "type": "string"
+  },
+  {
+   "json": "TimeSent",
+   "type": "string"
+  }
+ ],
+ "AtiranLocalServices.Order": [
+  {
+   "json": "RawPrice",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "DiscountPrice",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "TotalPrice",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "Created",
+   "type": "int64"
+  },
+  {
+   "json": "CreatedDate",
+   "type": "string"
+  },
+  {
+   "json": "Description",
+   "type": "string"
+  },
+  {
+   "json": "Stamp",
+   "type": "string"
+  },
+  {
+   "json": "Status",
+   "type": "int32"
+  },
+  {
+   "json": "MpKol",
+   "type": "valuetype System.Nullable`1<int32>"
+  },
+  {
+   "json": "MpIsAuto",
+   "type": "valuetype System.Nullable`1<bool>"
+  },
+  {
+   "json": "Details",
+   "type": "System.Collections.Generic.List`1<AtiranLocalServices.OrderDetail>"
+  }
+ ],
+ "AtiranLocalServices.OrderDetail": [
+  {
+   "json": "ProductID",
+   "type": "int32"
+  },
+  {
+   "json": "RawPrice",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "DiscountPrice",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "TotalPrice",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "UnitCount",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "DetailCount",
+   "type": "valuetype System.Nullable`1<int32>"
+  },
+  {
+   "json": "RdfAnbar",
+   "type": "int32"
+  },
+  {
+   "json": "JozPrice",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "discountPercent",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "ProductName",
+   "type": "string"
+  },
+  {
+   "json": "Mp",
+   "type": "valuetype System.Nullable`1<int32>"
+  }
+ ],
+ "AtiranLocalServices.ActDetail": [
+  {
+   "json": "RawPrice",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "DiscountPrice",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "TotalPrice",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "UnitCount",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "DetailCount",
+   "type": "valuetype System.Nullable`1<int32>"
+  },
+  {
+   "json": "RdfAnbar",
+   "type": "int32"
+  },
+  {
+   "json": "JozPrice",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "discountPercent",
+   "type": "valuetype System.Nullable`1<float64>"
+  },
+  {
+   "json": "Description",
+   "type": "string"
+  }
+ ],
+ "AtiranLocalServices.SailFactor": [
+  {
+   "json": "Id",
+   "type": "int32"
+  },
+  {
+   "json": "ShFact",
+   "type": "int64"
+  },
+  {
+   "json": "Date",
+   "type": "string"
+  },
+  {
+   "json": "ShMo",
+   "type": "int32"
+  },
+  {
+   "json": "TDate",
+   "type": "string"
+  },
+  {
+   "json": "AllFel",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "MabDaryaftFactor",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "Tdf",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  }
+ ],
+ "AtiranLocalServices.FactorDetail": [
+  {
+   "json": "FactNo",
+   "type": "int64"
+  },
+  {
+   "json": "Shmo",
+   "type": "int32"
+  },
+  {
+   "json": "NTakhfif",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "NBarbari",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "NTax",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "NAvarez",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "NJamekol",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "BTakhfif",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "BjAM",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "BBarbari",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "BTax",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "BAvarez",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "BJamekol",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "KhTakhfif",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "KhBarbari",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "KhTax",
+   "type": "valuetype System.Nullable`1<float64>"
+  },
+  {
+   "json": "KhAvarez",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "KhJamekol",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "State",
+   "type": "string"
+  },
+  {
+   "json": "Date",
+   "type": "string"
+  },
+  {
+   "json": "description",
+   "type": "string"
+  },
+  {
+   "json": "JOZPRICE",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "mohvah",
+   "type": "int64"
+  },
+  {
+   "json": "KHtedjoz",
+   "type": "valuetype System.Nullable`1<int32>"
+  },
+  {
+   "json": "KHtedvah",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "pertaf",
+   "type": "valuetype System.Nullable`1<float64>"
+  },
+  {
+   "json": "Shka",
+   "type": "int64"
+  }
+ ],
+ "AtiranLocalServices.PishFactorDetail": [
+  {
+   "json": "FactNo",
+   "type": "int64"
+  },
+  {
+   "json": "FactForooshNo",
+   "type": "valuetype System.Nullable`1<int64>"
+  },
+  {
+   "json": "Shmo",
+   "type": "int32"
+  },
+  {
+   "json": "KATotalPrice",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "description",
+   "type": "string"
+  },
+  {
+   "json": "Date",
+   "type": "string"
+  },
+  {
+   "json": "ShKA",
+   "type": "int64"
+  },
+  {
+   "json": "KhJamekol",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "mohvah",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "KhBarbari",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "KhTax",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  },
+  {
+   "json": "KhAvarez",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  }
+ ],
+ "AtiranLocalServices.LastPrice": [
+  {
+   "json": "Shka",
+   "type": "int32"
+  },
+  {
+   "json": "Shmo",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "Date",
+   "type": "string"
+  },
+  {
+   "json": "Price",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "DiscountPer",
+   "type": "float32"
+  }
+ ],
+ "AtiranLocalServices.VisitResult": [
+  {
+   "json": "Stamp",
+   "type": "string"
+  },
+  {
+   "json": "PishFactorNo",
+   "type": "int64"
+  },
+  {
+   "json": "dis",
+   "type": "string"
+  }
+ ],
+ "AtiranLocalServices.Visitor": [
+  {
+   "json": "VisName",
+   "type": "string"
+  },
+  {
+   "json": "VisCell",
+   "type": "string"
+  },
+  {
+   "json": "VisRdf",
+   "type": "int32"
+  },
+  {
+   "json": "SysId",
+   "type": "int32"
+  }
+ ],
+ "AtiranLocalServices.IntervalList": [
+  {
+   "json": "Rdf",
+   "type": "int32"
+  },
+  {
+   "json": "VisName",
+   "type": "string"
+  },
+  {
+   "json": "PriceTarget",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "CountTarget",
+   "type": "int32"
+  },
+  {
+   "json": "IntervalName",
+   "type": "string"
+  },
+  {
+   "json": "StartInterval",
+   "type": "string"
+  },
+  {
+   "json": "EndInterval",
+   "type": "string"
+  },
+  {
+   "json": "UserName",
+   "type": "string"
+  },
+  {
+   "json": "RowID",
+   "type": "int32"
+  },
+  {
+   "json": "CopyInterval",
+   "type": "int32"
+  },
+  {
+   "json": "KaGroupName",
+   "type": "string"
+  },
+  {
+   "json": "naka",
+   "type": "string"
+  },
+  {
+   "json": "CusGroupName",
+   "type": "string"
+  },
+  {
+   "json": "ProvinceName",
+   "type": "string"
+  },
+  {
+   "json": "CityName",
+   "type": "string"
+  },
+  {
+   "json": "RegionName",
+   "type": "string"
+  },
+  {
+   "json": "PathName",
+   "type": "string"
+  },
+  {
+   "json": "VisID",
+   "type": "int32"
+  },
+  {
+   "json": "CusGroupRdf",
+   "type": "int32"
+  },
+  {
+   "json": "KalaGroupRdf",
+   "type": "int32"
+  },
+  {
+   "json": "InventoryID",
+   "type": "int64"
+  },
+  {
+   "json": "ProvinceID",
+   "type": "int32"
+  },
+  {
+   "json": "CityID",
+   "type": "int32"
+  },
+  {
+   "json": "RegionID",
+   "type": "int32"
+  },
+  {
+   "json": "PathID",
+   "type": "int32"
+  }
+ ],
+ "AtiranLocalServices.vis_goals_Models": [
+  {
+   "json": "rdf",
+   "type": "int32"
+  },
+  {
+   "json": "baze_rdf",
+   "type": "int32"
+  },
+  {
+   "json": "vis_rdf",
+   "type": "int32"
+  },
+  {
+   "json": "mab",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "ted",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "Active",
+   "type": "bool"
+  },
+  {
+   "json": "CustomerGroupRdf",
+   "type": "valuetype System.Nullable`1<int32>"
+  },
+  {
+   "json": "KalaGroupRdf",
+   "type": "valuetype System.Nullable`1<int32>"
+  },
+  {
+   "json": "InventoryID",
+   "type": "valuetype System.Nullable`1<int64>"
+  },
+  {
+   "json": "ProvinceID",
+   "type": "int32"
+  },
+  {
+   "json": "CityID",
+   "type": "int32"
+  },
+  {
+   "json": "RegionID",
+   "type": "int32"
+  },
+  {
+   "json": "PathID",
+   "type": "int32"
+  },
+  {
+   "json": "baze",
+   "type": "AtiranLocalServices.DataAccess.baze"
+  },
+  {
+   "json": "custgroup",
+   "type": "AtiranLocalServices.DataAccess.custgroup"
+  },
+  {
+   "json": "visitors",
+   "type": "AtiranLocalServices.DataAccess.visitor"
+  },
+  {
+   "json": "inventory",
+   "type": "AtiranLocalServices.DataAccess.inventory"
+  },
+  {
+   "json": "kagroup",
+   "type": "AtiranLocalServices.kagroup"
+  }
+ ],
+ "AtiranLocalServices.LoginResult": [
+  {
+   "json": "Role",
+   "type": "valuetype System.Nullable`1<int32>"
+  }
+ ],
+ "AtiranLocalServices.DTOCompany": [
+  {
+   "json": "Name",
+   "type": "string"
+  },
+  {
+   "json": "Address",
+   "type": "string"
+  },
+  {
+   "json": "Tel1",
+   "type": "string"
+  },
+  {
+   "json": "Tel2",
+   "type": "string"
+  },
+  {
+   "json": "Fax",
+   "type": "string"
+  },
+  {
+   "json": "CEgh",
+   "type": "string"
+  },
+  {
+   "json": "CMeli",
+   "type": "string"
+  },
+  {
+   "json": "CPos",
+   "type": "string"
+  },
+  {
+   "json": "VisName",
+   "type": "string"
+  },
+  {
+   "json": "VisCell",
+   "type": "string"
+  },
+  {
+   "json": "Lines",
+   "type": "System.Collections.Generic.List`1<AtiranLocalServices.DTOLine>"
+  },
+  {
+   "json": "Visitors",
+   "type": "System.Collections.Generic.List`1<AtiranLocalServices.Visitor>"
+  },
+  {
+   "json": "Anbars",
+   "type": "System.Collections.Generic.List`1<AtiranLocalServices.Anbar>"
+  },
+  {
+   "json": "Logo",
+   "type": "szarray(byte)"
+  },
+  {
+   "json": "Banks",
+   "type": "System.Collections.Generic.List`1<AtiranLocalServices.Bank>"
+  },
+  {
+   "json": "BankNames",
+   "type": "System.Collections.Generic.List`1<AtiranLocalServices.BankName>"
+  },
+  {
+   "json": "PaymentTimes",
+   "type": "System.Collections.Generic.List`1<AtiranLocalServices.PaymentTime>"
+  }
+ ],
+ "AtiranLocalServices.DTOLine": [
+  {
+   "json": "LineID",
+   "type": "int32"
+  },
+  {
+   "json": "Name",
+   "type": "string"
+  },
+  {
+   "json": "Address",
+   "type": "string"
+  },
+  {
+   "json": "Tel1",
+   "type": "string"
+  },
+  {
+   "json": "Tel2",
+   "type": "string"
+  },
+  {
+   "json": "Fax",
+   "type": "string"
+  },
+  {
+   "json": "ShSabt",
+   "type": "string"
+  },
+  {
+   "json": "CPos",
+   "type": "string"
+  },
+  {
+   "json": "CEgh",
+   "type": "string"
+  },
+  {
+   "json": "kind_f",
+   "type": "valuetype System.Nullable`1<int32>"
+  },
+  {
+   "json": "Eteb",
+   "type": "valuetype System.Nullable`1<valuetype System.Decimal>"
+  }
+ ],
+ "AtiranLocalServices.SaleLine": [
+  {
+   "json": "SysID",
+   "type": "int32"
+  },
+  {
+   "json": "Name",
+   "type": "string"
+  },
+  {
+   "json": "Address",
+   "type": "string"
+  },
+  {
+   "json": "Tel1",
+   "type": "string"
+  },
+  {
+   "json": "Tel2",
+   "type": "string"
+  },
+  {
+   "json": "Fax",
+   "type": "string"
+  },
+  {
+   "json": "CEgh",
+   "type": "string"
+  },
+  {
+   "json": "CPos",
+   "type": "string"
+  }
+ ],
+ "AtiranLocalServices.CustomerLogin": [
+  {
+   "json": "Username",
+   "type": "string"
+  },
+  {
+   "json": "Password",
+   "type": "string"
+  },
+  {
+   "json": "NewPassword",
+   "type": "string"
+  },
+  {
+   "json": "Title",
+   "type": "string"
+  },
+  {
+   "json": "Path",
+   "type": "string"
+  },
+  {
+   "json": "Location",
+   "type": "string"
+  },
+  {
+   "json": "Order",
+   "type": "int32"
+  },
+  {
+   "json": "Shmo",
+   "type": "int32"
+  },
+  {
+   "json": "Moname",
+   "type": "string"
+  },
+  {
+   "json": "Address",
+   "type": "string"
+  },
+  {
+   "json": "Job",
+   "type": "string"
+  },
+  {
+   "json": "Email",
+   "type": "string"
+  },
+  {
+   "json": "Tel1",
+   "type": "string"
+  },
+  {
+   "json": "Tel2",
+   "type": "string"
+  },
+  {
+   "json": "Cell",
+   "type": "string"
+  },
+  {
+   "json": "Credit",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "Man",
+   "type": "valuetype System.Decimal"
+  }
+ ],
+ "AtiranLocalServices.SettingInfo": [
+  {
+   "json": "imagePath",
+   "type": "string"
+  },
+  {
+   "json": "jozKol",
+   "type": "string"
+  },
+  {
+   "json": "onlineKalaGroup",
+   "type": "System.Collections.Generic.IList`1<AtiranLocalServices.onlineKalaGroup>"
+  }
+ ],
+ "AtiranLocalServices.Check": [
+  {
+   "json": "Id",
+   "type": "int64"
+  },
+  {
+   "json": "Date",
+   "type": "string"
+  },
+  {
+   "json": "SarDate",
+   "type": "string"
+  },
+  {
+   "json": "getchkshhes",
+   "type": "string"
+  },
+  {
+   "json": "Bank",
+   "type": "string"
+  },
+  {
+   "json": "Shobe",
+   "type": "string"
+  },
+  {
+   "json": "Serial",
+   "type": "string"
+  },
+  {
+   "json": "Mablagh",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "shmo",
+   "type": "int64"
+  },
+  {
+   "json": "CheckDescription",
+   "type": "string"
+  },
+  {
+   "json": "Status",
+   "type": "int32"
+  }
+ ],
+ "AtiranLocalServices.Message": [
+  {
+   "json": "Id",
+   "type": "int64"
+  },
+  {
+   "json": "ReadTimeDate",
+   "type": "valuetype System.Nullable`1<valuetype System.DateTime>"
+  },
+  {
+   "json": "ReadTime",
+   "type": "string"
+  },
+  {
+   "json": "ReadDate",
+   "type": "string"
+  },
+  {
+   "json": "CreateDate",
+   "type": "string"
+  },
+  {
+   "json": "CreateTimeDate",
+   "type": "valuetype System.DateTime"
+  },
+  {
+   "json": "CreateTime",
+   "type": "string"
+  },
+  {
+   "json": "Title",
+   "type": "string"
+  },
+  {
+   "json": "isImportant",
+   "type": "int32"
+  },
+  {
+   "json": "VisitorId",
+   "type": "int64"
+  },
+  {
+   "json": "Description",
+   "type": "string"
+  },
+  {
+   "json": "Status",
+   "type": "int32"
+  }
+ ],
+ "AtiranLocalServices.Masir": [
+  {
+   "json": "ID",
+   "type": "int32"
+  },
+  {
+   "json": "shomareMasir",
+   "type": "int32"
+  },
+  {
+   "json": "visRdf",
+   "type": "int32"
+  },
+  {
+   "json": "Date",
+   "type": "string"
+  }
+ ],
+ "AtiranLocalServices.TabletCustomer": [
+  {
+   "json": "vis_rdf",
+   "type": "int32"
+  },
+  {
+   "json": "shmo",
+   "type": "valuetype System.Nullable`1<int32>"
+  },
+  {
+   "json": "name",
+   "type": "string"
+  },
+  {
+   "json": "melli_code",
+   "type": "string"
+  },
+  {
+   "json": "tell1",
+   "type": "string"
+  },
+  {
+   "json": "tell2",
+   "type": "string"
+  },
+  {
+   "json": "cell",
+   "type": "string"
+  },
+  {
+   "json": "address",
+   "type": "string"
+  },
+  {
+   "json": "sharh",
+   "type": "string"
+  },
+  {
+   "json": "owners_count",
+   "type": "int32"
+  },
+  {
+   "json": "metraj_shop",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "metraj_yakhchal",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "yakhchal_count",
+   "type": "int32"
+  },
+  {
+   "json": "tablo",
+   "type": "string"
+  },
+  {
+   "json": "sabeghe",
+   "type": "int32"
+  },
+  {
+   "json": "vis_name",
+   "type": "string"
+  },
+  {
+   "json": "estijari",
+   "type": "bool"
+  },
+  {
+   "json": "create_date",
+   "type": "string"
+  },
+  {
+   "json": "birth_date",
+   "type": "string"
+  },
+  {
+   "json": "id",
+   "type": "int32"
+  },
+  {
+   "json": "Lat",
+   "type": "valuetype System.Nullable`1<float64>"
+  },
+  {
+   "json": "Lng",
+   "type": "valuetype System.Nullable`1<float64>"
+  }
+ ],
+ "AtiranLocalServices.VisitorLogin": [
+  {
+   "json": "Username",
+   "type": "string"
+  },
+  {
+   "json": "Password",
+   "type": "string"
+  },
+  {
+   "json": "AppId",
+   "type": "string"
+  }
+ ],
+ "AtiranLocalServices.FilterVisGoals": [
+  {
+   "json": "startDate",
+   "type": "string"
+  },
+  {
+   "json": "endDate",
+   "type": "string"
+  },
+  {
+   "json": "rdfPeriod",
+   "type": "int32"
+  },
+  {
+   "json": "visRdf",
+   "type": "int32"
+  }
+ ],
+ "AtiranLocalServices.FilterListVisOrders": [
+  {
+   "json": "startDate",
+   "type": "string"
+  },
+  {
+   "json": "endDate",
+   "type": "string"
+  },
+  {
+   "json": "status",
+   "type": "int32"
+  },
+  {
+   "json": "visRdf",
+   "type": "int32"
+  }
+ ],
+ "AtiranLocalServices.Bank": [
+  {
+   "json": "Rdf",
+   "type": "int32"
+  },
+  {
+   "json": "Name",
+   "type": "string"
+  }
+ ],
+ "AtiranLocalServices.BankName": [
+  {
+   "json": "Rdf",
+   "type": "int32"
+  },
+  {
+   "json": "Name",
+   "type": "string"
+  }
+ ],
+ "AtiranLocalServices.PaymentTime": [
+  {
+   "json": "Rdf",
+   "type": "int32"
+  },
+  {
+   "json": "Days",
+   "type": "valuetype System.Nullable`1<int32>"
+  },
+  {
+   "json": "Name",
+   "type": "string"
+  }
+ ],
+ "AtiranLocalServices.NotPaidFactor": [
+  {
+   "json": "Username",
+   "type": "string"
+  },
+  {
+   "json": "Password",
+   "type": "string"
+  }
+ ],
+ "AtiranLocalServices.ResListVisOrders": [
+  {
+   "json": "IdPish",
+   "type": "string"
+  },
+  {
+   "json": "IdShfac",
+   "type": "string"
+  },
+  {
+   "json": "Date",
+   "type": "string"
+  },
+  {
+   "json": "StatusName",
+   "type": "string"
+  },
+  {
+   "json": "Description",
+   "type": "string"
+  },
+  {
+   "json": "NameCustomer",
+   "type": "string"
+  },
+  {
+   "json": "FinalPrice",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "Price",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "Tax",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "Offer",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "freight",
+   "type": "valuetype System.Decimal"
+  }
+ ],
+ "AtiranLocalServices.ResListItemsPreInvoce": [
+  {
+   "json": "Naka",
+   "type": "string"
+  },
+  {
+   "json": "Mohtava",
+   "type": "int64"
+  },
+  {
+   "json": "Vahsanj",
+   "type": "string"
+  },
+  {
+   "json": "Vahed",
+   "type": "float32"
+  },
+  {
+   "json": "Joz",
+   "type": "int64"
+  },
+  {
+   "json": "JozPrice",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "Price",
+   "type": "valuetype System.Decimal"
+  }
+ ],
+ "AtiranLocalServices.VisitorFilter": [
+  {
+   "json": "Rdf",
+   "type": "int32"
+  },
+  {
+   "json": "DT",
+   "type": "int64"
+  }
+ ],
+ "AtiranLocalServices.VisitorLocation": [
+  {
+   "json": "VisRdf",
+   "type": "int32"
+  },
+  {
+   "json": "DT",
+   "type": "int64"
+  },
+  {
+   "json": "DTEnd",
+   "type": "int64"
+  },
+  {
+   "json": "Longitude",
+   "type": "float64"
+  },
+  {
+   "json": "Latitude",
+   "type": "float64"
+  },
+  {
+   "json": "date",
+   "type": "string"
+  },
+  {
+   "json": "time",
+   "type": "string"
+  }
+ ],
+ "AtiranLocalServices.LocationVisitor": [
+  {
+   "json": "nameVis",
+   "type": "string"
+  },
+  {
+   "json": "VisRdf",
+   "type": "int32"
+  },
+  {
+   "json": "date",
+   "type": "string"
+  },
+  {
+   "json": "time",
+   "type": "string"
+  },
+  {
+   "json": "Longitude",
+   "type": "float64"
+  },
+  {
+   "json": "Latitude",
+   "type": "float64"
+  }
+ ],
+ "AtiranLocalServices.PishDaryaftDTO": [
+  {
+   "json": "GhnoPishDaryaft",
+   "type": "int32"
+  },
+  {
+   "json": "Naghd",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "Date",
+   "type": "string"
+  },
+  {
+   "json": "Comment",
+   "type": "string"
+  },
+  {
+   "json": "Shmo",
+   "type": "int32"
+  },
+  {
+   "json": "DateRecive",
+   "type": "string"
+  },
+  {
+   "json": "Shfac",
+   "type": "int32"
+  },
+  {
+   "json": "VisitorID",
+   "type": "int32"
+  },
+  {
+   "json": "SysID",
+   "type": "int32"
+  },
+  {
+   "json": "ClockTime",
+   "type": "string"
+  },
+  {
+   "json": "GhnoInDar",
+   "type": "int32"
+  },
+  {
+   "json": "Extra",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "checksList",
+   "type": "System.Collections.Generic.List`1<AtiranLocalServices.PishDaryaftGetCheckDTO>"
+  },
+  {
+   "json": "multiFactorList",
+   "type": "System.Collections.Generic.List`1<AtiranLocalServices.PishDaryaftMultiFactorDTO>"
+  },
+  {
+   "json": "posList",
+   "type": "System.Collections.Generic.List`1<AtiranLocalServices.PishDaryaftPosDTO>"
+  }
+ ],
+ "AtiranLocalServices.PishDaryaftGetCheckDTO": [
+  {
+   "json": "RowID",
+   "type": "int32"
+  },
+  {
+   "json": "GhnoPishDaryaft",
+   "type": "int32"
+  },
+  {
+   "json": "sardate",
+   "type": "string"
+  },
+  {
+   "json": "ShomareHesab",
+   "type": "string"
+  },
+  {
+   "json": "BankName",
+   "type": "string"
+  },
+  {
+   "json": "Shobe",
+   "type": "string"
+  },
+  {
+   "json": "Serial",
+   "type": "string"
+  },
+  {
+   "json": "Price",
+   "type": "valuetype System.Decimal"
+  }
+ ],
+ "AtiranLocalServices.PishDaryaftPosDTO": [
+  {
+   "json": "RowID",
+   "type": "int32"
+  },
+  {
+   "json": "GhnoPishDaryaft",
+   "type": "int32"
+  },
+  {
+   "json": "price",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "PosBankRdf",
+   "type": "int32"
+  },
+  {
+   "json": "ShomarePeygiri",
+   "type": "string"
+  }
+ ],
+ "AtiranLocalServices.PishDaryaftMultiFactorDTO": [
+  {
+   "json": "RowID",
+   "type": "int32"
+  },
+  {
+   "json": "GhnoPishDaryaft",
+   "type": "int32"
+  },
+  {
+   "json": "Shfacfo",
+   "type": "int32"
+  },
+  {
+   "json": "Price",
+   "type": "valuetype System.Decimal"
+  }
+ ],
+ "AtiranLocalServices.PishFactorFilter": [
+  {
+   "json": "StartDate",
+   "type": "string"
+  },
+  {
+   "json": "EndDate",
+   "type": "string"
+  },
+  {
+   "json": "Visitors",
+   "type": "System.Collections.Generic.List`1<int32>"
+  }
+ ],
+ "AtiranLocalServices.MessageFilter": [
+  {
+   "json": "StartDate",
+   "type": "string"
+  },
+  {
+   "json": "EndDate",
+   "type": "string"
+  },
+  {
+   "json": "VisitorID",
+   "type": "int32"
+  }
+ ],
+ "AtiranLocalServices.ListMessage": [
+  {
+   "json": "rowID",
+   "type": "int64"
+  },
+  {
+   "json": "sendDate",
+   "type": "string"
+  },
+  {
+   "json": "message",
+   "type": "string"
+  },
+  {
+   "json": "title",
+   "type": "string"
+  },
+  {
+   "json": "forcedUpdate",
+   "type": "bool"
+  }
+ ],
+ "AtiranLocalServices.Login": [
+  {
+   "json": "Username",
+   "type": "string"
+  },
+  {
+   "json": "Password",
+   "type": "string"
+  }
+ ],
+ "AtiranLocalServices.PishFactor": [
+  {
+   "json": "shfacfo",
+   "type": "int64"
+  },
+  {
+   "json": "price",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "status",
+   "type": "int32"
+  },
+  {
+   "json": "description",
+   "type": "string"
+  },
+  {
+   "json": "date",
+   "type": "string"
+  },
+  {
+   "json": "visitor",
+   "type": "string"
+  },
+  {
+   "json": "customer",
+   "type": "string"
+  }
+ ],
+ "AtiranLocalServices.prize_table_": [
+  {
+   "json": "rdf",
+   "type": "int32"
+  },
+  {
+   "json": "shka",
+   "type": "int32"
+  },
+  {
+   "json": "ted_st",
+   "type": "int32"
+  },
+  {
+   "json": "ted_end",
+   "type": "int32"
+  },
+  {
+   "json": "shkaja",
+   "type": "int32"
+  },
+  {
+   "json": "nakaja",
+   "type": "string"
+  },
+  {
+   "json": "tedja",
+   "type": "int32"
+  },
+  {
+   "json": "CusGroup",
+   "type": "int32"
+  },
+  {
+   "json": "SysID",
+   "type": "int32"
+  },
+  {
+   "json": "ProvinceID",
+   "type": "int32"
+  },
+  {
+   "json": "CityID",
+   "type": "int32"
+  },
+  {
+   "json": "RegionID",
+   "type": "int32"
+  },
+  {
+   "json": "PathID",
+   "type": "int32"
+  }
+ ],
+ "AtiranLocalServices.prize_table_group_": [
+  {
+   "json": "rdf",
+   "type": "int32"
+  },
+  {
+   "json": "rdf_group",
+   "type": "int32"
+  },
+  {
+   "json": "subParentList",
+   "type": "string"
+  },
+  {
+   "json": "ted_st",
+   "type": "int32"
+  },
+  {
+   "json": "ted_end",
+   "type": "int32"
+  },
+  {
+   "json": "shkaja",
+   "type": "int32"
+  },
+  {
+   "json": "nakaja",
+   "type": "string"
+  },
+  {
+   "json": "tedja",
+   "type": "int32"
+  },
+  {
+   "json": "CusGroup",
+   "type": "int32"
+  },
+  {
+   "json": "SysID",
+   "type": "int32"
+  },
+  {
+   "json": "ProvinceID",
+   "type": "int32"
+  },
+  {
+   "json": "CityID",
+   "type": "int32"
+  },
+  {
+   "json": "RegionID",
+   "type": "int32"
+  },
+  {
+   "json": "PathID",
+   "type": "int32"
+  },
+  {
+   "json": "SubEffect",
+   "type": "bool"
+  }
+ ],
+ "AtiranLocalServices.prizePercent_": [
+  {
+   "json": "RowId",
+   "type": "int64"
+  },
+  {
+   "json": "Shka",
+   "type": "int64"
+  },
+  {
+   "json": "FromNum",
+   "type": "int32"
+  },
+  {
+   "json": "ToNum",
+   "type": "int32"
+  },
+  {
+   "json": "FromPrice",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "ToPrice",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "FromDate",
+   "type": "string"
+  },
+  {
+   "json": "ToDate",
+   "type": "string"
+  },
+  {
+   "json": "Percent",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "RdfCustGroup",
+   "type": "int32"
+  },
+  {
+   "json": "RdfProvinc",
+   "type": "int32"
+  },
+  {
+   "json": "RdfCity",
+   "type": "int32"
+  },
+  {
+   "json": "RdfRegion",
+   "type": "int32"
+  },
+  {
+   "json": "RdfMasir",
+   "type": "int32"
+  },
+  {
+   "json": "SysID",
+   "type": "int32"
+  }
+ ],
+ "AtiranLocalServices.prizePercentGroup_": [
+  {
+   "json": "RowId",
+   "type": "int64"
+  },
+  {
+   "json": "RdfKalaGroup",
+   "type": "int32"
+  },
+  {
+   "json": "subParentList",
+   "type": "string"
+  },
+  {
+   "json": "FromNum",
+   "type": "int32"
+  },
+  {
+   "json": "ToNum",
+   "type": "int32"
+  },
+  {
+   "json": "FromPrice",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "ToPrice",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "FromDate",
+   "type": "string"
+  },
+  {
+   "json": "ToDate",
+   "type": "string"
+  },
+  {
+   "json": "Percent",
+   "type": "valuetype System.Decimal"
+  },
+  {
+   "json": "RdfCustGroup",
+   "type": "int32"
+  },
+  {
+   "json": "RdfProvinc",
+   "type": "int32"
+  },
+  {
+   "json": "RdfCity",
+   "type": "int32"
+  },
+  {
+   "json": "RdfRegion",
+   "type": "int32"
+  },
+  {
+   "json": "RdfMasir",
+   "type": "int32"
+  },
+  {
+   "json": "SysID",
+   "type": "int32"
+  },
+  {
+   "json": "SubEffect",
+   "type": "bool"
+  }
+ ],
+ "AtiranLocalServices.KaGroupModel": [
+  {
+   "json": "GroupRdf",
+   "type": "int32"
+  },
+  {
+   "json": "ParentRdf",
+   "type": "valuetype System.Nullable`1<int32>"
+  }
+ ],
+ "AtiranLocalServices.AtiranErrors": [
+  {
+   "json": "value__",
+   "type": "int32"
+  },
+  {
+   "json": "InvalidCPUID",
+   "type": "valuetype AtiranLocalServices.AtiranErrors"
+  },
+  {
+   "json": "ExpiredTablet",
+   "type": "valuetype AtiranLocalServices.AtiranErrors"
+  },
+  {
+   "json": "ExpiredRequest",
+   "type": "valuetype AtiranLocalServices.AtiranErrors"
+  },
+  {
+   "json": "InvalidProductKey",
+   "type": "valuetype AtiranLocalServices.AtiranErrors"
+  },
+  {
+   "json": "InvalidAdminPassword",
+   "type": "valuetype AtiranLocalServices.AtiranErrors"
+  },
+  {
+   "json": "NoAnbarsDefined",
+   "type": "valuetype AtiranLocalServices.AtiranErrors"
+  },
+  {
+   "json": "NoCustActToShow",
+   "type": "valuetype AtiranLocalServices.AtiranErrors"
+  },
+  {
+   "json": "TableIsEmpty",
+   "type": "valuetype AtiranLocalServices.AtiranErrors"
+  },
+  {
+   "json": "CodeError",
+   "type": "valuetype AtiranLocalServices.AtiranErrors"
+  },
+  {
+   "json": "AlreadyActivatedWiththeSameCPUID",
+   "type": "valuetype AtiranLocalServices.AtiranErrors"
+  },
+  {
+   "json": "AlreadyActivatedWithDifferentCPUID",
+   "type": "valuetype AtiranLocalServices.AtiranErrors"
+  },
+  {
+   "json": "CategoryTypeError",
+   "type": "valuetype AtiranLocalServices.AtiranErrors"
+  },
+  {
+   "json": "InvalidVisitor",
+   "type": "valuetype AtiranLocalServices.AtiranErrors"
+  }
+ ],
+ "AtiranLocalServices.SecurityTokenValidationResult": [
+  {
+   "json": "value__",
+   "type": "int32"
+  },
+  {
+   "json": "Vallid",
+   "type": "valuetype AtiranLocalServices.SecurityTokenValidationResult"
+  },
+  {
+   "json": "InvalidCPUID",
+   "type": "valuetype AtiranLocalServices.SecurityTokenValidationResult"
+  },
+  {
+   "json": "ExpiredTablet",
+   "type": "valuetype AtiranLocalServices.SecurityTokenValidationResult"
+  },
+  {
+   "json": "ExpiredRequest",
+   "type": "valuetype AtiranLocalServices.SecurityTokenValidationResult"
+  }
+ ],
+ "AtiranLocalServices.onlineKalaGroup": [
+  {
+   "json": "ID",
+   "type": "int32"
+  },
+  {
+   "json": "SectionName",
+   "type": "string"
+  },
+  {
+   "json": "hasPic",
+   "type": "int32"
+  },
+  {
+   "json": "onlineKalas",
+   "type": "System.Collections.Generic.List`1<AtiranLocalServices.OnlineKala>"
+  },
+  {
+   "json": "ParentID",
+   "type": "valuetype System.Nullable`1<int32>"
+  },
+  {
+   "json": "Children",
+   "type": "System.Collections.Generic.List`1<AtiranLocalServices.onlineKalaGroup>"
+  }
+ ],
+ "AtiranLocalServices.Properties.Settings": [
+  {
+   "json": "defaultInstance",
+   "type": "AtiranLocalServices.Properties.Settings"
+  }
+ ]
+}

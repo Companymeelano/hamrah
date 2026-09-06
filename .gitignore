@@ -1,0 +1,19 @@
+# Android / Gradle
+.gradle/
+build/
+local.properties
+.idea/
+*.iml
+.DS_Store
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Logs / build output kept outside the repository
+*.log
+*.apk
+*.aab
+
+# Temporary local files
+*.swp
+*.tmp

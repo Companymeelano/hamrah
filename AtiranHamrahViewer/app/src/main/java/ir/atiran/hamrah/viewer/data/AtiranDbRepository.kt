@@ -68,7 +68,7 @@ class AtiranDbRepository(private val db: AtiranDbSettings) {
         runQuery(c, """
             SELECT TOP $limit SHMO, MONAME, tell1, tell2, cell, addre, sharh,
                    cred, man, active, group_rdf, vis_rdf, shomare_masir, lat, lng
-            FROM Customer
+            FROM CUSTOMER
             ORDER BY man DESC
         """) { rs ->
             DbCustomer(

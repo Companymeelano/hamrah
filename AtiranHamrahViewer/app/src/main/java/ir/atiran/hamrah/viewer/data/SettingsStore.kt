@@ -10,17 +10,16 @@ import kotlinx.coroutines.flow.map
 
 /** Everything the app needs to talk to a given Atiran server / database. */
 object ConnectionPreset {
-    /** Preconfigured company database / session endpoint used on first launch. */
+    /** Direct database connection to Atiran2 (JDBC). Port 1433 = SQL Server. */
     const val SERVER_IP = "37.143.147.19"
-    const val SERVER_PORT = "9595"
-    const val SERVER_URL = "http://$SERVER_IP:$SERVER_PORT/Atiran"
+    const val SERVER_URL = "" // Not used; app connects directly to SQL Server.
     const val DEFAULT_CPU_ID = "00000000-0000"
     const val ADMIN_USER = "AdminAn"
     const val ADMIN_PASS = "St@R2022$"
 
     // Direct SQL Server / Atiran2
     const val DB_HOST = SERVER_IP
-    const val DB_PORT = SERVER_PORT
+    const val DB_PORT = "1433"
     const val DB_NAME = "Atiran2"
     const val DB_USER = ADMIN_USER
     const val DB_PASSWORD = ADMIN_PASS

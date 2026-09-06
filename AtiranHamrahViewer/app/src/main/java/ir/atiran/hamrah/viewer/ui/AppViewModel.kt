@@ -90,21 +90,43 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    /** Save embedded preset, verify direct DB connection, then open reports. */
+    /** Verify direct DB connection using the currently saved DB credentials. */
     fun connectWithPreset() {
         viewModelScope.launch {
             busy = true
             error = null
             try {
-                val preset = AtiranSettings()
-                store.save(preset)
+                val s = settings.value
+                if (s.dbHost.isBlank() || s.dbName.isBlank()) {
+                    throw IllegalStateException("تنظیمات دیتابیس ناقص است")
+                }
+                store.save(s.copy(configured = true))
                 val info = dbRepository().testConnection()
-                store.save(settings.value.copy(configured = true))
                 error = "متصل شد: $info"
                 screen = Screen.Home
             } catch (e: Exception) {
                 error = "اتصال مستقیم به دیتابیس ناموفق: ${e.message}"
                 screen = Screen.Login
+            } finally {
+                busy = false
+            }
+        }
+    }
+
+    /** Save manually typed DB credentials then connect to Atiran2. */
+    fun connectWithDbUser(username: String, password: String) {
+        viewModelScope.launch {
+            busy = true
+            error = null
+            try {
+                val updated = settings.value.copy(dbUser = username.trim(), dbPassword = password)
+                store.save(updated.copy(configured = true))
+                dbRepository()
+                val info = dbRepository().testConnection()
+                error = "متصل شد: $info"
+                screen = Screen.Home
+            } catch (e: Exception) {
+                error = "اتصال مستقیم به دیتابیس ناموفق: ${e.message}"
             } finally {
                 busy = false
             }

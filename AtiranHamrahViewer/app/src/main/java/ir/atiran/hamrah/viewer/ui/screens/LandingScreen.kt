@@ -19,7 +19,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -41,6 +40,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import ir.atiran.hamrah.viewer.ui.AppViewModel
 import ir.atiran.hamrah.viewer.ui.components.ErrorBanner
+import ir.atiran.hamrah.viewer.ui.components.LuxuryButton
 import ir.atiran.hamrah.viewer.ui.components.MReportLogo
 
 private val DeepBlue = Color(0xFF071B3D)
@@ -181,7 +181,7 @@ fun LandingScreen(vm: AppViewModel) {
                         color = Mint,
                     )
                     Text(
-                        text = "Atiran2  •  37.143.147.19:9595  •  AdminAn",
+                        text = "Atiran2  •  37.143.147.19:1433  •  AdminAn",
                         style = MaterialTheme.typography.bodySmall,
                         color = White.copy(alpha = 0.82f),
                         textAlign = TextAlign.Center,
@@ -199,28 +199,21 @@ fun LandingScreen(vm: AppViewModel) {
 
             Spacer(modifier = Modifier.height(10.dp))
 
-            Button(
+            if (vm.busy) {
+                CircularProgressIndicator(modifier = Modifier.size(24.dp), color = Aqua, strokeWidth = 3.dp)
+            }
+
+            LuxuryButton(
+                text = if (vm.busy) "در حال اتصال..." else "ورود و مشاهده گزارشات",
                 onClick = { vm.connectWithPreset() },
                 enabled = !vm.busy,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(56.dp),
-                shape = RoundedCornerShape(18.dp),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Aqua,
-                    contentColor = DeepBlue,
-                ),
-            ) {
-                if (vm.busy) {
-                    CircularProgressIndicator(modifier = Modifier.size(24.dp), color = DeepBlue, strokeWidth = 3.dp)
-                } else {
-                    Text(
-                        text = "ورود و مشاهده گزارشات",
-                        style = MaterialTheme.typography.titleMedium,
-                        fontWeight = FontWeight.ExtraBold,
-                    )
-                }
-            }
+                modifier = Modifier.fillMaxWidth(),
+                height = 58,
+                fontSize = 18,
+                colors = listOf(Color(0xFF00C6FF), Color(0xFF0072FF), Color(0xFF7B61FF)),
+            )
+
+            Spacer(modifier = Modifier.height(8.dp))
 
             OutlinedButton(
                 onClick = { vm.goSettings() },

@@ -49,7 +49,7 @@ class AtiranDbRepository(private val db: AtiranDbSettings) {
                 visitorCount = visitors.size,
                 totalDebt = customers.sumOf { it.man ?: 0.0 },
                 totalCredit = customers.sumOf { it.cred ?: 0.0 },
-                totalCheckAmount = checks.sumOf { it.mablagh ?: 0.0 },
+                totalCheckAmount = checks.sumOf { it.amount },
                 totalSales = factors.sumOf { it.allFel ?: it.sumLineAll ?: 0.0 },
                 totalTax = factors.sumOf { it.tax ?: 0.0 },
                 totalTakhfif = factors.sumOf { it.tafif ?: 0.0 },
@@ -226,7 +226,7 @@ data class AtiranDbSettings(
     val port: String = ConnectionPreset.DB_PORT,
     val dbName: String = ConnectionPreset.DB_NAME,
     val user: String = ConnectionPreset.DB_USER,
-    val password: String = ConnectionPreset.DB_PASS,
+    val password: String = ConnectionPreset.DB_PASSWORD,
 ) {
     fun jdbcUrl(): String =
         "jdbc:sqlserver://$host:$port;databaseName=$dbName;encrypt=false;trustServerCertificate=true;loginTimeout=15"

@@ -238,6 +238,120 @@ fun GradientBars(
 }
 
 /**
+ * Isometric "3D" rounded bar chart with front, top and side faces.
+ * Used for the more visually striking management reports.
+ */
+@Composable
+fun Isometric3DBarChart(
+    entries: List<ChartEntry>,
+    height: Dp = 240.dp,
+    unit: String = "",
+    colors: List<Color> = ChartGradient,
+) {
+    if (entries.isEmpty()) {
+        ChartCard("نمودار سه‌بعدی") { EmptyBox("داده‌ای برای نمودار نیست") }
+        return
+    }
+    val maxVal = max(entries.maxOf { it.value }, 1.0)
+    ChartCard("نمودار سه‌بعدی") {
+        Box(modifier = Modifier.fillMaxWidth().height(height)) {
+            Canvas(modifier = Modifier.fillMaxSize()) {
+                val n = entries.size
+                val slot = size.width / n
+                val barW = (slot * 0.46f).coerceAtLeast(8f)
+                val depthX = size.width * 0.018f
+                val depthY = size.height * 0.028f
+                val baseline = size.height * 0.90f
+                val maxH = size.height * 0.82f
+
+                entries.forEachIndexed { i, e ->
+                    val h = ((e.value / maxVal).toFloat() * maxH).coerceAtLeast(4f)
+                    val x = slot * i + (slot - barW) / 2f
+                    val y = baseline - h
+                    val color = colors[i % colors.size]
+
+                    // floor shadow
+                    drawRoundRect(
+                        color = Color.Black.copy(alpha = 0.28f),
+                        topLeft = Offset(x + barW * 0.12f + depthX, baseline + depthY * 0.25f),
+                        size = Size(barW, h * 0.055f),
+                        cornerRadius = CornerRadius(barW / 3f, barW / 3f),
+                    )
+
+                    // side face (right / dark)
+                    val side = Path().apply {
+                        moveTo(x + barW, y)
+                        lineTo(x + barW + depthX, y - depthY)
+                        lineTo(x + barW + depthX, baseline - depthY)
+                        lineTo(x + barW, baseline)
+                        close()
+                    }
+                    drawPath(side, color = color.copy(alpha = 0.42f))
+
+                    // top face
+                    val top = Path().apply {
+                        moveTo(x, y)
+                        lineTo(x + depthX, y - depthY)
+                        lineTo(x + barW + depthX, y - depthY)
+                        lineTo(x + barW, y)
+                        close()
+                    }
+                    drawPath(top, color = Color.White.copy(alpha = 0.42f))
+
+                    // front gradient
+                    drawRoundRect(
+                        brush = Brush.verticalGradient(
+                            listOf(Color.White.copy(alpha = 0.28f), color, color.copy(alpha = 0.58f)),
+                            startY = y,
+                            endY = baseline,
+                        ),
+                        topLeft = Offset(x, y),
+                        size = Size(barW, h),
+                        cornerRadius = CornerRadius(barW / 3f, barW / 3f),
+                    )
+
+                    // glass shine
+                    drawRoundRect(
+                        brush = Brush.verticalGradient(
+                            listOf(Color.White.copy(alpha = 0.62f), Color.Transparent),
+                            startY = y,
+                            endY = y + h * 0.34f,
+                        ),
+                        topLeft = Offset(x, y),
+                        size = Size(barW, (h * 0.34f).coerceAtLeast(barW * 0.5f)),
+                        cornerRadius = CornerRadius(barW / 3f, barW / 3f),
+                    )
+                }
+            }
+        }
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.Bottom,
+        ) {
+            entries.take(8).forEach { e ->
+                Text(
+                    text = e.label,
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    maxLines = 1,
+                    overflow = TextOverflow.Clip,
+                    modifier = Modifier.weight(1f),
+                    textAlign = TextAlign.Center,
+                )
+            }
+        }
+        if (unit.isNotBlank()) {
+            Text(
+                text = "واحد: $unit",
+                style = MaterialTheme.typography.labelSmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+        }
+    }
+}
+
+/**
  * Donut/ring chart with legend. Great for distribution reports
  * (checks by bank, customer status, inventory share, etc.).
  */
@@ -474,6 +588,18 @@ fun RadarChart(
                 return Offset(cx + r * kotlin.math.cos(rad).toFloat(), cy + r * kotlin.math.sin(rad).toFloat())
             }
 
+            // depth shadow layer (gives the radar a 3D floating feel)
+            val shadowDepth = size.minDimension * 0.025f
+            val shadowPath = Path().apply {
+                for (i in 0 until n) {
+                    val q = point(i, radius * (values[i] / maxVal).toFloat())
+                    val p2 = Offset(q.x + shadowDepth, q.y + shadowDepth)
+                    if (i == 0) moveTo(p2.x, p2.y) else lineTo(p2.x, p2.y)
+                }
+                close()
+            }
+            drawPath(shadowPath, color = Color.Black.copy(alpha = 0.22f))
+
             // concentric rings
             for (ring in 1..4) {
                 val rr = radius * ring / 4f
@@ -484,12 +610,22 @@ fun RadarChart(
                     }
                     close()
                 }
-                drawPath(p, color = color.copy(alpha = 0.12f), style = Stroke(width = 1.5f))
+                drawPath(p, color = color.copy(alpha = if (ring % 2 == 0) 0.20f else 0.10f), style = Stroke(width = 1.6f))
             }
+            // center glow
+            drawCircle(
+                brush = Brush.radialGradient(
+                    listOf(color.copy(alpha = 0.26f), Color.Transparent),
+                    center = Offset(cx, cy),
+                    radius = radius,
+                ),
+                radius = radius,
+                center = Offset(cx, cy),
+            )
             // axes
             for (i in 0 until n) {
                 val q = point(i, radius)
-                drawLine(color.copy(alpha = 0.18f), start = Offset(cx, cy), end = q, strokeWidth = 1.5f)
+                drawLine(color.copy(alpha = 0.22f), start = Offset(cx, cy), end = q, strokeWidth = 1.6f)
             }
             // data polygon
             val dataPath = Path().apply {
@@ -503,17 +639,18 @@ fun RadarChart(
             drawPath(
                 dataPath,
                 brush = Brush.radialGradient(
-                    listOf(color.copy(alpha = 0.50f), color.copy(alpha = 0.10f)),
+                    listOf(color.copy(alpha = 0.62f), color.copy(alpha = 0.16f)),
                     center = Offset(cx, cy),
                     radius = radius,
                 ),
             )
-            drawPath(dataPath, color = color, style = Stroke(width = 4f))
+            drawPath(dataPath, color = color, style = Stroke(width = 5f, cap = StrokeCap.Round))
             for (i in 0 until n) {
                 val r = (values[i] / maxVal).toFloat() * radius
                 val q = point(i, r)
-                drawCircle(Color.White, radius = 7f, center = q)
-                drawCircle(color, radius = 4f, center = q)
+                drawCircle(Color.Black.copy(alpha = 0.30f), radius = 9f, center = Offset(q.x + shadowDepth * 0.8f, q.y + shadowDepth * 0.8f))
+                drawCircle(Color.White, radius = 8.5f, center = q)
+                drawCircle(color, radius = 5f, center = q)
             }
         }
         Row(

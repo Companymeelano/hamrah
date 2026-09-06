@@ -70,7 +70,7 @@ fun HomeScreen(vm: AppViewModel, settings: AtiranSettings) {
         )
 
         Text(
-            "سرور: ${settings.normalizedServer()}  •  CPUID: ${settings.cpuId}",
+            "اتصال مستقیم: ${settings.dbHost}:${settings.dbPort}  •  دیتابیس ${settings.dbName}  •  ${settings.dbUser}",
             style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp),

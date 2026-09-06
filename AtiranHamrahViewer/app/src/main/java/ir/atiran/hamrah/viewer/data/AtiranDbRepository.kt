@@ -10,7 +10,7 @@ import kotlinx.coroutines.withContext
  * Read-only JDBC repository for the Atiran2 SQL Server database.
  *
  * The app connects directly to SQL Server using the DB user supplied in
- * settings (preset: 37.143.147.19 / 9595 / Atiran2 / AdminAn).
+ * settings (preset: 37.143.147.19 / 1433 / Atiran2 / AdminAn).
  * Every query is a plain SELECT — no INSERT/UPDATE/DELETE exists here.
  */
 class AtiranDbRepository(private val db: AtiranDbSettings) {

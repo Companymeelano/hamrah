@@ -8,14 +8,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -25,14 +21,13 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import ir.atiran.hamrah.viewer.data.AtiranClient
-import ir.atiran.hamrah.viewer.data.AtiranRepository
+import ir.atiran.hamrah.viewer.data.AtiranDbRepository
+import ir.atiran.hamrah.viewer.data.AtiranDbSettings
 import ir.atiran.hamrah.viewer.data.AtiranSettings
-import ir.atiran.hamrah.viewer.data.CustomerLogin
-import ir.atiran.hamrah.viewer.data.Login
 import ir.atiran.hamrah.viewer.ui.AppViewModel
 import ir.atiran.hamrah.viewer.ui.components.ErrorBanner
 import ir.atiran.hamrah.viewer.ui.components.LoadingBox
+import ir.atiran.hamrah.viewer.ui.components.LuxuryButton
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -45,7 +40,7 @@ fun SettingsScreen(vm: AppViewModel, initial: AtiranSettings) {
     val scope = rememberCoroutineScope()
 
     Column(modifier = Modifier.fillMaxSize()) {
-        TopAppBar(title = { Text("تنظیمات اتصال به سرور آتیران") })
+        TopAppBar(title = { Text("تنظیمات اتصال مستقیم دیتابیس") })
 
         Column(
             modifier = Modifier
@@ -54,25 +49,9 @@ fun SettingsScreen(vm: AppViewModel, initial: AtiranSettings) {
             verticalArrangement = Arrangement.spacedBy(10.dp),
         ) {
             Text(
-                "برای استفاده از این برنامه، ابتدا تبلت/دستگاه شما باید در نسخه ویندوزی «آتیران همراه» برای همین CPUID فعال شده باشد.",
+                "برنامه مستقیماً و فقط با SELECT به دیتابیس Atiran2 متصل می‌شود. هیچ سرویس HTTP یا پورت اضافه‌ای استفاده نمی‌شود.",
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
-
-            OutlinedTextField(
-                value = s.serverUrl,
-                onValueChange = { s = s.copy(serverUrl = it) },
-                label = { Text("آدرس سرویس (LocalServices.svc)") },
-                placeholder = { Text("http://192.168.1.10/LocalServices.svc") },
-                singleLine = true,
-                modifier = Modifier.fillMaxWidth(),
-            )
-            OutlinedTextField(
-                value = s.cpuId,
-                onValueChange = { s = s.copy(cpuId = it) },
-                label = { Text("CPUID (شناسه دستگاه فعال‌شده)") },
-                singleLine = true,
-                modifier = Modifier.fillMaxWidth(),
             )
 
             Text("اتصال مستقیم دیتابیس (Atiran2)", style = MaterialTheme.typography.titleSmall)
@@ -116,135 +95,63 @@ fun SettingsScreen(vm: AppViewModel, initial: AtiranSettings) {
                 )
             }
 
-            Text("اطلاعات حساب (برای ورود و مشاهده داده‌ها)", style = MaterialTheme.typography.titleSmall)
-            OutlinedTextField(
-                value = s.username,
-                onValueChange = { s = s.copy(username = it) },
-                label = { Text("نام کاربری") },
-                singleLine = true,
-                modifier = Modifier.fillMaxWidth(),
-            )
-            OutlinedTextField(
-                value = s.password,
-                onValueChange = { s = s.copy(password = it) },
-                label = { Text("رمز عبور") },
-                singleLine = true,
-                modifier = Modifier.fillMaxWidth(),
-            )
-
-            Text("شماره مشتری / ویزیتور (اختیاری)", style = MaterialTheme.typography.titleSmall)
-            OutlinedTextField(
-                value = s.shMo,
-                onValueChange = { s = s.copy(shMo = it) },
-                label = { Text("ShMo مشتری (برای فاکتورها و چک‌ها)") },
-                singleLine = true,
-                modifier = Modifier.fillMaxWidth(),
-            )
-            OutlinedTextField(
-                value = s.visitorId,
-                onValueChange = { s = s.copy(visitorId = it) },
-                label = { Text("شناسه ویزیتور (VisitorID، اختیاری)") },
-                singleLine = true,
-                modifier = Modifier.fillMaxWidth(),
-            )
-
-            Text("تنظیمات SetInfo (برای جستجوی فیلترشده — اختیاری)", style = MaterialTheme.typography.titleSmall)
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                OutlinedTextField(
-                    value = s.ownerNum,
-                    onValueChange = { s = s.copy(ownerNum = it) },
-                    label = { Text("OwnerNum") },
-                    singleLine = true,
-                    modifier = Modifier.weight(1f),
-                )
-                OutlinedTextField(
-                    value = s.inventoryNum,
-                    onValueChange = { s = s.copy(inventoryNum = it) },
-                    label = { Text("InventoryNum") },
-                    singleLine = true,
-                    modifier = Modifier.weight(1f),
-                )
-            }
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                OutlinedTextField(
-                    value = s.atiranNum,
-                    onValueChange = { s = s.copy(atiranNum = it) },
-                    label = { Text("AtiranNum") },
-                    singleLine = true,
-                    modifier = Modifier.weight(1f),
-                )
-                OutlinedTextField(
-                    value = s.carrierNum,
-                    onValueChange = { s = s.copy(carrierNum = it) },
-                    label = { Text("CarrierNum") },
-                    singleLine = true,
-                    modifier = Modifier.weight(1f),
-                )
-            }
-            OutlinedTextField(
-                value = s.activeLine,
-                onValueChange = { s = s.copy(activeLine = it) },
-                label = { Text("ActiveLine") },
-                singleLine = true,
-                modifier = Modifier.fillMaxWidth(),
+            Text(
+                "پیش‌فرض: 37.143.147.19  •  پورت 1433  •  دیتابیس Atiran2",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
 
             ErrorBanner(testError)
             if (testing) LoadingBox()
 
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                Button(
-                    onClick = { vm.saveSettings(s) },
-                    modifier = Modifier.weight(1f),
-                ) {
-                    Text("ذخیره و ادامه")
-                }
-                OutlinedButton(
-                    onClick = {
-                        testing = true
-                        testError = null
-                        testResult = null
-                        scope.launch {
-                            try {
-                                val repo = AtiranRepository(AtiranClient(s))
-                                val company = repo.companyInfo()
-                                val role = repo.login(Login(s.username, s.password))?.Role
-                                val profile = repo.getCustomerByLogin(
-                                    CustomerLogin(Username = s.username, Password = s.password)
-                                )
-                                val who = profile.firstOrNull()?.Moname ?: "مشتری ای یافت نشد"
-                                testResult = buildString {
-                                    appendLine("اتصال موفق ✓")
-                                    appendLine("شرکت: ${company?.Name ?: "—"}")
-                                    appendLine("نقش (Role): ${role ?: "—"}")
-                                    appendLine("مشتری: $who")
-                                    val shmo = profile.firstOrNull()?.Shmo
-                                    if (shmo != null) appendLine("ShMo: $shmo")
-                                }
-                            } catch (e: Exception) {
-                                testError = "تست اتصال ناموفق: ${e.message}"
-                            } finally {
-                                testing = false
-                            }
+            LuxuryButton(
+                text = "ذخیره و رفتن به ورود",
+                onClick = { vm.saveSettings(s) },
+                enabled = !testing,
+                modifier = Modifier.fillMaxWidth(),
+                height = 54,
+            )
+
+            LuxuryButton(
+                text = "تست اتصال مستقیم",
+                onClick = {
+                    testing = true
+                    testError = null
+                    testResult = null
+                    scope.launch {
+                        try {
+                            val repo = AtiranDbRepository(
+                                AtiranDbSettings(
+                                    host = s.dbHost.trim(),
+                                    port = s.dbPort.trim(),
+                                    dbName = s.dbName.trim(),
+                                    user = s.dbUser.trim(),
+                                    password = s.dbPassword,
+                                ),
+                            )
+                            testResult = repo.testConnection()
+                            testError = null
+                        } catch (e: Exception) {
+                            testError = "تست اتصال مستقیم ناموفق: ${e.message}"
+                            testResult = null
+                        } finally {
+                            testing = false
                         }
-                    },
-                    modifier = Modifier.weight(1f),
-                    enabled = !testing,
-                ) {
-                    Text("تست اتصال")
-                }
+                    }
+                },
+                enabled = !testing,
+                modifier = Modifier.fillMaxWidth(),
+                height = 52,
+                colors = listOf(androidx.compose.ui.graphics.Color(0xFF8EF8CD), androidx.compose.ui.graphics.Color(0xFF00C6FF)),
+            )
+
+            if (!testResult.isNullOrBlank()) {
+                Text(
+                    text = "✅ $testResult",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.primary,
+                )
             }
         }
-    }
-
-    if (testResult != null) {
-        AlertDialog(
-            onDismissRequest = { testResult = null },
-            title = { Text("نتیجه تست اتصال") },
-            text = { Text(testResult ?: "") },
-            confirmButton = {
-                TextButton(onClick = { testResult = null }) { Text("بستن") }
-            },
-        )
     }
 }

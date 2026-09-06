@@ -9,6 +9,8 @@ import androidx.lifecycle.viewModelScope
 import ir.atiran.hamrah.viewer.data.AtiranClient
 import ir.atiran.hamrah.viewer.data.AtiranRepository
 import ir.atiran.hamrah.viewer.data.AtiranSettings
+import ir.atiran.hamrah.viewer.data.CustomerLogin
+import ir.atiran.hamrah.viewer.data.Login
 import ir.atiran.hamrah.viewer.data.SettingsStore
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -17,6 +19,7 @@ import kotlinx.coroutines.launch
 
 sealed class Screen {
     data object Loading : Screen()
+    data object Landing : Screen()
     data object Settings : Screen()
     data object Login : Screen()
     data object Home : Screen()
@@ -39,14 +42,7 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
         private set
 
     init {
-        viewModelScope.launch {
-            settings.collect { s ->
-                screen = when {
-                    s.configured -> Screen.Login
-                    else -> Screen.Settings
-                }
-            }
-        }
+        screen = Screen.Landing
     }
 
     private var cachedRepo: AtiranRepository? = null
@@ -82,6 +78,46 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    /** Save the embedded connection preset, authenticate, and open reports. */
+    fun connectWithPreset() {
+        viewModelScope.launch {
+            busy = true
+            error = null
+            try {
+                store.save(AtiranSettings())
+                val s = settings.value
+                val repo = repository()
+                    ?: throw IllegalStateException("تنظیمات اتصال ناقص است (CPUID سرور را بررسی کنید)")
+                try {
+                    repo.login(Login(s.username, s.password))?.Role
+                } catch (loginE: Exception) {
+                    // Some services only accept the login on GetCustomerByLogin.
+                    // Keep going; the profile call below is the real auth check.
+                }
+                val profile = try {
+                    repo.getCustomerByLogin(
+                        CustomerLogin(Username = s.username, Password = s.password)
+                    )
+                } catch (profileE: Exception) {
+                    emptyList()
+                }
+                val customer = profile.firstOrNull()
+                store.save(
+                    s.copy(
+                        configured = true,
+                        shMo = customer?.Shmo?.toString()?.ifBlank { null } ?: s.shMo,
+                    )
+                )
+                screen = Screen.Home
+            } catch (e: Exception) {
+                error = "اتصال ناموفق: ${e.message}"
+                screen = Screen.Login
+            } finally {
+                busy = false
+            }
+        }
+    }
+
     fun goSettings() {
         screen = Screen.Settings
     }
@@ -98,7 +134,7 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch {
             store.clear()
             error = null
-            screen = Screen.Settings
+            screen = Screen.Landing
         }
     }
 }

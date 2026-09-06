@@ -1,5 +1,11 @@
 package ir.atiran.hamrah.viewer.ui.components
 
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -21,9 +27,11 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
@@ -416,6 +424,156 @@ fun RankedList(
                 }
             }
             if (i != entries.lastIndex) Spacer(modifier = Modifier.height(6.dp))
+        }
+    }
+}
+
+/**
+ * Creative, glossy 3D "M" mark inspired by the letter M (Meelano).
+ * The M is drawn as three rounded report bars plus a sparkline, so it reads
+ * both as the brand letter and as a management/reporting icon.
+ */
+@Composable
+fun MReportLogo(
+    modifier: Modifier = Modifier,
+    logoSize: Dp = 170.dp,
+) {
+    val transition = rememberInfiniteTransition(label = "logoFloat")
+    val floatOffset by transition.animateFloat(
+        initialValue = -7f,
+        targetValue = 9f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(durationMillis = 5200, easing = FastOutSlowInEasing),
+            repeatMode = RepeatMode.Reverse,
+        ),
+        label = "floatOffset",
+    )
+
+    Box(modifier = modifier.size(logoSize)) {
+        Canvas(
+            modifier = Modifier
+                .fillMaxSize()
+                .graphicsLayer { translationY = floatOffset },
+        ) {
+            val w = size.width
+            val h = size.height
+            val inset = w * 0.035f
+            val corner = w * 0.22f
+            val shadowOffset = w * 0.055f
+
+            // ---- 3D depth shadow layer
+            drawRoundRect(
+                color = Color.Black.copy(alpha = 0.30f),
+                topLeft = Offset(inset + shadowOffset, inset + shadowOffset),
+                size = Size(w - 2 * inset, h - 2 * inset),
+                cornerRadius = CornerRadius(corner, corner),
+            )
+
+            // ---- main rounded square (glossy blue -> purple)
+            drawRoundRect(
+                brush = Brush.linearGradient(
+                    colors = listOf(Color(0xFF003C8F), Color(0xFF0067E0), Color(0xFF7B61FF)),
+                    start = Offset(w * 0.1f, 0f),
+                    end = Offset(w * 0.9f, h),
+                ),
+                topLeft = Offset(inset, inset),
+                size = Size(w - 2 * inset, h - 2 * inset),
+                cornerRadius = CornerRadius(corner, corner),
+            )
+
+            // ---- top glass shine
+            drawRoundRect(
+                brush = Brush.verticalGradient(
+                    colors = listOf(Color.White.copy(alpha = 0.42f), Color.White.copy(alpha = 0.0f)),
+                    startY = inset,
+                    endY = inset + (h - 2 * inset) * 0.5f,
+                ),
+                topLeft = Offset(inset, inset),
+                size = Size(w - 2 * inset, (h - 2 * inset) * 0.5f),
+                cornerRadius = CornerRadius(corner, corner),
+            )
+
+            // ---- the M-like report mark (three rounded bars + slanted spine)
+            val cx = w / 2f
+            val markTop = h * 0.28f
+            val markBottom = h * 0.74f
+            val barW = w * 0.11f
+            val gap = w * 0.07f
+            val startX = cx - barW - gap
+            val endX = cx + barW + gap
+            val barColor = Color(0xFFEAF6FF)
+            val barColor2 = Color(0xFF9BE4FF)
+
+            // left vertical bar
+            drawRoundRect(
+                brush = Brush.linearGradient(listOf(barColor, barColor2), start = Offset.Zero, end = Offset(w, h)),
+                topLeft = Offset(startX, markTop),
+                size = Size(barW, markBottom - markTop),
+                cornerRadius = CornerRadius(barW / 3f, barW / 3f),
+            )
+
+            // right vertical bar
+            drawRoundRect(
+                brush = Brush.linearGradient(listOf(barColor2, barColor)),
+                topLeft = Offset(endX, markTop),
+                size = Size(barW, markBottom - markTop),
+                cornerRadius = CornerRadius(barW / 3f, barW / 3f),
+            )
+
+            // middle slanted spine (creative M diagonal)
+            val spine = Path().apply {
+                moveTo(startX, markTop)
+                lineTo(cx, markBottom - h * 0.08f)
+                lineTo(endX, markTop)
+            }
+            drawPath(
+                path = spine,
+                color = Color.White.copy(alpha = 0.90f),
+                style = Stroke(width = barW * 0.78f, cap = StrokeCap.Round),
+            )
+
+            // small sparkline inside the M
+            val sparkColor = Color(0xFFFFB86C)
+            val points = listOf(
+                Offset(cx - barW * 1.9f, markBottom - h * 0.02f),
+                Offset(cx - barW * 0.9f, markBottom - h * 0.06f),
+                Offset(cx, markBottom - h * 0.04f),
+                Offset(cx + barW * 0.9f, markBottom - h * 0.08f),
+                Offset(cx + barW * 1.9f, markBottom - h * 0.03f),
+            )
+            val sparkPath = Path().apply {
+                points.forEachIndexed { i, p -> if (i == 0) moveTo(p.x, p.y) else lineTo(p.x, p.y) }
+            }
+            drawPath(path = sparkPath, color = sparkColor, style = Stroke(width = barW * 0.32f, cap = StrokeCap.Round))
+            points.forEach { p ->
+                drawCircle(color = Color.White, radius = barW * 0.26f, center = p)
+            }
+
+            // small rising bar cluster (creative 3D pillar)
+            val pillarColor = Color(0xFF8EF8CD)
+            listOf(0.34f, 0.58f, 0.82f).forEachIndexed { idx, frac ->
+                val pw = w * 0.045f
+                val px = w * 0.18f + idx * (pw * 1.7f)
+                val ph = h * 0.12f * frac
+                drawRoundRect(
+                    brush = Brush.verticalGradient(listOf(pillarColor, pillarColor.copy(alpha = 0.35f))),
+                    topLeft = Offset(px, h * 0.78f - ph),
+                    size = Size(pw, ph),
+                    cornerRadius = CornerRadius(pw / 3f, pw / 3f),
+                )
+            }
+        }
+
+        // brand label inside logo (bold 3D-like)
+        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                Text(
+                    text = "M",
+                    style = MaterialTheme.typography.headlineLarge,
+                    fontWeight = FontWeight.ExtraBold,
+                    color = Color.White.copy(alpha = 0.02f),
+                )
+            }
         }
     }
 }

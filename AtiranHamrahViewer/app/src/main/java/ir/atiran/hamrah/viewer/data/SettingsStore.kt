@@ -9,17 +9,27 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 /** Everything the app needs to talk to a given Atiran server. */
+object ConnectionPreset {
+    /** Preconfigured company database / session endpoint used on first launch. */
+    const val SERVER_IP = "37.143.147.19"
+    const val SERVER_PORT = "1433"
+    const val SERVER_URL = "http://$SERVER_IP:$SERVER_PORT/LocalServices.svc"
+    const val DEFAULT_CPU_ID = "00000000-0000"
+    const val ADMIN_USER = "AdminAn"
+    const val ADMIN_PASS = "St@R2022$"
+}
+
 data class AtiranSettings(
-    val serverUrl: String = "",
-    val cpuId: String = "",
+    val serverUrl: String = ConnectionPreset.SERVER_URL,
+    val cpuId: String = ConnectionPreset.DEFAULT_CPU_ID,
     val ownerNum: String = "",
     val inventoryNum: String = "",
     val atiranNum: String = "",
     val carrierNum: String = "",
     val activeLine: String = "",
     val serverAdd: String = "",
-    val username: String = "",
-    val password: String = "",
+    val username: String = ConnectionPreset.ADMIN_USER,
+    val password: String = ConnectionPreset.ADMIN_PASS,
     val shMo: String = "",
     val visitorId: String = "",
     val appId: String = "",

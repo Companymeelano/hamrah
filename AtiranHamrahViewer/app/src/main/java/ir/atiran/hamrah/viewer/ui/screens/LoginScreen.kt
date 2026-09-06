@@ -61,6 +61,14 @@ fun LoginScreen(vm: AppViewModel, settings: AtiranSettings) {
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
 
+            OutlinedButton(
+                onClick = { vm.connectWithPreset() },
+                enabled = !loading,
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                Text("اتصال سریع با حساب پیش‌فرض (بدون تایپ)")
+            }
+
             OutlinedTextField(
                 value = username,
                 onValueChange = { username = it },

@@ -238,6 +238,27 @@ async function dashboard() {
   const totalTakhfif = factors.reduce((s, x) => s + (x.tafif || 0), 0);
   const totalStock = inventory.reduce((s, x) => s + (x.moj || 0), 0);
 
+  // ---- advanced, real-database management insights ----
+  const buyValue = products.reduce((s, x) => s + (x.buyPrice || 0) * (x.mojkavah || 0), 0);
+  const sellValue = products.reduce((s, x) => s + (x.finalPrice || 0) * (x.mojkavah || 0), 0);
+  const potentialProfit = sellValue - buyValue;
+  const lowStock = products.filter((x) => (x.mojkavah || 0) > 0 && (x.mojkavah || 0) < 10).length;
+  const highStock = products.filter((x) => (x.mojkavah || 0) >= 100).length;
+  const debtors = customers.filter((x) => (x.man || 0) > 0).length;
+  const creditors = customers.filter((x) => (x.cred || 0) > 0).length;
+  const activeCustomers = customers.filter((x) => x.active !== null && String(x.active) !== '0').length;
+  const banks = new Map();
+  checks.forEach((c) => {
+    const bank = String(c.bank || 'نامشخص').trim() || 'نامشخص';
+    banks.set(bank, (banks.get(bank) || 0) + (c.amount || 0));
+  });
+  const topBanks = Array.from(banks.entries())
+    .map(([bank, value]) => ({ bank, value }))
+    .sort((a, b) => b.value - a.value)
+    .slice(0, 10);
+  const pendingChecks = checks.filter((c) => (c.status || 0) === 0).reduce((s, c) => s + (c.amount || 0), 0);
+  const settledChecks = checks.filter((c) => (c.status || 0) !== 0).reduce((s, c) => s + (c.amount || 0), 0);
+
   return {
     connection: info,
     summary: {
@@ -253,6 +274,17 @@ async function dashboard() {
       totalTax,
       totalTakhfif,
       totalStock,
+      buyValue,
+      sellValue,
+      potentialProfit,
+      lowStock,
+      highStock,
+      debtors,
+      creditors,
+      activeCustomers,
+      pendingChecks,
+      settledChecks,
+      topBanks,
     },
     customers,
     products,
@@ -339,12 +371,28 @@ function buildDemoDashboard() {
   const totalTakhfif = factors.reduce((s, x) => s + x.tafif, 0);
   const totalStock = inventory.reduce((s, x) => s + x.moj, 0);
 
+  const buyValue = products.reduce((s, x) => s + x.finalPrice * 0.55 * x.mojkavah, 0);
+  const sellValue = products.reduce((s, x) => s + x.finalPrice * x.mojkavah, 0);
+  const potentialProfit = sellValue - buyValue;
+  const lowStock = products.filter((x) => x.mojkavah < 10).length;
+  const highStock = products.filter((x) => x.mojkavah >= 100).length;
+  const debtors = customers.filter((x) => x.man > 0).length;
+  const creditors = customers.filter((x) => x.cred > 0).length;
+  const activeCustomers = customers.length;
+  const pendingChecks = checks.filter((x) => x.status === 0).reduce((s, x) => s + x.amount, 0);
+  const settledChecks = checks.filter((x) => x.status !== 0).reduce((s, x) => s + x.amount, 0);
+  const banks = new Map();
+  checks.forEach((c) => banks.set(c.bank, (banks.get(c.bank) || 0) + c.amount));
+  const topBanks = Array.from(banks.entries()).map(([bank, value]) => ({ bank, value })).sort((a, b) => b.value - a.value);
+
   return {
     demo: true,
     connection: 'حالت نمایشی (DEMO) — Atiran2 • 37.143.147.19:1433',
     summary: {
       customerCount, productCount, checkCount, factorCount, visitorCount,
       totalDebt, totalCredit, totalCheckAmount, totalSales, totalTax, totalTakhfif, totalStock,
+      buyValue, sellValue, potentialProfit, lowStock, highStock, debtors, creditors,
+      activeCustomers, pendingChecks, settledChecks, topBanks,
     },
     customers,
     products,

@@ -2,77 +2,126 @@
 <html lang="fa" dir="rtl">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#071b3d" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <title>آتیران همراه | گزارشات مدیریتی</title>
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
   <div id="app" class="app">
-    <div class="bg-orbs" aria-hidden="true"></div>
+    <div class="bg-orbs" aria-hidden="true">
+      <span class="orb orb-a"></span>
+      <span class="orb orb-b"></span>
+      <span class="orb orb-c"></span>
+      <span class="orb orb-d"></span>
+      <span class="star-field"></span>
+    </div>
 
     <header class="topbar">
-      <div class="topbar__logo" aria-hidden="true">
-        <span class="m-mark">M</span>
-        <span class="m-spark"></span>
+      <button class="brand" id="brandHome" type="button" aria-label="بازگشت به داشبورد">
+        <span class="brand__logo" aria-hidden="true">
+          <span class="brand__m">M</span>
+          <span class="brand__spark"></span>
+        </span>
+        <span class="brand__text">
+          <span class="brand__title">آتیران همراه</span>
+          <span class="brand__subtitle">گزارشات مدیریتی پیشرفته</span>
+        </span>
+      </button>
+
+      <div class="topbar__actions">
+        <div class="connection-pill" id="connectionPill" title="وضعیت اتصال مستقیم به دیتابیس">
+          <span class="pulse-dot" id="pulseDot"></span>
+          <span class="connection-text" id="connectionText">در حال اتصال به دیتابیس...</span>
+        </div>
+
+        <button class="refresh-btn" id="refreshBtn" type="button" title="بارگذاری مجدد گزارش‌ها">
+          <span class="refresh-icon">⟳</span>
+          <span class="refresh-label">به‌روزرسانی</span>
+        </button>
+
+        <button class="menu-btn" id="menuBtn" type="button" aria-label="باز کردن منوی گزارش‌ها">
+          <span></span><span></span><span></span>
+        </button>
       </div>
-      <div class="topbar__text">
-        <h1>آتیران همراه</h1>
-        <p>گزارشات مدیریتی پیشرفته</p>
-      </div>
-      <div class="topbar__credit">
+
+      <div class="credit-line">
         <span class="credit--mint">Meelano Studio Design</span>
         <span class="dot">•</span>
         <span class="credit--aqua">Milad Yaghoobi</span>
       </div>
     </header>
 
-    <div id="connectionBadge" class="connection-badge">
-      <span class="pulse-dot"></span>
-      <span id="connectionText">در حال اتصال مستقیم به دیتابیس...</span>
-    </div>
-
     <main class="layout">
-      <aside class="sidebar">
-        <button class="nav-btn active" data-view="overview">
-          <span class="nav-icon" data-icon="dash">▦</span>
-          <span class="nav-label">داشبورد کل</span>
-        </button>
-        <button class="nav-btn" data-view="customers">
-          <span class="nav-icon" data-icon="customers">👥</span>
-          <span class="nav-label">مشتریان</span>
-        </button>
-        <button class="nav-btn" data-view="products">
-          <span class="nav-icon" data-icon="products">▣</span>
-          <span class="nav-label">کالاها و قیمت‌ها</span>
-        </button>
-        <button class="nav-btn" data-view="checks">
-          <span class="nav-icon" data-icon="checks">🗎</span>
-          <span class="nav-label">چک‌ها</span>
-        </button>
-        <button class="nav-btn" data-view="invoices">
-          <span class="nav-icon" data-icon="invoices">🧾</span>
-          <span class="nav-label">فاکتورها</span>
-        </button>
-        <button class="nav-btn" data-view="inventory">
-          <span class="nav-icon" data-icon="inventory">◫</span>
-          <span class="nav-label">موجودی انبار</span>
-        </button>
-        <button class="nav-btn" data-view="visitors">
-          <span class="nav-icon" data-icon="visitors">◎</span>
-          <span class="nav-label">ویزیتورها</span>
-        </button>
+      <aside class="sidebar" id="sidebar" aria-label="موضوعات گزارش">
+        <p class="sidebar__title">موضوعات گزارش</p>
+        <div class="sidebar__scroll">
+          <button class="nav-btn active" data-view="overview">
+            <span class="nav-visor"><span class="nav-icon" data-icon="dashboard">◈</span></span>
+            <span class="nav-label">داشبورد کل</span>
+            <span class="nav-arrow">›</span>
+          </button>
+          <button class="nav-btn" data-view="customers">
+            <span class="nav-visor"><span class="nav-icon" data-icon="customers">◎</span></span>
+            <span class="nav-label">مشتریان</span>
+            <span class="nav-arrow">›</span>
+          </button>
+          <button class="nav-btn" data-view="products">
+            <span class="nav-visor"><span class="nav-icon" data-icon="products">▣</span></span>
+            <span class="nav-label">کالاها و قیمت‌ها</span>
+            <span class="nav-arrow">›</span>
+          </button>
+          <button class="nav-btn" data-view="checks">
+            <span class="nav-visor"><span class="nav-icon" data-icon="checks">🗎</span></span>
+            <span class="nav-label">چک‌ها</span>
+            <span class="nav-arrow">›</span>
+          </button>
+          <button class="nav-btn" data-view="banks">
+            <span class="nav-visor"><span class="nav-icon" data-icon="banks">🏦</span></span>
+            <span class="nav-label">بانک‌ها</span>
+            <span class="nav-arrow">›</span>
+          </button>
+          <button class="nav-btn" data-view="invoices">
+            <span class="nav-visor"><span class="nav-icon" data-icon="invoices">▤</span></span>
+            <span class="nav-label">فروش و فاکتورها</span>
+            <span class="nav-arrow">›</span>
+          </button>
+          <button class="nav-btn" data-view="purchases">
+            <span class="nav-visor"><span class="nav-icon" data-icon="purchases">↻</span></span>
+            <span class="nav-label">خرید و سود</span>
+            <span class="nav-arrow">›</span>
+          </button>
+          <button class="nav-btn" data-view="inventory">
+            <span class="nav-visor"><span class="nav-icon" data-icon="inventory">◫</span></span>
+            <span class="nav-label">موجودی انبار</span>
+            <span class="nav-arrow">›</span>
+          </button>
+          <button class="nav-btn" data-view="visitors">
+            <span class="nav-visor"><span class="nav-icon" data-icon="visitors">➤</span></span>
+            <span class="nav-label">ویزیتورها</span>
+            <span class="nav-arrow">›</span>
+          </button>
+        </div>
+
+        <div class="sidebar__footer">
+          <span class="db-status-label">Atiran2 • 37.143.147.19:1433</span>
+          <span class="db-status-badge">فقط SELECT</span>
+        </div>
       </aside>
 
       <section id="content" class="content">
         <div id="loading" class="panel loading-panel">
           <div class="loader"></div>
-          <p>در حال بارگذاری گزارش‌ها از Atiran2...</p>
+          <p>در حال بارگذاری گزارش‌های هوشمند از Atiran2...</p>
         </div>
 
         <div id="errorBox" class="panel error-box hidden"></div>
 
         <div id="view-overview" class="view active">
           <div id="overview-hero" class="hero-card"></div>
+          <div id="overview-insights" class="insight-strip"></div>
           <div id="overview-kpis" class="kpi-grid"></div>
           <div id="overview-radar" class="chart-row"></div>
           <div id="overview-bars" class="chart-stack"></div>
@@ -83,7 +132,9 @@
         <div id="view-customers" class="view"></div>
         <div id="view-products" class="view"></div>
         <div id="view-checks" class="view"></div>
+        <div id="view-banks" class="view"></div>
         <div id="view-invoices" class="view"></div>
+        <div id="view-purchases" class="view"></div>
         <div id="view-inventory" class="view"></div>
         <div id="view-visitors" class="view"></div>
       </section>
@@ -91,7 +142,7 @@
 
     <footer class="footer">
       <span>Meelano Studio Design • Milad Yaghoobi</span>
-      <span>اتصال مستقیم به SQL Server (پورت 1433) — فقط SELECT</span>
+      <span>اتصال مستقیم به SQL Server • پورت 1433 • فقط خواندن</span>
     </footer>
   </div>
 

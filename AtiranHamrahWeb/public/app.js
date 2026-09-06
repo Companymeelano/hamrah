@@ -17,18 +17,28 @@ const palette = [
 ];
 
 const kindMap = {
-  dash: { accent: '#00c6ff', glow: '#9be4ff', soft: '#005bb8', glyph: '▦', label: 'داشبورد کل' },
-  customers: { accent: '#0072ff', glow: '#9ccbff', soft: '#003c8f', glyph: '👥', label: 'مشتریان' },
+  dash: { accent: '#00c6ff', glow: '#9be4ff', soft: '#005bb8', glyph: '◈', label: 'داشبورد کل' },
+  customers: { accent: '#0072ff', glow: '#9ccbff', soft: '#003c8f', glyph: '◎', label: 'مشتریان' },
   products: { accent: '#6fcf97', glow: '#c4f7dc', soft: '#157a4d', glyph: '▣', label: 'کالاها و قیمت‌ها' },
   checks: { accent: '#ff6e7f', glow: '#ffc1ca', soft: '#a81632', glyph: '🗎', label: 'چک‌ها' },
-  invoices: { accent: '#ffb86c', glow: '#ffe1bb', soft: '#9a5e05', glyph: '🧾', label: 'فاکتورها' },
-  inventory: { accent: '#7b61ff', glow: '#d5ccff', soft: '#3d2a9b', glyph: '◫', label: 'موجودی انبار' },
-  visitors: { accent: '#4ecdc4', glow: '#c1f7f3', soft: '#0f8578', glyph: '◎', label: 'ویزیتورها' },
-  sales: { accent: '#8ef8cd', glow: '#e3ffef', soft: '#0e7a55', glyph: '📈', label: 'فروش کل' },
+  banks: { accent: '#ffb86c', glow: '#ffe1bb', soft: '#9a5e05', glyph: '🏦', label: 'بانک‌ها' },
+  invoices: { accent: '#7b61ff', glow: '#d5ccff', soft: '#3d2a9b', glyph: '▤', label: 'فروش و فاکتورها' },
+  purchases: { accent: '#4ecdc4', glow: '#c1f7f3', soft: '#0f8578', glyph: '↻', label: 'خرید و سود' },
+  inventory: { accent: '#bb6bd9', glow: '#e9d4ff', soft: '#5a2b7b', glyph: '◫', label: 'موجودی انبار' },
+  visitors: { accent: '#8ef8cd', glow: '#e3ffef', soft: '#0e7a55', glyph: '➤', label: 'ویزیتورها' },
+  sales: { accent: '#ffb86c', glow: '#ffe1bb', soft: '#9a5e05', glyph: '📈', label: 'فروش کل' },
   credit: { accent: '#bb6bd9', glow: '#e9d4ff', soft: '#5a2b7b', glyph: '💳', label: 'اعتبار' },
   tax: { accent: '#6c8cff', glow: '#d0d9ff', soft: '#2c3f9b', glyph: '٪', label: 'مالیات' },
   discount: { accent: '#ff6b6b', glow: '#ffc4c4', soft: '#8e1c1c', glyph: '🏷', label: 'تخفیف' },
   db: { accent: '#3ddcff', glow: '#cff5ff', soft: '#0c5f7c', glyph: '◉', label: 'دیتابیس' },
+  profit: { accent: '#8ef8cd', glow: '#e3ffef', soft: '#0e7a55', glyph: '≈', label: 'سود بالقوه' },
+  buy: { accent: '#4ecdc4', glow: '#c1f7f3', soft: '#0f8578', glyph: '↺', label: 'ارزش خرید' },
+  sell: { accent: '#ffb86c', glow: '#ffe1bb', soft: '#9a5e05', glyph: '↗', label: 'ارزش فروش' },
+  lowStock: { accent: '#ff6e7f', glow: '#ffc1ca', soft: '#a81632', glyph: '▼', label: 'کم‌موجود' },
+  highStock: { accent: '#6fcf97', glow: '#c4f7dc', soft: '#157a4d', glyph: '▲', label: 'پرموجود' },
+  pending: { accent: '#ffb86c', glow: '#ffe1bb', soft: '#9a5e05', glyph: '◷', label: 'چک در جریان' },
+  settled: { accent: '#6fcf97', glow: '#c4f7dc', soft: '#157a4d', glyph: '✓', label: 'چک تسویه' },
+  creditors: { accent: '#ff6e7f', glow: '#ffc1ca', soft: '#a81632', glyph: '⚠', label: 'بدهکاران' },
 };
 
 // ---------------------------------------------------------------- utils
@@ -80,6 +90,22 @@ function kpiCard(kindKey, value, subtitle = '') {
   body.appendChild(el('div', { class: 'kpi-title' }, escapeHtml(k.label)));
   body.appendChild(el('div', { class: 'kpi-value' }, escapeHtml(value)));
   if (subtitle) body.appendChild(el('div', { class: 'kpi-sub' }, escapeHtml(subtitle)));
+
+  card.append(icon, body);
+  return card;
+}
+
+function insightCard(kindKey, title, value) {
+  const k = kindMap[kindKey] || kindMap.dash;
+  const card = el('div', { class: 'insight-card' });
+  card.style.setProperty('--accent', k.accent);
+  card.style.setProperty('--glow', k.glow);
+  card.style.setProperty('--soft', k.soft);
+
+  const icon = el('div', { class: 'insight-icon' }, k.glyph);
+  const body = el('div', { class: 'insight-body' });
+  body.appendChild(el('div', { class: 'insight-title' }, escapeHtml(title)));
+  body.appendChild(el('div', { class: 'insight-value' }, escapeHtml(value)));
 
   card.append(icon, body);
   return card;
@@ -173,10 +199,10 @@ function radarChart(title, axes, values) {
   const card = el('div', { class: 'chart-card' });
   card.appendChild(el('h3', {}, escapeHtml(title)));
 
-  const svgEl = svg('svg', { viewBox: '0 0 320 280', width: '100%' });
+  const svgEl = svg('svg', { viewBox: '0 0 320 300', width: '100%' });
   const cx = 160;
-  const cy = 140;
-  const radius = 105;
+  const cy = 150;
+  const radius = 108;
   const max = Math.max(...values, 1);
   const n = axes.length;
   const color = '#00c6ff';
@@ -187,16 +213,12 @@ function radarChart(title, axes, values) {
     return [cx + radius * sc * Math.cos(rad), cy + radius * sc * Math.sin(rad)];
   });
 
-  // depth shadow
-  const dpts = pts(1).map((v, i) => [v[0] + 4, v[1] + 4]);
-  const shadow = svg('polygon', { points: dpts.map((p) => p.join(',')).join(' '), fill: 'rgba(0,0,0,0.22)' });
-  appendSvg(svgEl, shadow);
+  const dpts = pts(1).map((v) => [v[0] + 4, v[1] + 4]);
+  appendSvg(svgEl, svg('polygon', { points: dpts.map((p) => p.join(',')).join(' '), fill: 'rgba(0,0,0,0.22)' }));
 
-  // rings
   [1, 2, 3, 4].forEach((ring) => {
-    const points = pts(ring / 4).map((p) => p.join(',')).join(' ');
     appendSvg(svgEl, svg('polygon', {
-      points,
+      points: pts(ring / 4).map((p) => p.join(',')).join(' '),
       fill: 'none',
       stroke: color,
       'stroke-opacity': ring % 2 ? '0.16' : '0.28',
@@ -204,12 +226,10 @@ function radarChart(title, axes, values) {
     }));
   });
 
-  // axes
   pts(1).forEach((p) => {
     appendSvg(svgEl, svg('line', { x1: cx, y1: cy, x2: p[0], y2: p[1], stroke: color, 'stroke-opacity': '0.20', 'stroke-width': '1.2' }));
   });
 
-  // data polygon
   const dataPts = values.map((v, i) => {
     const a = -90 + (360 / n) * i;
     const rad = (a * Math.PI) / 180;
@@ -224,7 +244,6 @@ function radarChart(title, axes, values) {
     'stroke-linejoin': 'round',
   }));
 
-  // nodes
   dataPts.forEach((p) => {
     appendSvg(svgEl, svg('circle', { cx: p[0], cy: p[1], r: 7, fill: '#fff' }));
     appendSvg(svgEl, svg('circle', { cx: p[0], cy: p[1], r: 4, fill: color }));
@@ -249,7 +268,7 @@ function isometricBars(title, entries, unit = '') {
   const W = 420;
   const H = 230;
   const max = Math.max(...entries.map((e) => e.value), 1);
-  const n = entries.length;
+  const n = Math.max(entries.length, 1);
   const slot = W / n;
   const barW = Math.max(slot * 0.42, 16);
   const depthX = 10;
@@ -265,7 +284,6 @@ function isometricBars(title, entries, unit = '') {
     const h = Math.max((entry.value / max) * maxH, 6);
     const y = base - h;
 
-    // floor shadow
     appendSvg(svgEl, svg('rect', {
       x: x + barW * 0.16 + depthX,
       y: base + depthY * 0.3,
@@ -273,39 +291,22 @@ function isometricBars(title, entries, unit = '') {
       height: Math.max(h * 0.05, 4),
       rx: barW * 0.22,
       fill: 'rgba(0,0,0,0.26)',
-      filter: 'blur(0.4px)',
     }));
 
-    // side face
     appendSvg(svgEl, svg('polygon', {
-      points: [
-        [x + barW, y], [x + barW + depthX, y - depthY], [x + barW + depthX, base - depthY], [x + barW, base],
-      ].map((p) => p.join(',')).join(' '),
+      points: [[x + barW, y], [x + barW + depthX, y - depthY], [x + barW + depthX, base - depthY], [x + barW, base]].map((p) => p.join(',')).join(' '),
       fill: color,
       opacity: '0.42',
     }));
 
-    // top face
     appendSvg(svgEl, svg('polygon', {
-      points: [
-        [x, y], [x + depthX, y - depthY], [x + barW + depthX, y - depthY], [x + barW, y],
-      ].map((p) => p.join(',')).join(' '),
+      points: [[x, y], [x + depthX, y - depthY], [x + barW + depthX, y - depthY], [x + barW, y]].map((p) => p.join(',')).join(' '),
       fill: '#ffffff',
       opacity: '0.34',
     }));
 
-    // front face
-    appendSvg(svgEl, svg('rect', {
-      x,
-      y,
-      width: barW,
-      height: h,
-      rx: barW * 0.22,
-      fill: color,
-      opacity: '0.90',
-    }));
+    appendSvg(svgEl, svg('rect', { x, y, width: barW, height: h, rx: barW * 0.22, fill: color, opacity: '0.90' }));
 
-    // gloss
     appendSvg(svgEl, svg('rect', {
       x: x + barW * 0.16,
       y: y + 2,
@@ -316,7 +317,6 @@ function isometricBars(title, entries, unit = '') {
       opacity: '0.25',
     }));
 
-    // label
     const label = svg('text', {
       x: x + barW / 2,
       y: H - 5,
@@ -335,6 +335,15 @@ function isometricBars(title, entries, unit = '') {
 }
 
 // ---------------------------------------------------------------- grouping helpers
+function mapToChart(pairs, build) {
+  const groups = new Map();
+  pairs.forEach(([key, value]) => {
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(value);
+  });
+  return Array.from(groups.entries()).map(([key, values]) => build(key, values));
+}
+
 function salesByDate(factors) {
   return mapToChart(
     factors.map((f) => [f.date || '?', f.allFel || 0]),
@@ -386,13 +395,37 @@ function salesByCustomer(factors) {
   ).sort((a, b) => b.value - a.value);
 }
 
-function mapToChart(pairs, build) {
-  const groups = new Map();
-  pairs.forEach(([key, value]) => {
-    if (!groups.has(key)) groups.set(key, []);
-    groups.get(key).push(value);
-  });
-  return Array.from(groups.entries()).map(([key, values]) => build(key, values));
+function topBanksFrom(d) {
+  const banks = d.summary?.topBanks;
+  if (Array.isArray(banks) && banks.length) return banks.map((x) => ({ label: x.bank, value: x.value }));
+  return checksByBank(d.checks);
+}
+
+function buyValueByProduct(products) {
+  return products
+    .map((p) => ({
+      label: p.name || `کالا ${p.shka}`,
+      value: (p.buyPrice || 0) * (p.mojkavah || 0),
+      moj: p.mojkavah || 0,
+    }))
+    .filter((e) => e.value > 0)
+    .sort((a, b) => b.value - a.value)
+    .slice(0, 10);
+}
+
+function profitByProduct(products) {
+  return products
+    .map((p) => ({
+      label: p.name || `کالا ${p.shka}`,
+      value: Math.max(((p.finalPrice || 0) - (p.buyPrice || 0)) * (p.mojkavah || 0), 0),
+    }))
+    .filter((e) => e.value > 0)
+    .sort((a, b) => b.value - a.value)
+    .slice(0, 10);
+}
+
+function summaryNumber(d, key, fallback = 0) {
+  return d.summary && Number.isFinite(d.summary[key]) ? d.summary[key] : fallback;
 }
 
 // ---------------------------------------------------------------- views
@@ -401,10 +434,28 @@ function renderOverview(d) {
   hero.innerHTML = '';
   hero.appendChild(el('div', { class: 'm3d-badge' }, 'M'));
   const heroBody = el('div', {});
-  heroBody.appendChild(el('h2', {}, 'پنل مدیریت Atiran2'));
-  heroBody.appendChild(el('p', {}, 'مشتریان • کالاها • چک‌ها • فاکتورها • انبار • ویزیتور'));
+  heroBody.appendChild(el('h2', {}, 'پنل مدیریت کل Atiran2'));
+  heroBody.appendChild(el('p', {}, 'مشتریان • کالاها • چک‌ها • بانک‌ها • فروش و خرید • انبار • ویزیتور'));
   heroBody.appendChild(el('p', { class: 'meta' }, escapeHtml(d.connection || '37.143.147.19:1433')));
+  const tags = el('div', { class: 'hero-tags' });
+  [
+    `بدهی: ${formatMoney(summaryNumber(d, 'totalDebt'))}`,
+    `فروش: ${formatMoney(summaryNumber(d, 'totalSales'))}`,
+    `سود بالقوه: ${formatMoney(summaryNumber(d, 'potentialProfit'))}`,
+  ].forEach((t) => tags.appendChild(el('span', { class: 'hero-tag' }, t)));
+  heroBody.appendChild(tags);
   hero.appendChild(heroBody);
+
+  const insights = $('#overview-insights');
+  insights.innerHTML = '';
+  [
+    insightCard('buy', 'ارزش خرید موجودی', formatMoney(summaryNumber(d, 'buyValue'))),
+    insightCard('sell', 'ارزش فروش موجودی', formatMoney(summaryNumber(d, 'sellValue'))),
+    insightCard('profit', 'سود بالقوه', formatMoney(summaryNumber(d, 'potentialProfit'))),
+    insightCard('lowStock', 'کالاهای کم‌موجود', formatLong(summaryNumber(d, 'lowStock'))),
+    insightCard('highStock', 'کالاهای پرموجود', formatLong(summaryNumber(d, 'highStock'))),
+    insightCard('creditors', 'مشتریان بدهکار', formatLong(summaryNumber(d, 'debtors'))),
+  ].forEach((card) => insights.appendChild(card));
 
   const kpis = $('#overview-kpis');
   kpis.innerHTML = '';
@@ -412,22 +463,28 @@ function renderOverview(d) {
     kpiCard('customers', formatLong(d.summary.customerCount), `مجموع بدهی: ${formatMoney(d.summary.totalDebt)}`),
     kpiCard('products', formatLong(d.summary.productCount), 'کالا در دیتابیس'),
     kpiCard('checks', formatMoney(d.summary.totalCheckAmount), `${formatLong(d.summary.checkCount)} چک`),
+    kpiCard('banks', formatLong(topBanksFrom(d).length), 'گروه بانکی'),
     kpiCard('inventory', formatMoney(d.summary.totalStock), 'جمع موجودی انبار'),
     kpiCard('sales', formatMoney(d.summary.totalSales), 'از فاکتورها'),
     kpiCard('credit', formatMoney(d.summary.totalCredit), 'مجموع اعتبار'),
     kpiCard('tax', formatMoney(d.summary.totalTax), 'مجموع مالیات'),
     kpiCard('discount', formatMoney(d.summary.totalTakhfif), 'مجموع تخفیف'),
+    kpiCard('buy', formatMoney(summaryNumber(d, 'buyValue')), 'ارزش خرید'),
+    kpiCard('sell', formatMoney(summaryNumber(d, 'sellValue')), 'ارزش فروش'),
+    kpiCard('profit', formatMoney(summaryNumber(d, 'potentialProfit')), 'سود بالقوه'),
   ].forEach((card) => kpis.appendChild(card));
 
   const radar = $('#overview-radar');
   radar.innerHTML = '';
-  radar.appendChild(radarChart('شبکه شش‌بُعدی آتیران', ['مشتری', 'کالا', 'چک', 'فاکتور', 'انبار', 'ویزیتور'], [
+  radar.appendChild(radarChart('شبکه هشت‌بُعدی مدیریت', ['مشتری', 'کالا', 'چک', 'فاکتور', 'انبار', 'ویزیتور', 'بانک', 'سود'], [
     Math.max(d.summary.customerCount, 1),
     Math.max(d.summary.productCount, 1),
     Math.max(d.summary.checkCount, 1),
     Math.max(d.summary.factorCount, 1),
     Math.max(d.inventory.length, 1),
     Math.max(d.summary.visitorCount, 1),
+    Math.max(topBanksFrom(d).length, 1),
+    Math.max(summaryNumber(d, 'potentialProfit'), 1),
   ]));
 
   const bars = $('#overview-bars');
@@ -448,9 +505,10 @@ function renderOverview(d) {
   ranked.innerHTML = '';
   const products = d.products.filter((p) => p.finalPrice > 0).sort((a, b) => b.finalPrice - a.finalPrice).slice(0, 8).map((p) => ({ label: p.name || `کالا ${p.shka}`, value: p.finalPrice }));
   if (products.length) ranked.appendChild(rankedList('کالاهای با ارزش بیشتر', products, 'ریال'));
-
   const topDebt = d.customers.filter((c) => c.man > 0).sort((a, b) => b.man - a.man).slice(0, 8).map((c) => ({ label: c.name || `شماره ${c.shmo || '؟'}`, value: c.man }));
   if (topDebt.length) ranked.appendChild(rankedList('مشتریان با بیشترین بدهی', topDebt, 'تومان'));
+  const topBanks = topBanksFrom(d);
+  if (topBanks.length) ranked.appendChild(rankedList('گروه‌های بانکی بر اساس چک', topBanks, 'تومان'));
 }
 
 function heroRow(viewEl, a, b) {
@@ -502,6 +560,19 @@ function renderChecks(d) {
   view.appendChild(donutChart('توزیع چک‌ها بر اساس وضعیت', checksByStatus(d.checks), 'وضعیت', formatLong(d.summary.checkCount)));
 }
 
+function renderBanks(d) {
+  const view = $('#view-banks');
+  view.innerHTML = '';
+  const banks = topBanksFrom(d);
+  heroRow(view,
+    { view: 'banks', value: formatLong(banks.length), subtitle: 'گروه بانکی' },
+    { view: 'checks', value: formatMoney(d.summary.totalCheckAmount), subtitle: 'جمع چک‌ها' },
+  );
+  view.appendChild(isometricBars('ستون‌های سه‌بعدی مبلغ چک بر اساس بانک', banks.slice(0, 8), 'تومان'));
+  if (banks.length) view.appendChild(donutChart('توزیع چک‌ها بر اساس بانک', banks, 'بانک', formatMoney(d.summary.totalCheckAmount)));
+  if (banks.length) view.appendChild(rankedList('اولویت بانک‌ها بر اساس مبلغ چک', banks, 'تومان'));
+}
+
 function renderInvoices(d) {
   const view = $('#view-invoices');
   view.innerHTML = '';
@@ -541,6 +612,21 @@ function renderInvoices(d) {
   if (byCustomer.length) view.appendChild(rankedList('مشتریان بر اساس مجموع فاکتور', byCustomer, 'تومان'));
 }
 
+function renderPurchases(d) {
+  const view = $('#view-purchases');
+  view.innerHTML = '';
+  heroRow(view,
+    { view: 'buy', value: formatMoney(summaryNumber(d, 'buyValue')), subtitle: 'ارزش خرید موجودی' },
+    { view: 'profit', value: formatMoney(summaryNumber(d, 'potentialProfit')), subtitle: 'سود بالقوه' },
+  );
+  const buys = buyValueByProduct(d.products);
+  if (buys.length) view.appendChild(isometricBars('ستون‌های سه‌بعدی ارزش خرید کالا', buys.slice(0, 8), 'ریال'));
+  if (buys.length) view.appendChild(rankedList('کالاها بر اساس ارزش خرید', buys, 'ریال'));
+  const profit = profitByProduct(d.products);
+  if (profit.length) view.appendChild(rankedList('سود بالقوه کالاها', profit, 'ریال'));
+  if (d.products.length) view.appendChild(isometricBars('ستون‌های سه‌بعدی ارزش فروش', d.products.filter((p) => p.finalPrice > 0).sort((a, b) => (b.finalPrice * b.mojkavah) - (a.finalPrice * a.mojkavah)).slice(0, 8).map((p) => ({ label: p.name || `کالا ${p.shka}`, value: (p.finalPrice || 0) * (p.mojkavah || 0) })), 'ریال'));
+}
+
 function renderInventory(d) {
   const view = $('#view-inventory');
   view.innerHTML = '';
@@ -577,15 +663,38 @@ function renderCurrentView() {
     case 'customers': renderCustomers(d); break;
     case 'products': renderProducts(d); break;
     case 'checks': renderChecks(d); break;
+    case 'banks': renderBanks(d); break;
     case 'invoices': renderInvoices(d); break;
+    case 'purchases': renderPurchases(d); break;
     case 'inventory': renderInventory(d); break;
     case 'visitors': renderVisitors(d); break;
     default: renderOverview(d);
   }
 }
 
-// ---------------------------------------------------------------- nav
+// ---------------------------------------------------------------- navigation / drawer
+function closeDrawer() {
+  const sidebar = $('#sidebar');
+  const overlay = $('.drawer-overlay');
+  if (sidebar) sidebar.classList.remove('open');
+  if (overlay) overlay.classList.remove('open');
+}
+
 function setupNavigation() {
+  const sidebar = $('#sidebar');
+  const overlay = el('div', { class: 'drawer-overlay' });
+  sidebar.insertAdjacentElement('afterend', overlay);
+
+  const menuBtn = $('#menuBtn');
+  if (menuBtn) {
+    menuBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('open');
+      overlay.classList.toggle('open');
+    });
+  }
+
+  overlay.addEventListener('click', closeDrawer);
+
   $$('.nav-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
       state.activeView = btn.dataset.view;
@@ -594,19 +703,34 @@ function setupNavigation() {
       const target = document.getElementById(`view-${state.activeView}`);
       if (target) target.classList.add('active');
       renderCurrentView();
+      closeDrawer();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   });
+
+  const brandHome = $('#brandHome');
+  if (brandHome) {
+    brandHome.addEventListener('click', () => {
+      const overviewBtn = document.querySelector('.nav-btn[data-view="overview"]');
+      if (overviewBtn) overviewBtn.click();
+    });
+  }
 }
 
 // ---------------------------------------------------------------- load
-async function loadDashboard() {
+async function loadDashboard({ silent = false } = {}) {
   const loading = $('#loading');
   const errorBox = $('#errorBox');
   const connectionText = $('#connectionText');
+  const refreshBtn = $('#refreshBtn');
 
-  loading.classList.remove('hidden');
+  if (!silent) {
+    loading.classList.remove('hidden');
+  } else {
+    loading.classList.add('hidden');
+  }
   errorBox.classList.add('hidden');
+  refreshBtn?.classList.add('loading');
 
   try {
     const res = await fetch('/api/dashboard');
@@ -627,8 +751,13 @@ async function loadDashboard() {
     connectionText.textContent = 'اتصال ناموفق — دیتابیس در دسترس نیست';
   } finally {
     loading.classList.add('hidden');
+    refreshBtn?.classList.remove('loading');
   }
 }
 
 setupNavigation();
+
+const refreshBtn = $('#refreshBtn');
+refreshBtn?.addEventListener('click', () => loadDashboard({ silent: true }));
+
 loadDashboard();

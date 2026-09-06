@@ -18,7 +18,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Set up JDK 17
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: '17'
@@ -43,13 +43,29 @@ jobs:
 
       - name: Build debug APK
         working-directory: AtiranHamrahViewer
-        run: gradle assembleDebug --no-daemon --stacktrace
+        continue-on-error: true
+        run: |
+          gradle assembleDebug --no-daemon --stacktrace --console=plain > build.log 2>&1
+          echo "EXIT_CODE=$?" >> build.log
+          exit 0
+
+      - name: Upload build log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-log
+          path: AtiranHamrahViewer/build.log
+          if-no-files-found: ignore
 
       - name: Upload debug APK
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: AtiranHamrahViewer-debug-apk
           path: |
             AtiranHamrahViewer/app/build/outputs/apk/debug/*.apk
             AtiranHamrahViewer/app/build/outputs/apk/debug/output-metadata.json
-          if-no-files-found: error
+          if-no-files-found: ignore
+
+      - name: Verify build succeeded
+        run: grep -q '^EXIT_CODE=0$' AtiranHamrahViewer/build.log

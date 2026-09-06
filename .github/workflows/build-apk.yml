@@ -82,3 +82,21 @@ jobs:
           msg = msg.replace('%', '%25').replace('\r', '%0D').replace('\n', '%0A')
           print("::error::" + msg)
           PY
+
+      - name: Publish build diagnostic issue
+        if: failure()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          {
+            echo "Run: ${{ github.run_id }}"
+            echo "Commit: ${{ github.sha }}"
+            echo "---"
+            sed -n '/FAILURE:/,$p' AtiranHamrahViewer/build.log | head -n 600
+          } > /tmp/diag.txt
+          if [ ! -s /tmp/diag.txt ]; then
+            tail -n 600 AtiranHamrahViewer/build.log > /tmp/diag.txt
+          fi
+          gh issue create --repo "$GITHUB_REPOSITORY" \
+            --title "Android build diagnostic ${{ github.run_id }}" \
+            --body-file /tmp/diag.txt

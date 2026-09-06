@@ -108,9 +108,10 @@ fun Metric3DIcon(
     size: Dp = 60.dp,
     rounded: Boolean = true,
 ) {
-    Canvas(modifier = modifier.size(size)) {
-        val w = size.width
-        val h = size.height
+    val iconDp = size
+    Canvas(modifier = modifier.size(iconDp)) {
+        val w = iconDp.value
+        val h = iconDp.value
         val inset = w * 0.035f
         val corner = w * 0.24f
         val depth = w * 0.055f

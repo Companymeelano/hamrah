@@ -15,6 +15,7 @@ import androidx.compose.material.icons.filled.Description
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Group
 import androidx.compose.material.icons.filled.Inventory2
+import androidx.compose.material.icons.filled.Insights
 import androidx.compose.material.icons.filled.Payments
 import androidx.compose.material.icons.filled.Receipt
 import androidx.compose.material.icons.filled.Settings
@@ -45,6 +46,7 @@ import ir.atiran.hamrah.viewer.ui.screens.browse.InventoryScreen
 import ir.atiran.hamrah.viewer.ui.screens.browse.InvoicesScreen
 import ir.atiran.hamrah.viewer.ui.screens.browse.MessagesScreen
 import ir.atiran.hamrah.viewer.ui.screens.browse.MiscScreen
+import ir.atiran.hamrah.viewer.ui.screens.ReportsScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -79,6 +81,7 @@ fun HomeScreen(vm: AppViewModel, settings: AtiranSettings) {
                 .padding(horizontal = 12.dp)
                 .verticalScroll(rememberScrollState()),
         ) {
+            SectionItem("گزارشات مدیریتی", Icons.Filled.Insights) { ReportsScreen(vm, settings) }
             SectionItem("مشتریان", Icons.Filled.Group) { CustomersScreen(vm) }
             SectionItem("کالاها و قیمت‌ها", Icons.Filled.Category) { GoodsScreen(vm) }
             SectionItem("موجودی انبارها", Icons.Filled.Inventory2) { InventoryScreen(vm) }

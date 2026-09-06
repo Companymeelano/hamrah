@@ -73,6 +73,15 @@ AtiranHamrahViewer/dist/app-debug.apk
 | چک‌ها | `Checks`, `CustomerChecks` |
 | پیام‌ها | `VisitorMessages`, `GetUnreadMessages` |
 | گزارش‌ها | `CompanyInfo`, `CountKa`, `CountMo`, `MaxShMo`, `GetPeriods`, `CustGroups`, `KaGroups` |
+| **گزارشات مدیریتی + داشبورد** | `CompanyInfo`, `CountKa`, `CountMo`, `MaxShMo`, `GetPeriods`, `Checks`, `Customers`, `InventoryAnbars` |
+
+بخش **گزارشات مدیریتی** شامل داشبورد مدیریت با کارت‌های KPI و نمودارهای رنگی
+است: توزیع چک‌ها بر اساس بانک و وضعیت، موجودی انبارها، بدهی/اعتبار مشتریان و
+دوره‌های سیستم.
+
+برندینگ و طراحی این نسخه:
+- **Meelano Studio Design**
+- **Milad Yaghoobi**
 
 همه این مسیرها و قالب‌های بدنه (Bare/Wrapped) دقیقاً از متادیتای
 `AtiranLocalServices.dll` استخراج شده‌اند — مرجع کامل:

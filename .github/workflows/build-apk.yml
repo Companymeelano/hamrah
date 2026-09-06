@@ -91,11 +91,13 @@ jobs:
           {
             echo "Run: ${{ github.run_id }}"
             echo "Commit: ${{ github.sha }}"
-            echo "---"
-            sed -n '/FAILURE:/,$p' AtiranHamrahViewer/build.log | head -n 600
+            echo "--- begin compile task ---"
+            awk '/Task :app:compileDebugKotlin/{seen=1} seen{print}' AtiranHamrahViewer/build.log | head -n 800
+            echo "--- begin FAILURE ---"
+            sed -n '/FAILURE:/,$p' AtiranHamrahViewer/build.log | head -n 400
           } > /tmp/diag.txt
           if [ ! -s /tmp/diag.txt ]; then
-            tail -n 600 AtiranHamrahViewer/build.log > /tmp/diag.txt
+            tail -n 800 AtiranHamrahViewer/build.log > /tmp/diag.txt
           fi
           gh issue create --repo "$GITHUB_REPOSITORY" \
             --title "Android build diagnostic ${{ github.run_id }}" \

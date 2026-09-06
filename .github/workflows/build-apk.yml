@@ -3,7 +3,7 @@ name: Build Atiran Hamrah Android APK
 on:
   push:
     branches:
-      - '**'
+      - 'arena/01a07877-hamrah'
     paths-ignore:
       - '**/*.apk'
   workflow_dispatch:

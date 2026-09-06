@@ -4,13 +4,15 @@ on:
   push:
     branches:
       - '**'
+    paths-ignore:
+      - '**/*.apk'
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
       actions: write
       issues: write
 
@@ -67,6 +69,17 @@ jobs:
             AtiranHamrahViewer/app/build/outputs/apk/debug/*.apk
             AtiranHamrahViewer/app/build/outputs/apk/debug/output-metadata.json
           if-no-files-found: ignore
+
+      - name: Commit debug APK to repository
+        if: success()
+        run: |
+          mkdir -p AtiranHamrahViewer/dist
+          cp AtiranHamrahViewer/app/build/outputs/apk/debug/app-debug.apk AtiranHamrahViewer/dist/app-debug.apk
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f AtiranHamrahViewer/dist/app-debug.apk
+          git commit -m "Build Atiran Hamrah debug APK (CI)" || true
+          git push origin HEAD:refs/heads/arena/01a07877-hamrah
 
       - name: Verify build succeeded
         run: grep -q '^EXIT_CODE=0$' AtiranHamrahViewer/build.log

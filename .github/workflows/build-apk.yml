@@ -69,3 +69,16 @@ jobs:
 
       - name: Verify build succeeded
         run: grep -q '^EXIT_CODE=0$' AtiranHamrahViewer/build.log
+
+      - name: Report build failure
+        if: failure()
+        run: |
+          python3 - <<'PY'
+log = open("AtiranHamrahViewer/build.log").read()
+lines = log.splitlines()
+tail = lines[-120:]
+msg = "Android build failed. Log tail:\n" + "\n".join(tail)
+msg = msg.replace('%', '%25').replace('\r', '%0D').replace('\n', '%0A')
+print("::error::" + msg)
+PY
+
